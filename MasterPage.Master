@@ -1,0 +1,183 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="UniFinder.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style5 {
+            width: 100px;
+            height: 100px;
+            color: #000000;
+            background-color: #FEFFFF;
+        }
+        .auto-style6 {
+            width: 14px;
+            height: 591px;
+            top: 0px;
+        }
+        .auto-style7 {
+            height: 1157px;
+            margin-bottom: 46px;
+        }
+        .auto-style8 {
+            height: 26px;
+        }
+        .auto-style9 {
+            text-align: center;
+            height: 104px;
+        }
+        .auto-style13 {
+            width: 100%;
+            height: 988px;
+        }
+        ul.navBar {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        ul.navBar li {
+          float: left;
+        }
+
+        ul.navBar li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        ul.navBar li a:hover:not(.active) {
+          background-color: #111;
+        }
+
+        .active {
+          background-color: #111;
+          color: #FFFF00;
+        }
+
+        ul.bottomNav {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+        .auto-style14 {
+            height: 591px;
+        }
+        .auto-style16 {
+            color: #FFFFFF;
+        }
+        .auto-style17 {
+            width: 42px;
+            height: 39px;
+        }
+        .auto-style18 {
+            height: 35px;
+            color: #FFFFFF;
+            width: 317px;
+        }
+        .auto-style19 {
+            height: 35px;
+            color: #FFFFFF;
+            }
+        .auto-style20 {
+            color: #FFFFFF;
+            text-align: center;
+            height: 26px;
+        }
+        .auto-style24 {
+            background-color: #FEFFFF;
+            color: #000000;
+        }
+        .auto-style25 {
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+        .auto-style26 {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="auto-style7" style="background-color: #FFFFFF">
+            <table class="auto-style13">
+                <tr>
+                    <td class="auto-style9" colspan="3" style="background-color: #FFFFFF; font-size: xx-large; color: #FFFFFF;">
+                        <!--<asp:Image ID="Logo" runat="server" ImageUrl="~/images/Logo.png" Height="500px" Width="500px" />     -->      
+                        <img src="/images/edupath-favicon-black.png" alt="Logo" class="auto-style5" style="vertical-align: middle; line-height: normal; text-align: center"> <span class="auto-style25"><span class="auto-style24">&nbsp;eDUPATH</span></span></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
+                        <ul class="navBar" style="height: 58px">
+                            <li><a class="active" href="/Home.aspx">Home</a></li>
+                            <li><a href="/Programme.aspx">Programme</a></li>
+                            <li><a href="/University.aspx">University</a></li>
+                            <li><a href="/CareerTest.aspx">Career Test</a></li>
+                            <li><a href="/AIChatbot.aspx">AI Chatbot</a></li>
+                            <li><a href="/AboutUs.aspx">About Us</a></li>
+                            <li style="float:right; color:#FFFF00;"><a href="/Wishlist.aspx?logout=true">Wishlist</a></li>
+                            <li style="float:right; color:#FFFF00;"><a href="/Account.aspx?logout=true">Account</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
+                        <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16">
+                        </asp:SiteMapPath>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style6" style="background-color: #FFFFFF; vertical-align: top; clip: rect(auto, auto, auto, auto); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                        <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" >
+                        </asp:TreeView>
+                        <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />
+                    </td>
+                    <td style="background-color: #FFFFFF; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style14">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style18" colspan="2">
+                        <ul class="bottomNav" style="padding: 20px; vertical-align: top;">
+                            <li><a href="/Programme.aspx"><span class="auto-style16">Programme</span></a></li>
+                            <li><a href="/University.aspx"><span class="auto-style16">University</span></a></li>
+                            <li><a href="/CareerTest.aspx"><span class="auto-style16">CareerTest</span></a></li>
+                            <li><a href="/AIChatbot.aspx"><span class="auto-style16">AIChatbot</span></a></li>
+                            <li><a href="/AboutUs.aspx"><span class="auto-style16">AboutUs</span></a></li>
+                        </ul>    
+                    </td>
+                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style19">
+                        Need Help? 
+                        <br />
+                        <asp:Button ID="Button1" runat="server" BackColor="#009999" Height="35px" OnClick="Button1_Click" Text="GET SUPPORT" BorderStyle="None" ForeColor="#242424" />
+                        <br />
+                        <br />
+                        <strong>Follow Us On 
+                        </strong>&nbsp;<img src="/images/fb.png" alt="FBLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
+                        <img src="/images/ig.png" alt="IGLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
+                        <img src="/images/wa.png" alt="WALogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
+                        <img src="/images/yt.png" alt="YouTubeLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
+                        <br />
+                        </td>
+                </tr>
+                <tr>
+                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="3" class="auto-style20">
+                        © Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</td>
+                </tr>
+            </table>
+            <br />
+            <br />
+        </div>
+    </form>
+</body>
+</html>

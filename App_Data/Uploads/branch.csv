@@ -1,0 +1,168 @@
+﻿branchID,uniID,location,address
+B0001,U0001,Kuala Lumpur,"Jln Profesor Diraja Ungku Aziz, 50603 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur"
+B0002,U0002,"George Town, Penang (Main)","Pusat Pengajian Ilmu Pendidikan, Universiti Sains Malaysia,11800 USM, Pulau Pinang Malaysia"
+B0003,U0002,"Nibong Tebal, Penang (Engineering)","Pusat Pengajian Teknologi Industri, Universiti Sains Malaysia 11800 Penang."
+B0004,U0002,"Kubang Kerian, Kelantan (Medicine)","Pusat Pengajian Sains Pergigian, Kampus Kesihatan, Universiti Sains Malaysia, 16150 Kubang Kerian, Kelantan, Malaysia."
+B0005,U0003,"Bangi, Selangor (Main)","Pusat Kembangan Pendidikan, Aras 2, Bangunan Wawasan, Universiti Kebangsaan Malaysia, 43600 UKM Bangi Selangor"
+B0164,U0003,"Cheras, Kuala Lumpur (Medicine)","Universiti Kebangsaan Malaysia, Jalan Raja Muda Abdul Aziz, 50300 Kuala Lumpur, Federal Territory of Kuala Lumpur"
+B0006,U0004,"Gombak, Selangor",null
+B0007,U0005,"Pengkalan Chepa, Kelantan","Universiti Malaysia Kelantan, Kampus Kota, Pengkalan Chepa, 16100 Kota Bharu, Kelantan."
+B0008,U0005,"Jeli, Kelantan Bachok, Kelantan","Universiti Malaysia Kelantan, Kampus Jeli, 17600 Jeli, Kelantan."
+B0009,U0006,"Pekan, Pahang","Universiti Malaysia Pahang Al-Sultan Abdullah 26600 Pekan Pahang, Malaysia"
+B0162,U0006,"Kuantan, Pahang","Universiti Malaysia Pahang Al-Sultan Abdullah Lebuh Persiaran Tun Khalil Yaakob 26300, Kuantan Pahang, Malaysia"
+B0010,U0007,"Arau, Perlis","Universiti Malaysia Perlis (UniMAP), Pauh Putra Campus, 02600 Arau, Perlis, MALAYSIA."
+B0011,U0008,"Kota Kinabalu, Sabah","Universiti Malaysia Sabah (UMS), Jalan UMS, 88400 Kota Kinabalu Sabah, Malaysia"
+B0166,U0008,"Labuan, Sabah","Universiti Malaysia Sabah (UMS), Labuan International Campus, Jalan Sungai Pagar, 87000 Federal Territory of Labuan."
+B0167,U0008,"Sandakan, Sabah","Universiti Malaysia Sabah, Locked Bag No. 3, 90509 Sandakan,Sabah, Malaysia."
+B0012,U0009,"Kota Samarahan, Sarawak","UNIMAS Holdings Sdn. Bhd, Level 6, UNIMAS City Campus, Lot 77, Section 22, KTLD Jalan Tun Ahmad Zaidi Adruce, 93150 Kuching, Sarawak, Malaysia"
+B0013,U0010,"Kuala Terengganu, Terengganu","University of Malaysia Terengganu, 21030 Kuala Nerus, Terengganu, Malaysia"
+B0014,U0011,"Tanjung Malim, Perak","Universiti Pendidikan Sultan Idris (UPSI), 35900 Tanjong Malim, Perak"
+B0015,U0012,Kuala Lumpur,"Kem, Sungai Besi, 57000 Kuala Lumpur"
+B0016,U0013,"Serdang, Selangor (main campus)",null
+B0163,U0013,"Bintulu, Sarawak (branch campus)",null
+B0017,U0014,"Nilai, Negeri Sembilan",null
+B0018,U0015,"Kuala Terengganu, Terengganu","Universiti Sultan Zainal Abidin, Kampung Gong Badak, 21300, Terengganu"
+B0019,U0016,"Durian Tunggal, Malacca","Jalan Hang Tuah Jaya, 76100 Durian Tunggal, Melaka"
+B0020,U0017,"Skudai, Johor","UNIVERSITI TEKNOLOGI MALAYSIA, 81310 Skudai, Johor Bahru, Johor, Malaysia."
+B0021,U0017,"Jalan Semarak, Kuala Lumpur","Jalan Sultan Yahya Petra, Kampung Datuk Keramat, 54100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur"
+B0022,U0018,"Shah Alam, Selangor",null
+B0023,U0019,"Batu Pahat, Johor","Universiti Tun Hussein Onn Malaysia, 86400 Parit Raja, Batu Pahat, Johor, Malaysia"
+B0165,U0019,"Muar, Johor","Universiti Tun Hussein Onn Malaysia, Kampus Pagoh, KM1, Jln Panchor, 84600 Muar, Johor"
+B0024,U0020,"Sintok, Kedah (Main)","Universiti Utara Malaysia, 06010 UUM Sintok, Kedah Darul Aman, MALAYSIA."
+B0025,U0020,"Kampung Baru, Kuala Lumpur (Postgraduate)",null
+B0026,U0021,"Ipoh, Perak",null
+B0027,U0022,"Kuantan, Pahang",null
+B0028,U0023,"Bandar Darul Aman, Kedah",null
+B0029,U0024,"Ketereh, Kelantan",null
+B0030,U0025,"Kuching, Sarawak",null
+B0031,U0026,"Si Rusa, Negeri Sembilan",null
+B0032,U0027,"Kota Kinabalu, Sabah",null
+B0033,U0028,"Shah Alam, Selangor",null
+B0034,U0029,"Pasir Gudang, Johor",null
+B0035,U0030,"Seberang Perai, Penang",null
+B0036,U0031,Malacca,null
+B0037,U0032,"Kuala Terengganu, Terengganu",null
+B0038,U0033,"Dungun, Terengganu",null
+B0039,U0034,"Merlimau, Malacca",null
+B0040,U0035,"Behrang, Perak",null
+B0041,U0036,"Kulim, Kedah",null
+B0042,U0037,"Sungai Air Tawar, Selangor",null
+B0043,U0038,"Ulu Pauh, Perlis",null
+B0044,U0039,"Bandar Muadzam Shah, Pahang",null
+B0045,U0040,"Mukah, Sarawak",null
+B0046,U0041,"George Town, Penang",null
+B0047,U0042,"Jeli, Kelantan",null
+B0048,U0043,Negeri Sembilan,null
+B0049,U0044,"Kuala Langat, Selangor",null
+B0050,U0045,"Mersing, Johor",null
+B0051,U0046,"Kuala Berang, Terengganu",null
+B0052,U0047,"Sandakan, Sabah",null
+B0053,U0048,"Setiawangsa, Kuala Lumpur",null
+B0054,U0049,"Kuantan, Pahang",null
+B0055,U0050,"Johor Bahru, Johor",null
+B0056,U0051,"Betong, Sarawak",null
+B0057,U0052,"Seberang Perai, Penang",null
+B0058,U0053,"Muar, Johor",null
+B0059,U0054,Shah Alam,null
+B0060,U0055,Jalan Sultan Sulaiman,null
+B0061,U0056,Cheras,null
+B0062,U0057,Bukit Jalil,null
+B0063,U0058,Puchong,null
+B0064,U0059,Petaling Jaya,null
+B0065,U0060,Miri,null
+B0066,U0061,Pekan,null
+B0067,U0062,Kuala Lumpur,null
+B0068,U0063,Putrajaya,null
+B0069,U0064,Kajang,null
+B0070,U0065,Bukit Jalil,null
+B0071,U0066,Nilai,null
+B0072,U0066,Subang Jaya,null
+B0073,U0066,Kuala Lumpur,null
+B0074,U0066,George Town,null
+B0075,U0066,Sabah,null
+B0076,U0067,Cyberjaya,null
+B0077,U0068,Petaling Jaya,null
+B0078,U0068,Pusat Bandar Damansara,null
+B0079,U0069,Petaling Jaya,null
+B0080,U0070,Shah Alam,null
+B0081,U0070,Kota Bharu,null
+B0082,U0070,George Town,null
+B0083,U0070,Kota Kinabalu,null
+B0084,U0070,Kuching,null
+B0085,U0070,Seremban,null
+B0086,U0070,Sungai Petani,null
+B0087,U0070,Kuala Terengganu,null
+B0088,U0070,Ipoh,null
+B0089,U0070,Johor Bahru,null
+B0090,U0071,Nilai,null
+B0091,U0072,Subang Jaya,null
+B0092,U0073,Cyberjaya,null
+B0093,U0073,Malacca,null
+B0094,U0073,Johor,null
+B0095,U0074,Iskandar Puteri,null
+B0096,U0075,Nilai,null
+B0097,U0076,Jalan Tun Ismail,null
+B0098,U0077,"Damansara Heights, Kuala Lumpur",null
+B0099,U0078,Ipoh,null
+B0100,U0079,Iskandar Puteri,null
+B0101,U0080,George Town,null
+B0102,U0081,Kota Damansara,null
+B0103,U0081,Subang Jaya,null
+B0104,U0081,Kuala Lumpur,null
+B0105,U0081,George Town,null
+B0106,U0081,Kuching,null
+B0107,U0082,Subang Jaya,null
+B0108,U0083,Kuching,null
+B0109,U0084,Subang Jaya,null
+B0110,U0085,Setapak,null
+B0111,U0085,Tanjung Bungah,null
+B0112,U0085,Kampar,null
+B0113,U0085,Labis,null
+B0114,U0085,Kota Kinabalu,null
+B0115,U0085,Kuantan,null
+B0116,U0086,Petaling Jaya,null
+B0117,U0087,Cheras,null
+B0118,U0087,Kuching,null
+B0119,U0087,Kuala Terengganu,null
+B0120,U0088,Petaling Jaya,null
+B0121,U0089,Cyberjaya,null
+B0122,U0090,Jalan Sultan Ismail,null
+B0123,U0091,Bestari Jaya,null
+B0124,U0091,Shah Alam,null
+B0125,U0092,Sibu,null
+B0126,U0093,Kuala Ketil,null
+B0127,U0094,"Cheras, Kuala Lumpur",null
+B0128,U0095,Kuala Kangsar,null
+B0129,U0096,Seri Iskandar,null
+B0130,U0097,Putrajaya,null
+B0131,U0098,Kampar,null
+B0132,U0098,Sungai Long,null
+B0133,U0099,Cyberjaya,null
+B0134,U0100,Semenyih,null
+B0135,U0101,Iskandar Puteri,null
+B0136,U0102,Iskandar Puteri,null
+B0137,U0103,Shah Alam,null
+B0138,U0103,Damansara Jaya,null
+B0139,U0103,George Town,null
+B0140,U0103,Batu Kawan,null
+B0141,U0104,George Town,null
+B0142,U0105,Cyberjaya,null
+B0143,U0106,Salak Tinggi,null
+B0144,U0107,Terengganu,null
+B0145,U0108,Pudu,null
+B0146,U0109,Bandar Utama,null
+B0147,U0110,George Town,null
+B0148,U0111,Petaling Jaya,null
+B0149,U0112,Bangi,null
+B0150,U0113,Malacca,null
+B0151,U0114,Jalan Raja Laut,null
+B0152,U0114,Setapak,null
+B0153,U0115,Petaling Jaya,null
+B0154,U0116,Mantin,null
+B0155,U0117,Kajang,null
+B0156,U0118,Skudai,null
+B0157,U0119,Bandar Sri Damansara,null
+B0158,U0119,Kota Bharu,null
+B0159,U0120,Kuantan,null
+B0160,U0121,Kota Kinabalu,null
+B0161,U0122,Kota Kinabalu,null
