@@ -34,18 +34,21 @@ namespace UniFinder
         {
             int recordCount = 0;
 
-            if (FileUploadUniLogo.HasFiles)
+            if (FileUploadUniLogo.HasFile)
             {
                 try
                 {
-                    string extension = Path.GetExtension(FileUploadUniLogo.FileName);
-                    if (extension == ".jpg" || extension == "jpeg" || extension == ".png")
+                    string extension = Path.GetExtension(FileUploadUniLogo.FileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
                     {
-                        if (FileUploadUniLogo.PostedFile.ContentLength <= 102400) //1KB = 1024 bytes
+                        if (FileUploadUniLogo.PostedFile.ContentLength <= 102400) // 100KB
                         {
-                            string fname = Path.GetFileName(FileUploadUniLogo.FileName);
-                            FileUploadUniLogo.SaveAs(Server.MapPath("images/") + fname);
+                            byte[] uniLogoByte = null;
 
+                            using (BinaryReader br = new BinaryReader(FileUploadUniLogo.PostedFile.InputStream))
+                            {
+                                uniLogoByte = br.ReadBytes(FileUploadUniLogo.PostedFile.ContentLength);
+                            }
 
                             using (SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                             {
@@ -60,7 +63,7 @@ namespace UniFinder
 
                                 string uniId = "U" + recordCount.ToString("D4");
 
-                                string queryInsert = "INSERT INTO University (UniversityID, EnglishName, MalayName, Acronym, FoundationYear, UniversityType, UniversityLogo, CampusTourLink, YouTubeLink, GoogleMapsLink) " +
+                                string queryInsert = "INSERT INTO University (uniID, uniNameEng, uniNameMalay, uniAcronym, foundationYear, uniType, uniLogo, campusTourLink, youtubeLink, googleMapsLink) " +
                                                      "VALUES (@UniversityID, @EnglishName, @MalayName, @Acronym, @FoundationYear, @UniversityType, @UniversityLogo, @CampusTourLink, @YouTubeLink, @GoogleMapsLink)";
                                 SqlCommand cmdInsertPromo = new SqlCommand(queryInsert, con);
 
@@ -70,7 +73,7 @@ namespace UniFinder
                                 cmdInsertPromo.Parameters.AddWithValue("@Acronym", txtUniAcronym.Text);
                                 cmdInsertPromo.Parameters.AddWithValue("@FoundationYear", txtFoundYear.Text);
                                 cmdInsertPromo.Parameters.AddWithValue("@UniversityType", ddlUniType.SelectedItem.Text);
-                                cmdInsertPromo.Parameters.AddWithValue("@UniversityLogo", fname);
+                                cmdInsertPromo.Parameters.AddWithValue("@UniversityLogo", uniLogoByte);
                                 cmdInsertPromo.Parameters.AddWithValue("@CampusTourLink", txtCampusTour.Text);
                                 cmdInsertPromo.Parameters.AddWithValue("@YouTubeLink", txtYouTube.Text);
                                 cmdInsertPromo.Parameters.AddWithValue("@GoogleMapsLink", txtGoogleMaps.Text);
@@ -99,8 +102,13 @@ namespace UniFinder
                 }
                 catch (Exception ex)
                 {
-                    lblmsg.Text = "The file could not be uploaded. The following error occured: " + ex.Message;
+                    lblmsg.Text = "The file could not be uploaded. The following error occurred: " + ex.Message;
                 }
+            }
+            else
+            {
+                lblmsg.Text = "Please upload a file.";
+                lblmsg.ForeColor = System.Drawing.Color.Red;
             }
         }
 

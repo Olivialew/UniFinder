@@ -21,10 +21,10 @@ namespace UniFinder
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             // Set default values if controls are empty
-            SqlDataSource3.SelectParameters["uniType"].DefaultValue = ddlUniType.SelectedValue ?? string.Empty;
-            SqlDataSource3.SelectParameters["uniNameEng"].DefaultValue = txtSearch.Text.Trim() ?? string.Empty;
-            SqlDataSource3.SelectParameters["uniNameMalay"].DefaultValue = txtSearch.Text.Trim() ?? string.Empty;
-            SqlDataSource3.SelectParameters["uniAcronym"].DefaultValue = txtSearch.Text.Trim() ?? string.Empty;
+            SqlDataSource3.SelectParameters["uniType"].DefaultValue = ddlUniType.SelectedValue != "- University Type -" ? ddlUniType.SelectedValue : string.Empty;
+            SqlDataSource3.SelectParameters["uniNameEng"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
+            SqlDataSource3.SelectParameters["uniNameMalay"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
+            SqlDataSource3.SelectParameters["uniAcronym"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
 
             // Bind the GridView to apply the filters set by the user
             GridView1.DataBind();
@@ -45,6 +45,5 @@ namespace UniFinder
             // Rebind the GridView to show all records
             GridView1.DataBind();
         }
-
     }
 }
