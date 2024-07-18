@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
-    <Content Include="Account.aspx" />
+    <Content Include="AddUniversity.aspx" />
     <Content Include="AIChatbot.aspx" />
     <Content Include="App_Data\EduPathDatabase.mdf" />
     <Content Include="App_Data\EduPathDatabase_log.ldf">
@@ -103,7 +103,6 @@
     </Content>
     <Content Include="BranchManagement.aspx" />
     <Content Include="CareerTest.aspx" />
-    <Content Include="ChangePassword.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\fb.png" />
@@ -112,16 +111,18 @@
     <Content Include="Images\wa.png" />
     <Content Include="Images\yt.png" />
     <Content Include="LoginPage.aspx" />
-    <Content Include="Maintenance.aspx" />
+    <Content Include="Maintenance\Maintenance.aspx" />
+    <Content Include="MyAccount\Account.aspx" />
+    <Content Include="MyAccount\ChangePassword.aspx" />
     <Content Include="ProgrammeManagement.aspx" />
     <Content Include="Programme.aspx" />
     <Content Include="ProgrammeDetail.aspx" />
     <Content Include="UniversityDetail.aspx" />
     <Content Include="UniversityManagement.aspx" />
     <Content Include="University.aspx" />
-    <Content Include="UploadBranchCsv.aspx" />
-    <Content Include="UploadProgrammeCsv.aspx" />
-    <Content Include="UploadUniversityCsv.aspx" />
+    <Content Include="UploadCsv\UploadBranchCsv.aspx" />
+    <Content Include="UploadCsv\UploadProgrammeCsv.aspx" />
+    <Content Include="UploadCsv\UploadUniversityCsv.aspx" />
     <Content Include="Web.config" />
     <Content Include="Wishlist.aspx" />
   </ItemGroup>
@@ -133,12 +134,12 @@
     <Compile Include="AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account.aspx.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
+    <Compile Include="AddUniversity.aspx.cs">
+      <DependentUpon>AddUniversity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account.aspx.designer.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
+    <Compile Include="AddUniversity.aspx.designer.cs">
+      <DependentUpon>AddUniversity.aspx</DependentUpon>
     </Compile>
     <Compile Include="AIChatbot.aspx.cs">
       <DependentUpon>AIChatbot.aspx</DependentUpon>
@@ -161,13 +162,6 @@
     <Compile Include="CareerTest.aspx.designer.cs">
       <DependentUpon>CareerTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,11 +183,11 @@
     <Compile Include="LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Maintenance.aspx.cs">
+    <Compile Include="Maintenance\Maintenance.aspx.cs">
       <DependentUpon>Maintenance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Maintenance.aspx.designer.cs">
+    <Compile Include="Maintenance\Maintenance.aspx.designer.cs">
       <DependentUpon>Maintenance.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
@@ -202,6 +196,27 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageAdmin.Master.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdmin.Master.designer.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProgrammeManagement.aspx.cs">
       <DependentUpon>ProgrammeManagement.aspx</DependentUpon>
@@ -246,25 +261,25 @@
     <Compile Include="University.aspx.designer.cs">
       <DependentUpon>University.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UploadBranchCsv.aspx.cs">
+    <Compile Include="UploadCsv\UploadBranchCsv.aspx.cs">
       <DependentUpon>UploadBranchCsv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UploadBranchCsv.aspx.designer.cs">
+    <Compile Include="UploadCsv\UploadBranchCsv.aspx.designer.cs">
       <DependentUpon>UploadBranchCsv.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UploadProgrammeCsv.aspx.cs">
+    <Compile Include="UploadCsv\UploadProgrammeCsv.aspx.cs">
       <DependentUpon>UploadProgrammeCsv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UploadProgrammeCsv.aspx.designer.cs">
+    <Compile Include="UploadCsv\UploadProgrammeCsv.aspx.designer.cs">
       <DependentUpon>UploadProgrammeCsv.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UploadUniversityCsv.aspx.cs">
+    <Compile Include="UploadCsv\UploadUniversityCsv.aspx.cs">
       <DependentUpon>UploadUniversityCsv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UploadUniversityCsv.aspx.designer.cs">
+    <Compile Include="UploadCsv\UploadUniversityCsv.aspx.designer.cs">
       <DependentUpon>UploadUniversityCsv.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wishlist.aspx.cs">
@@ -277,6 +292,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
+    <Content Include="Maintenance\Web.config" />
+    <Content Include="MyAccount\Web.config" />
+    <Content Include="MasterPageAdmin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

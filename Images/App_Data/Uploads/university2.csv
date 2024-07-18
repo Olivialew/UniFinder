@@ -1,0 +1,123 @@
+uniID,uniNameEng,uniNameMalay,uniAcronym,foundationYear,uniType
+U0001,University of Malaya,Universiti Malaya,UM,1905 (as King Edward VII College of Medicine) 1949 (University of Malaya) 1962 (University of Malaya),Research university
+U0002,Science University of Malaysia,Universiti Sains Malaysia,USM,1969,Research university
+U0003,National University of Malaysia,Universiti Kebangsaan Malaysia,UKM,1970,Research university
+U0004,International Islamic University Malaysia,Universiti Islam Antarabangsa Malaysia,IIUM,1983,International university
+U0005,University of Malaysia Kelantan,Universiti Malaysia Kelantan,UMK,2007,Focused university (Entrepreneurship)
+U0006,University of Malaysia Pahang Al-Sultan Abdullah,Universiti Malaysia Pahang Al-Sultan Abdullah,UMP,2002 (as UTEC),Technical university
+U0007,University of Malaysia Perlis,Universiti Malaysia Perlis,UniMAP,2001 (as KUKUM),Technical university
+U0008,University of Malaysia Sabah,Universiti Malaysia Sabah,UMS,1994,Comprehensive university
+U0009,University of Malaysia Sarawak,Universiti Malaysia Sarawak,UNIMAS,1992,Comprehensive university
+U0010,University of Malaysia Terengganu,Universiti Malaysia Terengganu,UMT,1996 (as UPM Terengganu),Focused university (Science and Technology)
+U0011,Sultan Idris Education University,Universiti Pendidikan Sultan Idris,UPSI,1922 (as MPSI),Focused university (Education)
+U0012,National Defence University of Malaysia,Universiti Pertahanan Nasional Malaysia,UPNM,1995 (as ATMA),Focused university (Military)
+U0013,University of Putra Malaysia,Universiti Putra Malaysia,UPM,1931 (as School of Agriculture),Research university
+U0014,Islamic Science University of Malaysia,Universiti Sains Islam Malaysia,USIM,1997 (as KUIM),Islamic university
+U0015,Sultan Zainal Abidin University,Universiti Sultan Zainal Abidin,UniSZA,1980 (as KUSZA),Islamic university
+U0016,Technical University of Malaysia Malacca,Universiti Teknikal Malaysia Melaka,UTeM,2000 (as KUTKM),Technical university
+U0017,University of Technology Malaysia,Universiti Teknologi Malaysia,UTM,1904 (as Treacher Technical School),Research university
+U0018,MARA University of Technology,Universiti Teknologi MARA,UiTM,1956 (as RIDA Training Centre),Comprehensive university
+U0019,Tun Hussein Onn University of Malaysia,Universiti Tun Hussein Onn Malaysia,UTHM,1993 (as Pusat Latihan Staf Politeknik),Technical university
+U0020,Northern University of Malaysia,Universiti Utara Malaysia,UUM,1984,Focused university (Management)
+U0021,null,Politeknik Ungku Omar,PUO,1969,Premier polytechnic (university status)
+U0022,null,Politeknik Sultan Haji Ahmad Shah,POLISAS,1976,Conventional polytechnic
+U0023,null,Politeknik Sultan Abdul Halim Muadzam Shah,POLIMAS,1984,Conventional polytechnic
+U0024,null,Politeknik Kota Bharu,PKB,1985,Conventional polytechnic
+U0025,null,Politeknik Kuching Sarawak,PKS,1987,Conventional polytechnic
+U0026,null,Politeknik Port Dickson,PPD,1990,Conventional polytechnic
+U0027,null,Politeknik Kota Kinabalu,PKK,1996,Conventional polytechnic
+U0028,null,Politeknik Sultan Salahuddin Abdul Aziz Shah,PSA,1997,Premier polytechnic (university status)
+U0029,null,Politeknik Ibrahim Sultan,PIS,1998,Premier polytechnic (university status)
+U0030,null,Politeknik Seberang Perai,PSP,1998,Conventional polytechnic
+U0031,null,Politeknik Melaka,PMK,1999,Conventional polytechnic
+U0032,null,Politeknik Kuala Terengganu,PKKT,1999,Conventional polytechnic
+U0033,null,Politeknik Sultan Mizan Zainal Abidin,PSMZA,2001,Conventional polytechnic
+U0034,null,Politeknik Merlimau,PMM,2002,Conventional polytechnic
+U0035,null,Politeknik Sultan Azlan Shah,PSAS,2002,Conventional polytechnic
+U0036,null,Politeknik Tuanku Sultanah Bahiyah,PTSB,2002,Conventional polytechnic
+U0037,null,Politeknik Sultan Idris Shah,PSIS,2003,Conventional polytechnic
+U0038,null,Politeknik Tuanku Syed Sirajuddin,PTSS,2003,Conventional polytechnic
+U0039,null,Politeknik Muadzam Shah,PMS,2003,Conventional polytechnic
+U0040,null,Politeknik Mukah Sarawak,PMU,2004,Conventional polytechnic
+U0041,null,Politeknik Balik Pulau,PBU,2007,Conventional polytechnic
+U0042,null,Politeknik Jeli,PJK,2007,Conventional polytechnic
+U0043,null,Politeknik Nilai,PNS,2007,Conventional polytechnic
+U0044,null,Politeknik Banting,PBS,2007,Conventional polytechnic
+U0045,null,Politeknik Mersing,PMJ,2008,Conventional polytechnic
+U0046,null,Politeknik Hulu Terengganu,PHT,2008,Conventional polytechnic
+U0047,null,Politeknik Sandakan,PSS,2009,Conventional polytechnic
+U0048,null,Politeknik METrO Kuala Lumpur,PMKL,2011,METrO polytechnic
+U0049,null,Politeknik METrO Kuantan,PMKU,2011,METrO polytechnic
+U0050,null,Politeknik METrO Johor Bahru,PMJB,2011,METrO polytechnic
+U0051,null,Politeknik METrO Betong,PMBS,2012,METrO polytechnic
+U0052,null,Politeknik METrO Tasek Gelugor,PMTG,2012,METrO polytechnic
+U0053,null,Politeknik Tun Syed Nasir Syed Ismail,PTSN,2013,Conventional polytechnic
+U0054,Al-Madinah International University,Universiti Antarabangsa Al-Madinah,MEDIU,2006,Private university
+U0055,Asia e University,Universiti Asia e,AeU,2007,Private university
+U0056,Asia Metropolitan University,Universiti Metropolitan Asia,AMU,1997,Private university
+U0057,Asia Pacific University of Technology & Innovation,Universiti Teknologi & Inovasi Asia Pasifik,APU,1993,Private university
+U0058,Binary University,Universiti Binary,Binary,1984,Private university
+U0059,City University,Universiti City,CityU,1984,Private university
+U0060,Curtin University Malaysia,Universiti Curtin Malaysia,Curtin,1999,Private university
+U0061,DRB-HICOM University of Automotive Malaysia,Universti Automotif DRB-HICOM Malaysia,DRB-HICOM U,2010,Private university
+U0062,GlobalNxt University,Universiti GlobalNxt,GNU,2012,Private university
+U0063,Heriot-Watt University Malaysia,Universiti Heriot-Watt Malaysia,HWUM,2013,Private university
+U0064,Infrastructure University Kuala Lumpur,Universiti Infrastruktur Kuala Lumpur,IUKL,1973,Private university
+U0065,International Medical University,Universiti Perubatan Antarabangsa,IMU,1992,Private university
+U0066,INTI International University,Universiti Antarabangsa INTI,INTI,1986,Private university
+U0067,Limkokwing University of Creative Technology,Universiti Teknologi Kreatif Limkokwing,Limkokwing,1992,Private university
+U0068,MAHSA University,Universiti MAHSA,MAHSA,2005,Private university
+U0069,Malaysia University of Science and Technology,Universiti Sains dan Teknologi Malaysia,MUST,2000,Private university
+U0070,Management & Science University,Universiti Sains & Pengurusan,MSU,2001,Private university
+U0071,Manipal International University,Universiti Antarabangsa Manipal,MIU,2011,Private university
+U0072,Monash University Malaysia,Universiti Monash Malaysia,Monash,1998,Private university
+U0073,Multimedia University,Universiti Multimedia,MMU,1994,Private university
+U0074,Newcastle University Medicine Malaysia,Universiti Perubatan Newcastle Malaysia,NUMed,2009,Private university
+U0075,Nilai University,Universiti Nilai,Nilai U,1997,Private university
+U0076,Open University Malaysia,Universiti Terbuka Malaysia,OUM,2000,Private university
+U0077,Perdana University,Universiti Perdana,PU,2011,Private university
+U0078,Quest International University Perak,Universiti Antarabangsa Quest Perak,QIUP,2008,Private university
+U0079,Raffles University Iskandar,Universiti Raffles Iskandar,RUI,2012,Private university
+U0080,Royal College of Surgeons in Ireland and University College Dublin Malaysia Campus,Royal College of Surgeons di Ireland dan Kolej Universiti Dublin Kampus Malaysia,RUMC,1996,Private university
+U0081,SEGi University,Universiti SEGi,SEGi,1977,Private university
+U0082,Sunway University,Universiti Sunway,Sun-U,1987,Private university
+U0083,Swinburne University of Technology Sarawak Campus,Universiti Teknologi Swinburne Kampus Sarawak,Swinburne,2000,Private university
+U0084,Taylor's University,Universiti Taylor's,Taylor's,1969,Private university
+U0085,Tunku Abdul Rahman University of Management and Technology,Universiti Pengurusan and Teknologi Tunku Abdul Rahman,TARUMT,1969,Private university
+U0086,Tun Abdul Razak University,Universiti Tun Abdul Razak,UNIRAZAK,1998,Private university
+U0087,UCSI University,Universiti UCSI,UCSI,1986,Private university
+U0088,UNITAR International University,Universiti Antarabangsa UNITAR,UNITAR,2011,Private university
+U0089,Islamic University of Malaysia,Universiti Islam Malaysia,UIM,2014,Private university
+U0090,University of Kuala Lumpur,Universiti Kuala Lumpur,UniKL,2002,Private university
+U0091,University of Selangor,Universiti Selangor,UNISEL,1999,Private university
+U0092,University Technology of Sarawak,Universiti Teknologi Sarawak,UTS,2013,Private university
+U0093,Sultan Abdul Halim Mu'adzam Shah International Islamic University,Universiti Islam Antarabangsa Sultan Abdul Halim Mu'adzam Shah,UniSHAMS,1995,Private university
+U0094,Universiti Poly-Tech Malaysia,Universiti Poly-Tech Malaysia,UPTM,2023,Private university
+U0095,Sultan Azlan Shah University,Universiti Sultan Azlan Shah,USAS,1999,Private university
+U0096,Universiti Teknologi PETRONAS,Universiti Teknologi PETRONAS,UTP,1997,Private university
+U0097,National Energy University,Universiti Tenaga Nasional,UNITEN,1976,Private university
+U0098,University Tunku Abdul Rahman,Universiti Tunku Abdul Rahman,UTAR,2002,Private university
+U0099,University Malaysia of Computer Science & Engineering,Universiti Malaysia Sains Komputer & Kejuruteraan,UniMy,2013,Private university
+U0100,University of Nottingham Malaysia Campus,Universiti Nottingham Kampus Malaysia,UNMC,2000,Private university
+U0101,University of Reading Malaysia Campus,Universiti Reading Kampus Malaysia,UoRM,2013,Private university
+U0102,University of Southampton Malaysia Campus,Universiti Southampton Kampus Malaysia,USMC,2012,Private university
+U0103,University of Wollongong Malaysia,Universiti Wollongong Malaysia,UOW,1983,Private university
+U0104,Wawasan Open University,Universiti Terbuka Wawasan,WOU,2006,Private university
+U0105,University of Cyberjaya,Universiti Cyberjaya,UoC,2005,Private university
+U0106,Xiamen University Malaysia,Universiti Xiamen Malaysia,XMUMC,2015,Private university
+U0107,University College TATI,Kolej Universiti TATI,UC TATI,1993,Private university college
+U0108,Berjaya University College,Kolej Universiti Berjaya,BERJAYA UC,2009,Private university college
+U0109,First City University College,Kolej Universiti Bandar Utama,First City UC,1990,Private university college
+U0110,Han Chiang University College of Communication,Kolej Universiti Komunikasi Han Chiang,Han Chiang UC,1999,Private university college
+U0111,Saito University College,Kolej Universiti Saito,SAITO UC,1988,Private university college
+U0112,International Islamic University College Selangor,Kolej Universiti Islam Antarabangsa Selangor,KUIS,1995,Private university college
+U0113,University College of Islam Melaka,Kolej Universiti Islam Melaka,KUIM,1994,Private university college
+U0114,Kuala Lumpur Metropolitan University College,Kolej Universiti Metropolitan Kuala Lumpur,KLMUC,1991,Private university college
+U0115,Lincoln University College,Kolej Universiti Lincoln,LUC,2002,Private university college
+U0116,Linton University College,Kolej Universiti Linton,LINTON,1995,Private university college
+U0117,New Era University College,Kolej Universiti New Era,NEUC,1997,Private university college
+U0118,Southern University College,Kolej Universiti Southern,Southern UC,1990,Private university college
+U0119,Twintech International University College of Technology,Kolej Universiti Teknologi Antarabangsa Twintech,Twintech,1994,Private university college
+U0120,Widad University College,Kolej Universiti Widad,Widad UC,1997,Private university college
+U0121,University College Sabah Foundation,Kolej Universiti Yayasan Sabah,UCSF,2014,Private university college
+U0122,Jesselton University College,Kolej Universiti Jesselton,JUC,1988,Private university college

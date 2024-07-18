@@ -6,6 +6,15 @@
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Width="466px" ContinueDestinationPageUrl="~/LoginPage.aspx" OnCreatedUser="CreateUserWizard1_CreatedUser">
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
+                <CustomNavigationTemplate>
+                    <table border="0" cellspacing="5" style="width:100%;height:100%;">
+                        <tr align="right">
+                            <td align="right" colspan="0">
+                                <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create User" ValidationGroup="CreateUserWizard1" />
+                            </td>
+                        </tr>
+                    </table>
+                </CustomNavigationTemplate>
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep runat="server" />
         </WizardSteps>

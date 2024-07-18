@@ -69,13 +69,13 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
-        /// txtUniFoundYear control.
+        /// txtFoundYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUniFoundYear;
+        protected global::System.Web.UI.WebControls.TextBox txtFoundYear;
 
         /// <summary>
         /// RequiredFieldValidator4 control.
@@ -123,40 +123,31 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
 
         /// <summary>
-        /// txtUniCampusTour control.
+        /// txtCampusTour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUniCampusTour;
+        protected global::System.Web.UI.WebControls.TextBox txtCampusTour;
 
         /// <summary>
-        /// txtUniYT control.
+        /// txtYouTube control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUniYT;
+        protected global::System.Web.UI.WebControls.TextBox txtYouTube;
 
         /// <summary>
-        /// txtUniGoogleMaps control.
+        /// txtGoogleMaps control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUniGoogleMaps;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.TextBox txtGoogleMaps;
 
         /// <summary>
         /// ValidationSummary1 control.
@@ -168,13 +159,22 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
 
         /// <summary>
-        /// btnCancel control.
+        /// lblmsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Label lblmsg;
+
+        /// <summary>
+        /// btnClearUni control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearUni;
 
         /// <summary>
         /// btnAddUniversity control.
