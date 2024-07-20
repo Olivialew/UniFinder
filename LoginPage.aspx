@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
+    <%--<form id="form1" runat="server">--%>
         <div>
             Welcome to UniFinder!<br />
-            <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/HomePage.aspx" OnAuthenticate="Login1_Authenticate">
+            <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Home.aspx">
             </asp:Login>
             <br />
             Create new account?
@@ -14,6 +14,6 @@
             <br />
             <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Home.aspx">Go Back to Menu</asp:HyperLink>
         </div>
-    </form>
+   <%-- </form>--%>
 </asp:Content>
 

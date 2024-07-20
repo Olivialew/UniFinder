@@ -16,7 +16,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style16"><strong>&nbsp;Cinema Branch Management</strong></span><br class="auto-style16" />
+    <span class="auto-style16"><strong>&nbsp;University Management</strong></span><br class="auto-style16" />
     <table class="auto-style24">
         <tr>
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -52,7 +52,7 @@
                 <br />
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AddUniversity.aspx">Add University</asp:HyperLink>
                 <br />
-                <div style ="margin-top: 30px">
+                <div style="margin-top: 30px">
                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" DataKeyNames="uniID" DataSourceID="SqlDataSource3">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>

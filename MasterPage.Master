@@ -124,9 +124,9 @@
                             <li><a href="/CareerTest.aspx">Career Test</a></li>
                             <li><a href="/AIChatbot.aspx">AI Chatbot</a></li>
                             <li><a href="/AboutUs.aspx">About Us</a></li>
-                            <li><a href="/Maintenance.aspx">Maintenance</a></li>
+                            <li><a href="/Maintenance/Maintenance.aspx">Maintenance</a></li>
                             <li style="float:right; color:#FFFF00;"><a href="/Wishlist.aspx?logout=true">Wishlist</a></li>
-                            <li style="float:right; color:#FFFF00;"><a href="/Account.aspx?logout=true">Account</a></li>
+                            <li style="float:right; color:#FFFF00;"><a href="/MyAccount/Account.aspx?logout=true">Account</a></li>
                         </ul>
                     </td>
                 </tr>

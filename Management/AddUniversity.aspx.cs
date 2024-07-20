@@ -84,7 +84,8 @@ namespace UniFinder
                                 {
                                     Response.Write("<script>alert('File has been uploaded successfully!')</script>");
                                     clearfn();
-                                    // GVbind(); // Uncomment if you want to refresh the GridView or similar control
+                                    //GVbind(); // Uncomment if you want to refresh the GridView or similar control
+                                    Response.Redirect("UniversityManagement.aspx");
                                 }
                             }
                         }

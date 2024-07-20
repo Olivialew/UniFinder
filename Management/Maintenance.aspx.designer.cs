@@ -24,6 +24,15 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.LoginName LoginName1;
 
         /// <summary>
+        /// LoginStatus2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus2;
+
+        /// <summary>
         /// HyperLink1 control.
         /// </summary>
         /// <remarks>
@@ -33,12 +42,12 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
-        /// LoginStatus2 control.
+        /// HyperLink4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus2;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
     }
 }

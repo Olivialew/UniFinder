@@ -55,8 +55,8 @@
             align-items: center;
             margin-bottom: 20px;
             position: relative;
-            max-height: 375.14px;
-            max-width: 253px;
+            max-height: 400px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -130,7 +130,7 @@
                 <br />
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <br />
-
+                
                 <div class="panel">
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" DataSourceID="SqlDataSource1">

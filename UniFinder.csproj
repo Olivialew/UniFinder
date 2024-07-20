@@ -95,13 +95,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
-    <Content Include="AddUniversity.aspx" />
+    <Content Include="Management\AddUniversity.aspx" />
     <Content Include="AIChatbot.aspx" />
     <Content Include="App_Data\EduPathDatabase.mdf" />
     <Content Include="App_Data\EduPathDatabase_log.ldf">
       <DependentUpon>EduPathDatabase.mdf</DependentUpon>
     </Content>
-    <Content Include="BranchManagement.aspx" />
+    <Content Include="Management\BranchManagement.aspx" />
     <Content Include="CareerTest.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Home.aspx" />
@@ -111,20 +111,22 @@
     <Content Include="Images\wa.png" />
     <Content Include="Images\yt.png" />
     <Content Include="LoginPage.aspx" />
-    <Content Include="Maintenance\Maintenance.aspx" />
+    <Content Include="Management\Maintenance.aspx" />
     <Content Include="MyAccount\Account.aspx" />
     <Content Include="MyAccount\ChangePassword.aspx" />
-    <Content Include="ProgrammeManagement.aspx" />
+    <Content Include="Management\ProgrammeManagement.aspx" />
     <Content Include="Programme.aspx" />
     <Content Include="ProgrammeDetail.aspx" />
+    <Content Include="Management\RoleManagement.aspx" />
+    <Content Include="Management\UniManagement2.aspx" />
     <Content Include="UniversityDetail.aspx" />
-    <Content Include="UniversityManagement.aspx" />
+    <Content Include="Management\UniversityManagement.aspx" />
     <Content Include="University.aspx" />
     <Content Include="UploadCsv\UploadBranchCsv.aspx" />
     <Content Include="UploadCsv\UploadProgrammeCsv.aspx" />
     <Content Include="UploadCsv\UploadUniversityCsv.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Wishlist.aspx" />
+    <Content Include="MyAccount\Wishlist.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutUs.aspx.cs">
@@ -134,11 +136,11 @@
     <Compile Include="AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddUniversity.aspx.cs">
+    <Compile Include="Management\AddUniversity.aspx.cs">
       <DependentUpon>AddUniversity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddUniversity.aspx.designer.cs">
+    <Compile Include="Management\AddUniversity.aspx.designer.cs">
       <DependentUpon>AddUniversity.aspx</DependentUpon>
     </Compile>
     <Compile Include="AIChatbot.aspx.cs">
@@ -148,11 +150,11 @@
     <Compile Include="AIChatbot.aspx.designer.cs">
       <DependentUpon>AIChatbot.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BranchManagement.aspx.cs">
+    <Compile Include="Management\BranchManagement.aspx.cs">
       <DependentUpon>BranchManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BranchManagement.aspx.designer.cs">
+    <Compile Include="Management\BranchManagement.aspx.designer.cs">
       <DependentUpon>BranchManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="CareerTest.aspx.cs">
@@ -183,11 +185,11 @@
     <Compile Include="LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Maintenance\Maintenance.aspx.cs">
+    <Compile Include="Management\Maintenance.aspx.cs">
       <DependentUpon>Maintenance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Maintenance\Maintenance.aspx.designer.cs">
+    <Compile Include="Management\Maintenance.aspx.designer.cs">
       <DependentUpon>Maintenance.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
@@ -218,11 +220,11 @@
     <Compile Include="MyAccount\ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProgrammeManagement.aspx.cs">
+    <Compile Include="Management\ProgrammeManagement.aspx.cs">
       <DependentUpon>ProgrammeManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProgrammeManagement.aspx.designer.cs">
+    <Compile Include="Management\ProgrammeManagement.aspx.designer.cs">
       <DependentUpon>ProgrammeManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Programme.aspx.cs">
@@ -240,6 +242,20 @@
       <DependentUpon>ProgrammeDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Management\RoleManagement.aspx.cs">
+      <DependentUpon>RoleManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\RoleManagement.aspx.designer.cs">
+      <DependentUpon>RoleManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\UniManagement2.aspx.cs">
+      <DependentUpon>UniManagement2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\UniManagement2.aspx.designer.cs">
+      <DependentUpon>UniManagement2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UniversityDetail.aspx.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,11 +263,11 @@
     <Compile Include="UniversityDetail.aspx.designer.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UniversityManagement.aspx.cs">
+    <Compile Include="Management\UniversityManagement.aspx.cs">
       <DependentUpon>UniversityManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UniversityManagement.aspx.designer.cs">
+    <Compile Include="Management\UniversityManagement.aspx.designer.cs">
       <DependentUpon>UniversityManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="University.aspx.cs">
@@ -282,17 +298,17 @@
     <Compile Include="UploadCsv\UploadUniversityCsv.aspx.designer.cs">
       <DependentUpon>UploadUniversityCsv.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Wishlist.aspx.cs">
+    <Compile Include="MyAccount\Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Wishlist.aspx.designer.cs">
+    <Compile Include="MyAccount\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
-    <Content Include="Maintenance\Web.config" />
+    <Content Include="Management\Web.config" />
     <Content Include="MyAccount\Web.config" />
     <Content Include="MasterPageAdmin.Master" />
     <None Include="packages.config" />

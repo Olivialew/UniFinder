@@ -14,9 +14,5 @@ namespace Practical_5
 
         }
 
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
-        {
-
-        }
     }
 }
