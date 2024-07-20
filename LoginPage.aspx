@@ -5,8 +5,11 @@
     <%--<form id="form1" runat="server">--%>
         <div>
             Welcome to UniFinder!<br />
-            <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Home.aspx">
+            <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate">
             </asp:Login>
+            <br />
+            <asp:Label ID="lblErrorMsg" runat="server"></asp:Label>
+            <br />
             <br />
             Create new account?
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/CreateUser.aspx">Click Here</asp:HyperLink>

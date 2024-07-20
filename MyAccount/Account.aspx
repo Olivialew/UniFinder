@@ -13,7 +13,7 @@
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyAccount/ChangePassword.aspx">Change Password</asp:HyperLink>
     <br />
 <br />
-<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Wishlist.aspx">My Wishlist</asp:HyperLink>
+<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/MyAccount/Wishlist.aspx">My Wishlist</asp:HyperLink>
     <br />
     <br />
 <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/LoginPage.aspx">Log In</asp:HyperLink>
