@@ -5,9 +5,11 @@
         .auto-style27 {
             width: 866px;
         }
+
         .auto-style29 {
             width: 1114px;
         }
+
         .auto-style30 {
             width: 801px;
         }
@@ -56,6 +58,13 @@
                                 <strong>
                                     <asp:Label ID="lblTuitionFee" runat="server"></asp:Label>
                                 </strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;
+                                <div>
+                                    <asp:Literal ID="LiteralIframe" runat="server"></asp:Literal>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="auto-style38" colspan="2"><strong>

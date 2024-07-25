@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="Management\AddBranch.aspx" />
+    <Content Include="Management\AddProgramme.aspx" />
     <Content Include="Management\AddUniversity.aspx" />
     <Content Include="AIChatbot.aspx" />
     <Content Include="App_Data\EduPathDatabase.mdf" />
@@ -135,6 +137,20 @@
     </Compile>
     <Compile Include="AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\AddBranch.aspx.cs">
+      <DependentUpon>AddBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\AddBranch.aspx.designer.cs">
+      <DependentUpon>AddBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\AddProgramme.aspx.cs">
+      <DependentUpon>AddProgramme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\AddProgramme.aspx.designer.cs">
+      <DependentUpon>AddProgramme.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\AddUniversity.aspx.cs">
       <DependentUpon>AddUniversity.aspx</DependentUpon>

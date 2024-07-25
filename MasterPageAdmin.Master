@@ -118,7 +118,7 @@
                     <td colspan="2" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
                         <ul class="navBar" style="height: 58px">
 <%--                            <li><a class="active" href="/Home.aspx">Home</a></li>--%>
-                            <li><a class="active" href="/Management/UniversityManagement.aspx">Manage University</a></li>
+                            <li><a class="active" href="/Management/UniManagement2.aspx">Manage University</a></li>
                             <li><a href="/Management/BranchManagement.aspx">Manage Branch</a></li>
                             <li><a href="/Management/ProgrammeManagement.aspx">Manage Programme</a></li>
                             <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>
@@ -141,7 +141,7 @@
                 <tr>
                     <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style18">
                         <ul class="bottomNav" style="padding: 20px; vertical-align: top;">                            
-                            <li><a href="/Management/UniversityManagement.aspx"><span class="auto-style16">Manage University</span></a></li>
+                            <li><a href="/Management/UniManagement2.aspx"><span class="auto-style16">Manage University</span></a></li>
                             <li><a href="/Management/BranchManagement.aspx"><span class="auto-style16">Manage Branch</span></a></li>
                             <li><a href="/Management/ProgrammeManagement.aspx"><span class="auto-style16">Manage Programme</span></a></li>
                             <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>

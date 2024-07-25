@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Text;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,6 +19,38 @@ namespace UniFinder
                 if (!string.IsNullOrEmpty(uniName))
                 {
                     GetUniDetails(uniName);
+
+                    /* University branches iframes */
+                    //List<(string Location, string Address)> branchDetails = GetBranchAddressesFromDatabase(uniName);
+
+                    //StringBuilder iframes = new StringBuilder();
+
+                    //foreach (var branch in branchDetails)
+                    //{
+                    //    iframes.Append($@"
+                    //    <div style='margin-bottom: 20px;'>
+                    //        <h4>{branch.Location}</h4>
+                    //        <p>{branch.Address}</p>
+                    //        <iframe 
+                    //            width='600' 
+                    //            height='450' 
+                    //            style='border:0' 
+                    //            loading='lazy' 
+                    //            allowfullscreen 
+                    //            src='https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q={branch.Address}'>
+                    //        </iframe>
+                    //        <iframe 
+                    //            width='600' 
+                    //            height='450' 
+                    //            style='border:0' 
+                    //            loading='lazy' 
+                    //            allowfullscreen 
+                    //            src='https://www.google.com/maps/embed/v1/streetview?key=YOUR_API_KEY&location={branch.Address}'>
+                    //        </iframe>
+                    //    </div>");
+                    //}
+
+                    //LiteralBranches.Text = iframes.ToString();
                 }
                 else
                 {
@@ -24,6 +59,7 @@ namespace UniFinder
                 }
             }
         }
+
 
         private void GetUniDetails(string uniNameChosen)
         {
@@ -111,5 +147,31 @@ namespace UniFinder
                 Response.Write($"<script>alert('Error: An error occurred while retrieving the university details. {ex.Message}');</script>");
             }
         }
+
+        //private List<(string Location, string Address)> GetBranchAddressesFromDatabase(string uniNameChosen)
+        //{
+        //    List<(string Location, string Address)> branchDetails = new List<(string Location, string Address)>();
+        //    string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        //    string query = "SELECT B.location, B.address " +
+        //        "FROM Branch B, University U " +
+        //        "WHERE B.uniID = U.uniID AND U.uniNameEng = @UniName"; // Adjust the query according to your table
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@UniName", uniNameChosen);
+        //        connection.Open();
+        //        SqlDataReader reader = command.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            string location = reader["location"].ToString();
+        //            string address = reader["address"].ToString();
+        //            branchDetails.Add((Location: location, Address: address));
+        //        }
+        //    }
+
+        //    return branchDetails;
+        //}
     }
 }

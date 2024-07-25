@@ -29,13 +29,13 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style33"><strong>Add Branch</strong></span><br />
+    <span class="auto-style33"><strong>Add University</strong></span><br />
     <strong>
         <br />
     </strong>
 <table style="width: 100%;">
     <tr>
-        <td class="auto-style28">English Name</td>
+        <td class="auto-style28">English Name*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
         <asp:TextBox ID="txtUniNameEng" runat="server" CssClass="auto-style27"></asp:TextBox>
@@ -49,7 +49,7 @@
             <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="auto-style28">Malay Name</td>
+        <td class="auto-style28">Malay Name*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
         <asp:TextBox ID="txtUniNameMalay" runat="server" CssClass="auto-style27"></asp:TextBox>
@@ -62,7 +62,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="auto-style28">Acronym</td>
+        <td class="auto-style28">Acronym*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
         <asp:TextBox ID="txtUniAcronym" runat="server" CssClass="auto-style27"></asp:TextBox>
@@ -75,11 +75,12 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="auto-style28">Foundation Year</td>
+        <td class="auto-style28">Foundation Year*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
         <asp:TextBox ID="txtFoundYear" runat="server" CssClass="auto-style27"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtFoundYear" ErrorMessage="Foundation Year is required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtFoundYear" ErrorMessage="Year must be after or equal 1900" ForeColor="Red" Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1900">*</asp:CompareValidator>
         </td>
     </tr>
     <tr>
@@ -88,7 +89,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="auto-style28">University Type</td>
+        <td class="auto-style28">University Type*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
     <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
@@ -115,7 +116,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="auto-style28">University Logo</td>
+        <td class="auto-style28">University Logo*</td>
         <td class="auto-style29">&nbsp;</td>
         <td>
         <asp:FileUpload ID="FileUploadUniLogo" runat="server" CssClass="auto-style27" />

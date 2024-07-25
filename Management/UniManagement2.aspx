@@ -13,15 +13,18 @@
         .auto-style27 {
             color: #000000;
         }
+
+        .auto-style28 {
+            font-size: large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style16"><strong>&nbsp;Cinema Branch Management</strong></span><br class="auto-style16" />
+    <span class="auto-style16"><strong>&nbsp;University Management</strong></span><br class="auto-style16" />
     <table class="auto-style24">
         <tr>
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <strong>University</strong><span class="auto-style27"><strong>
-                Management<br />
+                <strong><span class="auto-style28">University Management</span><br />
                     <br />
                     search by</strong></span><span class="auto-style16"><br />
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
@@ -50,13 +53,19 @@
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click2" />
                 <br />
                 <br />
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AddUniversity.aspx">Add University</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddUniversity.aspx">Add University</asp:HyperLink>
                 <br />
-                <div style ="margin-top: 30px">
-                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" DataKeyNames="uniID" DataSourceID="SqlDataSource3" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                <br />
+                <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+                <br />
+                <div style="margin-top: 30px">
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
+                        AllowPaging="True" AllowSorting="True" DataKeyNames="uniID" DataSourceID="SqlDataSource3"
+                        OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowEditing="GridView1_RowEditing"
+                        OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
+                            <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" ShowEditButton="True" />
                             <asp:BoundField DataField="uniID" HeaderText="uniID" ReadOnly="True" SortExpression="uniID" />
                             <asp:BoundField DataField="uniNameEng" HeaderText="uniNameEng" SortExpression="uniNameEng" />
                             <asp:BoundField DataField="uniNameMalay" HeaderText="uniNameMalay" SortExpression="uniNameMalay" />
@@ -66,6 +75,15 @@
                             <asp:BoundField DataField="campusTourLink" HeaderText="campusTourLink" SortExpression="campusTourLink" />
                             <asp:BoundField DataField="youtubeLink" HeaderText="youtubeLink" SortExpression="youtubeLink" />
                             <asp:BoundField DataField="googleMapsLink" HeaderText="googleMapsLink" SortExpression="googleMapsLink" />
+                            <asp:TemplateField HeaderText="Image">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' Width="100px" Height="100px" />
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:Image ID="imgProductEdit" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' Width="100px" Height="100px" />
+                                    <asp:FileUpload ID="fileUploadImage" runat="server" />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                         <EditRowStyle BackColor="#7C6F57" />
                         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -81,9 +99,12 @@
 
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                         DeleteCommand="DELETE FROM [University] WHERE [uniID] = @uniID"
-                        InsertCommand="INSERT INTO [University] ([uniID], [uniNameEng], [uniNameMalay], [uniAcronym], [foundationYear], [uniType], [campusTourLink], [youtubeLink], [googleMapsLink], [uniLogo]) VALUES (@uniID, @uniNameEng, @uniNameMalay, @uniAcronym, @foundationYear, @uniType, @campusTourLink, @youtubeLink, @googleMapsLink, @uniLogo)"
+                        InsertCommand="INSERT INTO [University] ([uniID], [uniNameEng], [uniNameMalay], [uniAcronym], [foundationYear], [uniType], [campusTourLink], [youtubeLink], [googleMapsLink], [uniLogo]) 
+                                        VALUES (@uniID, @uniNameEng, @uniNameMalay, @uniAcronym, @foundationYear, @uniType, @campusTourLink, @youtubeLink, @googleMapsLink, @uniLogo)"
                         SelectCommand="SELECT * FROM [University]"
-                        UpdateCommand="UPDATE [University] SET [uniNameEng] = @uniNameEng, [uniNameMalay] = @uniNameMalay, [uniAcronym] = @uniAcronym, [foundationYear] = @foundationYear, [uniType] = @uniType, [campusTourLink] = @campusTourLink, [youtubeLink] = @youtubeLink, [googleMapsLink] = @googleMapsLink, [uniLogo] = @uniLogo WHERE [uniID] = @uniID">
+                        UpdateCommand="UPDATE [University] SET [uniNameEng] = @uniNameEng, [uniNameMalay] = @uniNameMalay, [uniAcronym] = @uniAcronym, [foundationYear] = @foundationYear, 
+                                        [uniType] = @uniType, [campusTourLink] = @campusTourLink, [youtubeLink] = @youtubeLink, [googleMapsLink] = @googleMapsLink, [uniLogo] = @uniLogo 
+                                        WHERE [uniID] = @uniID">
                         <DeleteParameters>
                             <asp:Parameter Name="uniID" Type="String" />
                         </DeleteParameters>

@@ -33,15 +33,6 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Button btnCreate;
 
         /// <summary>
-        /// lstRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstRole;
-
-        /// <summary>
         /// btnRetrieve control.
         /// </summary>
         /// <remarks>
@@ -51,13 +42,13 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Button btnRetrieve;
 
         /// <summary>
-        /// lstUser control.
+        /// lstRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstUser;
+        protected global::System.Web.UI.WebControls.ListBox lstRole;
 
         /// <summary>
         /// btnRetrieveU control.
@@ -67,6 +58,15 @@ namespace UniFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRetrieveU;
+
+        /// <summary>
+        /// lstUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstUser;
 
         /// <summary>
         /// txtR control.
@@ -96,15 +96,6 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Button btnAssign;
 
         /// <summary>
-        /// ddlRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
-
-        /// <summary>
         /// btnGetRole control.
         /// </summary>
         /// <remarks>
@@ -114,13 +105,13 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Button btnGetRole;
 
         /// <summary>
-        /// lstUR control.
+        /// ddlRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstUR;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
 
         /// <summary>
         /// btnDisplayU control.
@@ -130,5 +121,14 @@ namespace UniFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDisplayU;
+
+        /// <summary>
+        /// lstUR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstUR;
     }
 }

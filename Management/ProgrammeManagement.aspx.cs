@@ -13,5 +13,16 @@ namespace UniFinder
         {
 
         }
+
+        protected void btnReset_Click3(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSearch_Click3(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
