@@ -27,26 +27,37 @@ namespace UniFinder.Management
                 {
                     con.Open();
 
-                    // Get the record number to generate programme id
-                    string queryCount = "SELECT COUNT(*) FROM Programme";
-                    SqlCommand cmdCountProgramme = new SqlCommand(queryCount, con);
+                    // Generate a unique Programme ID in sequence
+                    string programmeId = GenerateNextProgrammeId(con);
 
-                    int recordCount = (int)cmdCountProgramme.ExecuteScalar();
-                    recordCount++;
+                    // Initialize the contact string
+                    string contact = $"Tel: {txtPhone.Text}";
 
-                    string programmeId = "P" + recordCount.ToString("D4");
+                    // Check if Fax is not null or empty and append it to the contact string
+                    if (!string.IsNullOrEmpty(txtFax.Text))
+                    {
+                        contact += $"<br/>Fax: {txtFax.Text}";
+                    }
 
-                    string queryInsert = "INSERT INTO Programme (programmeID, programmeName, programmeLink, introduction, phone, fax, email, duration, fees, facultyLink, universityID, branchID) " +
-                                         "VALUES (@ProgrammeID, @ProgrammeName, @ProgrammeLink, @Introduction, @Phone, @Fax, @Email, @Duration, @Fees, @FacultyLink, @UniversityID, @BranchID)";
+                    // Check if Email is not null or empty and append it to the contact string
+                    if (!string.IsNullOrEmpty(txtEmail.Text))
+                    {
+                        contact += $"<br/>Email: {txtEmail.Text}";
+                    }
+
+                    // Define the SQL query
+                    string queryInsert = "INSERT INTO Programme (programID, programName, programLink, introduction, contact, duration, fees, facLink, uniID, branchID) " +
+                                         "VALUES (@ProgrammeID, @ProgrammeName, @ProgrammeLink, @Introduction, @Contact, @Duration, @Fees, @FacultyLink, @UniversityID, @BranchID)";
+
+                    // Create the SQL command
                     SqlCommand cmdInsertProgramme = new SqlCommand(queryInsert, con);
 
+                    // Add parameters to the command
                     cmdInsertProgramme.Parameters.AddWithValue("@ProgrammeID", programmeId);
                     cmdInsertProgramme.Parameters.AddWithValue("@ProgrammeName", txtProgramName.Text);
                     cmdInsertProgramme.Parameters.AddWithValue("@ProgrammeLink", txtPLink.Text);
                     cmdInsertProgramme.Parameters.AddWithValue("@Introduction", txtIntro.Text);
-                    cmdInsertProgramme.Parameters.AddWithValue("@Phone", txtPhone.Text);
-                    cmdInsertProgramme.Parameters.AddWithValue("@Fax", txtFax.Text);
-                    cmdInsertProgramme.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    cmdInsertProgramme.Parameters.AddWithValue("@Contact", contact); // Use the combined contact string
                     cmdInsertProgramme.Parameters.AddWithValue("@Duration", int.Parse(txtDuration.Text));
                     cmdInsertProgramme.Parameters.AddWithValue("@Fees", int.Parse(txtFees.Text));
                     cmdInsertProgramme.Parameters.AddWithValue("@FacultyLink", txtFacLink.Text);
@@ -61,6 +72,8 @@ namespace UniFinder.Management
                         ClearFields();
                         Response.Redirect("ProgrammeManagement.aspx");
                     }
+
+                    con.Close();
                 }
             }
             catch (Exception ex)
@@ -69,6 +82,27 @@ namespace UniFinder.Management
                 lblmsg.ForeColor = System.Drawing.Color.Red;
             }
         }
+
+        private string GenerateNextProgrammeId(SqlConnection con)
+        {
+            // Query to get the highest current programme ID
+            string query = "SELECT MAX(programID) FROM Programme";
+            SqlCommand cmd = new SqlCommand(query, con);
+            object result = cmd.ExecuteScalar();
+
+            if (result != DBNull.Value && result != null)
+            {
+                string lastId = result.ToString();
+                int idNumber = int.Parse(lastId.Substring(1)) + 1;
+                return "P" + idNumber.ToString("D4");
+            }
+            else
+            {
+                // If there are no records, start with P0001
+                return "P0001";
+            }
+        }
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

@@ -16,6 +16,7 @@ namespace Practical_5
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(Login1.UserName,Login1.Password);
             if (Membership.ValidateUser(Login1.UserName, Login1.Password))
             {
                 FormsAuthentication.SetAuthCookie(Login1.UserName, Login1.RememberMeSet);

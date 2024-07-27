@@ -21,6 +21,8 @@ namespace UniFinder.Management
 
         protected void btnAddBranch_Click(object sender, EventArgs e)
         {
+            int recordCount = 0;
+
             if (IsValid)
             {
                 try
@@ -29,9 +31,19 @@ namespace UniFinder.Management
                     {
                         con.Open();
 
-                        string queryInsert = "INSERT INTO Branch (uniID, location, address) VALUES (@UniversityID, @Location, @Address)";
+                        // Get the record number to generate promo id
+                        string queryCount = "SELECT COUNT(*) FROM Branch";
+                        SqlCommand cmdCountPromo = new SqlCommand(queryCount, con);
+
+                        recordCount = (int)cmdCountPromo.ExecuteScalar();
+                        recordCount++;
+
+                        string branchId = "B" + recordCount.ToString("D4");
+
+                        string queryInsert = "INSERT INTO Branch (branchId, uniID, location, address) VALUES (@BranchID, @UniversityID, @Location, @Address)";
                         SqlCommand cmdInsertBranch = new SqlCommand(queryInsert, con);
 
+                        cmdInsertBranch.Parameters.AddWithValue("@BranchID", branchId);
                         cmdInsertBranch.Parameters.AddWithValue("@UniversityID", ddlUni.SelectedValue);
                         cmdInsertBranch.Parameters.AddWithValue("@Location", ddlLocation.SelectedValue);
                         cmdInsertBranch.Parameters.AddWithValue("@Address", txtAddress.Text);

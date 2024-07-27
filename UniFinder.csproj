@@ -272,6 +272,9 @@
     <Compile Include="Management\UniManagement2.aspx.designer.cs">
       <DependentUpon>UniManagement2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="University.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="UniversityDetail.aspx.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

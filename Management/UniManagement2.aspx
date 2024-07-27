@@ -65,7 +65,7 @@
                         OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" ShowEditButton="True" />
+                            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                             <asp:BoundField DataField="uniID" HeaderText="uniID" ReadOnly="True" SortExpression="uniID" />
                             <asp:BoundField DataField="uniNameEng" HeaderText="uniNameEng" SortExpression="uniNameEng" />
                             <asp:BoundField DataField="uniNameMalay" HeaderText="uniNameMalay" SortExpression="uniNameMalay" />

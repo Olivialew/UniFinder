@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Controls;
+using System.Web.Configuration;
 
 namespace UniFinder
 {
@@ -17,8 +21,56 @@ namespace UniFinder
                 // Bind data to DataList1
                 DataList1.DataBind();
                 //string username = Session["Username"] as string;
+                //Session["Wishlist"] = new List<int>();
+                //UpdateWishlistLabel();
             }
         }
+
+        //private void BindUniversities()
+        //{
+        //    using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+        //    {
+        //        SqlDataAdapter da = new SqlDataAdapter("SELECT uniID, uniNameEng FROM University", conn);
+        //        DataTable dt = new DataTable();
+        //        da.Fill(dt);
+        //        DataList1.DataSource = dt;
+        //        DataList1.DataBind();
+        //    }
+        //}
+
+        //protected void UniversitiesGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "AddToWishlist")
+        //    {
+        //        int universityId = Convert.ToInt32(e.CommandArgument);
+        //        var wishlist = Session["Wishlist"] as List<int>;
+
+        //        if (wishlist.Count < 4)
+        //        {
+        //            if (!wishlist.Contains(universityId))
+        //            {
+        //                wishlist.Add(universityId);
+        //            }
+        //        }
+
+        //        UpdateWishlistLabel();
+        //    }
+        //}
+
+        //protected void CompareButton_Click(object sender, EventArgs e)
+        //{
+        //    var wishlist = Session["Wishlist"] as List<int>;
+        //    Session["WishlistIds"] = wishlist;
+        //    Response.Redirect("Wishlist.aspx");
+        //}
+
+        //private void UpdateWishlistLabel()
+        //{
+        //    var wishlist = Session["Wishlist"] as List<int>;
+        //    WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlist);
+        //    WishlistCount.Value = wishlist.Count.ToString();
+        //}
+
 
         //protected override void Render(HtmlTextWriter writer)
         //{

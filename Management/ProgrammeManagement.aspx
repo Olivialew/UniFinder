@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdmin.Master" AutoEventWireup="true" CodeBehind="ProgrammeManagement.aspx.cs" Inherits="UniFinder.Programme_Management" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdmin.Master" AutoEventWireup="true" CodeBehind="ProgrammeManagement.aspx.cs" Inherits="UniFinder.Programme_Management" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -57,20 +57,23 @@
                 <br />
 
 
+                </strong>
+
+
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="programID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                        <asp:BoundField DataField="programID" HeaderText="programID" ReadOnly="True" SortExpression="programID" />
-                        <asp:BoundField DataField="programName" HeaderText="programName" SortExpression="programName" />
-                        <asp:BoundField DataField="programLink" HeaderText="programLink" SortExpression="programLink" />
-                        <asp:BoundField DataField="introduction" HeaderText="introduction" SortExpression="introduction" />
-                        <asp:BoundField DataField="contact" HeaderText="contact" SortExpression="contact" />
-                        <asp:BoundField DataField="duration" HeaderText="duration" SortExpression="duration" />
-                        <asp:BoundField DataField="fees" HeaderText="fees" SortExpression="fees" />
-                        <asp:BoundField DataField="facLink" HeaderText="facLink" SortExpression="facLink" />
-                        <asp:BoundField DataField="uniID" HeaderText="uniID" SortExpression="uniID" />
-                        <asp:BoundField DataField="branchID" HeaderText="branchID" SortExpression="branchID" />
+                        <asp:BoundField DataField="programID" HeaderText="Programme ID" ReadOnly="True" SortExpression="programID" />
+                        <asp:BoundField DataField="programName" HeaderText="Name" SortExpression="programName" />
+                        <asp:BoundField DataField="programLink" HeaderText="Programme Link" SortExpression="programLink" />
+                        <asp:BoundField DataField="introduction" HeaderText="Introduction" SortExpression="introduction" />
+                        <asp:BoundField DataField="contact" HeaderText="Contact" SortExpression="contact" />
+                        <asp:BoundField DataField="duration" HeaderText="Duration" SortExpression="duration" />
+                        <asp:BoundField DataField="fees" HeaderText="Fees" SortExpression="fees" />
+                        <asp:BoundField DataField="facLink" HeaderText="Faculty Link" SortExpression="facLink" />
+                        <asp:BoundField DataField="uniID" HeaderText="University ID" SortExpression="uniID" />
+                        <asp:BoundField DataField="branchID" HeaderText="Branch ID" SortExpression="branchID" />
                     </Columns>
                     <EditRowStyle BackColor="#7C6F57" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

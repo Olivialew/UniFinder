@@ -133,24 +133,38 @@
                 
                 <div class="panel">
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">
-                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" DataSourceID="SqlDataSource1">
+                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
                                 <div class="programmeImgContainer">
-                                    <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("programName") %>' CssClass="uniLogo" Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px" OnClick="imgBtnSelectProgram" />
+                                    <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px" OnClick="imgBtnSelectProgram" />
                                 </div>
                                 <div class="programmeName">
-                                    <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("programName") %>' Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
+                                    <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>' Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
                                 </div>
+                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("programID") %>' OnClientClick="return validateWishlist();" />
                             </ItemTemplate>
-                        </asp:DataList>                        
+                        </asp:DataList>
+
+                        <!-- SqlDataSource can be kept if used elsewhere -->
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                             ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-                            SelectCommand="SELECT P.programName, U.uniLogo FROM Programme P JOIN University U ON P.uniID = U.uniID">
+                            SelectCommand="SELECT P.programID, P.programName, U.uniLogo FROM Programme P JOIN University U ON P.uniID = U.uniID">
                         </asp:SqlDataSource>
+
+                        <br />
+                        <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
+                        <asp:HiddenField ID="WishlistCount" runat="server" />
+                        <br />
+                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />
+
                         <script type="text/javascript">
-                            function getImageTitle(imgButton) {
-                                var programName = $(imgButton).data('programName'); // Retrieve the title from data-title attribute
-                                $('#lblProgrammeName').text(programName); // Update the label text with the selected movie title
+                            function validateWishlist() {
+                                var wishlistCount = document.getElementById('WishlistCount').value;
+                                if (wishlistCount >= 4) {
+                                    alert("You can only add up to 4 programs to the wishlist.");
+                                    return false; // Prevent postback
+                                }
+                                return true;
                             }
                         </script>
                     </asp:Panel>

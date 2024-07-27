@@ -114,6 +114,16 @@
             height: 77px;
         }
     </style>
+<%--    <script type="text/javascript">
+        function validateWishlist() {
+            var wishlistCount = document.getElementById('WishlistCount').value;
+            if (wishlistCount >= 4) {
+                alert("You can only add up to 4 universities to the wishlist.");
+                return false;
+            }
+            return true;
+        }
+    </script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -153,12 +163,20 @@
                                         Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>' 
                                         Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
                                 </div>
+<%--                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("UniversityId") %>' OnClientClick="return validateWishlist();" />--%>
                             </ItemTemplate>
                         </asp:DataList>                        
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                             ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
                             SelectCommand="SELECT uniNameEng, uniNameMalay, uniLogo FROM University">
                         </asp:SqlDataSource>
+
+<%--                        <br />
+                        <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
+                        <asp:HiddenField ID="WishlistCount" runat="server" />
+                        <br />
+                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />
+        --%>
 
                         <script type="text/javascript">
                             function getImageTitle(imgButton) {

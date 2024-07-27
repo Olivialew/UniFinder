@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdmin.Master" AutoEventWireup="true" CodeBehind="AddProgramme.aspx.cs" Inherits="UniFinder.Management.AddProgramme" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdmin.Master" AutoEventWireup="true" CodeBehind="AddProgramme.aspx.cs" Inherits="UniFinder.Management.AddProgramme" ValidateRequest="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
 
@@ -138,7 +138,7 @@
             <td>
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" ErrorMessage="Contact is required" ForeColor="Red">*</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPhone" ErrorMessage="Invalid Phone Number format" ForeColor="Red" ValidationExpression="^(\+?60)?[-\s]?(1[0-9]|[3-9][0-9])[-\s]?(\d{7,8})$">*</asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPhone" ErrorMessage="Invalid Phone Number format" ForeColor="Red" ValidationExpression="\d{3}-?\d{7,8}">*</asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

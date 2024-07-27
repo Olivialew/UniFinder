@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,34 +16,94 @@ namespace UniFinder
         {
             if (!IsPostBack)
             {
-                //DataList1.DataSource = SqlDataSource1;
-                // Bind data to DataList1
-                DataList1.DataBind();
-                //string username = Session["Username"] as string;
+                BindPrograms();
+                if (Session["Wishlist"] == null)
+                {
+                    Session["Wishlist"] = new List<int>();
+                }
+                UpdateWishlistLabel();
             }
         }
 
-        //protected override void Render(HtmlTextWriter writer)
-        //{
-        //    // Register btnSearch for event validation
-        //    ClientScript.RegisterForEventValidation(btnSearch.UniqueID);
-
-        //    // Register each ImageButton within DataList1 for event validation
-        //    foreach (DataListItem item in DataList1.Items)
-        //    {
-        //        ImageButton imgBtn = item.FindControl("imgUni") as ImageButton;
-        //        if (imgBtn != null)
-        //        {
-        //            ClientScript.RegisterForEventValidation(imgBtn.UniqueID);
-        //        }
-        //    }
-
-        //    base.Render(writer);
-        //}
-
-        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
+        private void BindPrograms()
         {
-            // Handle DataList selection change if needed
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                string query = @"
+                    SELECT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration
+                    FROM Programme p
+                    JOIN University u ON p.uniID = u.uniID";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                DataList1.DataSource = dt;
+                DataList1.DataBind();
+            }
+        }
+
+        protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToWishlist")
+            {
+                int programmeId = Convert.ToInt32(e.CommandArgument);
+                var wishlist = Session["Wishlist"] as List<int>;
+
+                if (wishlist == null)
+                {
+                    wishlist = new List<int>();
+                    Session["Wishlist"] = wishlist;
+                }
+
+                if (wishlist.Count < 4)
+                {
+                    if (!wishlist.Contains(programmeId))
+                    {
+                        wishlist.Add(programmeId);
+                    }
+                }
+                UpdateWishlistLabel();
+            }
+        }
+
+        protected void CompareButton_Click(object sender, EventArgs e)
+        {
+            var wishlist = Session["Wishlist"] as List<int>;
+            Session["WishlistIds"] = wishlist;
+            Response.Redirect("~/MyAccount/Wishlist.aspx");
+        }
+
+        private void UpdateWishlistLabel()
+        {
+            var wishlist = Session["Wishlist"] as List<int>;
+            var wishlistNames = new List<string>();
+
+            if (wishlist != null && wishlist.Count > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    string query = @"
+                    SELECT p.programName
+                    FROM Programme p
+                    WHERE p.programID IN (" + string.Join(",", wishlist) + ")";
+
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        wishlistNames.Add(row["programName"].ToString());
+                    }
+                }
+            }
+            else
+            {
+                WishlistLabel.Text = "Wishlist: (empty)";
+            }
+
+            WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlistNames);
+            WishlistCount.Value = wishlist.Count.ToString();
         }
 
         protected void imgBtnSelectProgram(object sender, ImageClickEventArgs e)
@@ -63,57 +126,8 @@ namespace UniFinder
             else
             {
                 return ResolveUrl("~/Images/LogoNew.png");
-                //return "~/Images/UniLogo/defaultLogo.png";
             }
         }
-
-        //protected void ddlMovieStatus_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    BindMovies();
-        //}
-
-        //private void BindMovies()
-        //{
-        //    try
-        //    {
-        //        string status = ddlMovieStatus.SelectedValue;
-        //        string searchString = txtSearch.Text.Trim();
-        //        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        //        string query;
-
-        //        if (status == "All")
-        //        {
-        //            query = "SELECT title, poster, status FROM Movie ORDER BY status";
-        //        }
-        //        else
-        //        {
-        //            query = "SELECT title, poster, status FROM Movie WHERE status = @Status ORDER BY status";
-        //        }
-
-        //        using (SqlConnection connection = new SqlConnection(connectionString))
-        //        {
-        //            using (SqlCommand command = new SqlCommand(query, connection))
-        //            {
-        //                if (status != "All")
-        //                {
-        //                    command.Parameters.AddWithValue("@Status", status);
-        //                    command.Parameters.AddWithValue("@SearchQuery", searchString);
-
-        //                }
-
-        //                connection.Open();
-        //                SqlDataReader reader = command.ExecuteReader();
-
-        //                DataList1.DataSource = reader;
-        //                DataList1.DataBind();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle exception
-        //    }
-        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -121,11 +135,5 @@ namespace UniFinder
             // Call method to get program details based on search query
             // GetProgramDetails(searchQuery);
         }
-
-        // Example method to get program details (uncomment if needed)
-        // private void GetProgramDetails(string programNameChosen)
-        // {
-        //     // Implementation to fetch program details from the database
-        // }
     }
 }

@@ -22,6 +22,9 @@ namespace UniFinder
             }
         }
 
+        
+        //Display Image
+
         protected string GetImageUrl(object uniLogo)
         {
             if (uniLogo != DBNull.Value && uniLogo != null)
