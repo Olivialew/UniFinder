@@ -13,5 +13,10 @@ namespace UniFinder
         {
 
         }
+
+        protected void LinkButtonTakeQuiz_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CareerTestQuiz.aspx");
+        }
     }
 }

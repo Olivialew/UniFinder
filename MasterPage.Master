@@ -104,6 +104,9 @@
         .auto-style26 {
             color: #000000;
         }
+        .auto-style27 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -143,6 +146,7 @@
                     </td>
                     <td style="background-color: #FFFFFF; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style14">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            
                         </asp:ContentPlaceHolder>
                     </td>
                 </tr>

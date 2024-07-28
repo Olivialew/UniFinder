@@ -2,16 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style27 {
-            width: 866px;
-        }
-
+        
         .auto-style29 {
             width: 1114px;
         }
 
-        .auto-style30 {
-            width: 801px;
+        .auto-style31 {
+            width: 204px;
+        }
+        .auto-style32 {
+            width: 866px;
         }
     </style>
 </asp:Content>
@@ -19,6 +19,7 @@
 
     <div class="SummaryHeader">
         <asp:Image ID="imgUniversityLogo" runat="server" Height="180px" Width="180px" />
+        <br />
     </div>
     <div class="SummaryContent">
         <table>
@@ -26,45 +27,74 @@
                 <td class="auto-style29">
                     <table>
                         <tr>
-                            <td class="auto-style35" colspan="2"><strong>Programme:<br />
+                            <td class="auto-style31"><strong>Programme:</strong></td>
+                            <td class="auto-style35">
                                 <asp:Label ID="lblProgramName" runat="server"></asp:Label>
-                            </strong></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style35" colspan="2"><strong>University:<br />
-                                <asp:Label ID="lblUniversity" runat="server"></asp:Label>
-                            </strong></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style35" colspan="2"><strong>Location:<br />
-                                <asp:Label ID="lblLocation" runat="server"></asp:Label>
-                            </strong></td>
-                        </tr>
-                        <tr>
-                            <td aria-checked="true" class="auto-style35" colspan="2"><strong>Introduction:<br />
-                                <asp:Label ID="lblProgrammeIntro" runat="server"></asp:Label>
-                            </strong></td>
-                        </tr>
-                        <tr>
-                            <td aria-checked="true" class="auto-style35" colspan="2"><strong>Contact:<br />
-                                <asp:Label ID="lblProgrammeContact" runat="server"></asp:Label>
-                            </strong></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style30"><strong>Duration:<br />
-                                <asp:Label ID="lblProgrammeDuration" runat="server"></asp:Label>
-                            </strong></td>
-                            <td class="auto-style27"><strong>Tuition Fees:</strong><br />
-                                <strong>
-                                    <asp:Label ID="lblTuitionFee" runat="server"></asp:Label>
-                                </strong></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;
-                                <div>
-                                    <asp:Literal ID="LiteralIframe" runat="server"></asp:Literal>
-                                </div>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31">&nbsp;</td>
+                            <td class="auto-style35">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31"><strong>University:</strong></td>
+                            <td class="auto-style35">
+                                <asp:Label ID="lblUniversity" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31">&nbsp;</td>
+                            <td class="auto-style35">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31"><strong>Location:</strong></td>
+                            <td class="auto-style35">
+                                <asp:Label ID="lblLocation" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31">&nbsp;</td>
+                            <td class="auto-style35">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td aria-checked="true" class="auto-style31"><strong>Introduction:</strong></td>
+                            <td aria-checked="true" class="auto-style35">
+                                <asp:Label ID="lblProgrammeIntro" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td aria-checked="true" class="auto-style31">&nbsp;</td>
+                            <td aria-checked="true" class="auto-style35">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td aria-checked="true" class="auto-style31"><strong>Contact:</strong></td>
+                            <td aria-checked="true" class="auto-style35">
+                                <asp:Label ID="lblProgrammeContact" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td aria-checked="true" class="auto-style31">&nbsp;</td>
+                            <td aria-checked="true" class="auto-style35">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31"><strong>Duration:</strong></td>
+                            <td class="auto-style32">
+                                <asp:Label ID="lblProgrammeDuration" runat="server"></asp:Label>
+                                <br />
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31">&nbsp;</td>
+                            <td class="auto-style32">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style31"><strong>Tuition Fees (Local):</strong></td>
+                            <td class="auto-style32">
+                                    <asp:Label ID="lblTuitionFee" runat="server"></asp:Label>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style38" colspan="2"><strong>

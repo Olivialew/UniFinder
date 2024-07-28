@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="CareerTestQuiz.aspx" />
+    <Content Include="CareerTestResults.aspx" />
     <Content Include="Management\AddBranch.aspx" />
     <Content Include="Management\AddProgramme.aspx" />
     <Content Include="Management\AddUniversity.aspx" />
@@ -137,6 +139,20 @@
     </Compile>
     <Compile Include="AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CareerTestQuiz.aspx.cs">
+      <DependentUpon>CareerTestQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CareerTestQuiz.aspx.designer.cs">
+      <DependentUpon>CareerTestQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CareerTestResults.aspx.cs">
+      <DependentUpon>CareerTestResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CareerTestResults.aspx.designer.cs">
+      <DependentUpon>CareerTestResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\AddBranch.aspx.cs">
       <DependentUpon>AddBranch.aspx</DependentUpon>
