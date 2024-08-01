@@ -71,7 +71,7 @@
             box-sizing: border-box;
         }
 
-        .programmeName{
+        .programmeName {
             color: #242424;
         }
 
@@ -80,39 +80,17 @@
             height: 118px;
         }
 
-        .auto-style29 {
-            width: 175px;
-        }
-
-        .auto-style30 {
-            width: 1227px;
-        }
-
-        .auto-style33 {
-            color: #242424;
-            height: 77px;
-            width: 423px;
-        }
-
-        .auto-style34 {
-            color: #242424;
-            height: 77px;
-            width: 514px;
-        }
-
-        .auto-style35 {
-            color: #242424;
-            height: 83px;
-        }
-
         .auto-style37 {
             font-size: xx-large;
-            color: #242424;
+            color: #000000;
         }
 
-        .auto-style38 {
-            color: #242424;
-            height: 77px;
+        .search-box {
+            width: 300px;
+        }
+
+        .search-btn {
+            margin-left: 10px;
         }
     </style>
 </asp:Content>
@@ -120,13 +98,57 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bigContainer" style="background-color: #FFFFFF">
         <div class="header">
-            <h3 class="auto-style37">Programme</h3>
+            <h3 class="auto-style37"><strong>Programme</strong></h3>
         </div>
         <div class="content">
             <div class="mainSide">
+                <strong>
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
-
+                <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnSearch_Click" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style26">Sort by: 
+                <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
+                    <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                    <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+                </asp:DropDownList>
+                <br />
+                Filter by:<br />
+                <br />
+                University<br />
+    <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniNameEng" DataValueField="uniID">
+    </asp:DropDownList>
+                </span></strong>
+                <%--                <br /><br />
+                <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>
+                    <asp:ListItem Text="University Name" Value="UniversityName"></asp:ListItem>
+                    <asp:ListItem Text="Fees" Value="Fees"></asp:ListItem>
+                    <asp:ListItem Text="Duration" Value="Duration"></asp:ListItem>
+                </asp:DropDownList>--%>
+                <br />
+                <br />
+                <span class="auto-style26"><strong>Branch Location</strong></span><br />
+    <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
+    </asp:DropDownList>
+    <br />
+    <br /><span class="auto-style26"><strong>Fees</strong></span><br class="auto-style26" />
+                <span class="auto-style26">Minimum: </span>
+    <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
+                <span class="auto-style26">Maximum: </span>
+    <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox><span class="auto-style26"><br /><br />
+    <strong>Duration</strong><br />
+                </span>
+    <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+        </SelectParameters>
+                </asp:SqlDataSource>
+<strong>
+                <asp:Button ID="btnFilter" runat="server" Text="Apply Filters" OnClick="btnSearch_Click" />
+                </strong>
                 <br />
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <br />
@@ -145,21 +167,26 @@
                             </ItemTemplate>
                         </asp:DataList>
 
-                        <!-- SqlDataSource can be kept if used elsewhere -->
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-                            SelectCommand="SELECT P.programID, P.programName, U.uniLogo FROM Programme P JOIN University U ON P.uniID = U.uniID">
-                        </asp:SqlDataSource>
-
-                        <br />
                         <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
                         <asp:HiddenField ID="WishlistCount" runat="server" />
                         <br />
                         <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />
 
+                        <div class="pagination">
+                            <asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" />
+                            <asp:Label ID="lblPageNumber" runat="server" Text="Page 1"></asp:Label>
+                            <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" />
+                        </div>
+
+                        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                            <asp:ListItem Text="5" Value="5" />
+                            <asp:ListItem Text="10" Value="10" Selected="True" />
+                            <asp:ListItem Text="15" Value="15" />
+                        </asp:DropDownList>
+
                         <script type="text/javascript">
                             function validateWishlist() {
-                                var wishlistCount = document.getElementById('WishlistCount').value;
+                                var wishlistCount = parseInt(document.getElementById('WishlistCount').value, 10);
                                 if (wishlistCount >= 4) {
                                     alert("You can only add up to 4 programs to the wishlist.");
                                     return false; // Prevent postback

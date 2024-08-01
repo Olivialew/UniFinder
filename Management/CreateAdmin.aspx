@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="UniFinder.CreateUser" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdmin.Master" AutoEventWireup="true" CodeBehind="CreateAdmin.aspx.cs" Inherits="UniFinder.Management.CreateAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -20,6 +19,6 @@
         </WizardSteps>
     </asp:CreateUserWizard>
     <br />
-    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/LoginPage.aspx">Go Back to Login</asp:HyperLink>
+    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Management/HomeAdmin.aspx">Go Back to Home</asp:HyperLink>
     <br />
 </asp:Content>

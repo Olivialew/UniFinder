@@ -134,6 +134,7 @@
         <div class="content">
             <div class="mainSide">
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
+
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
 
                 <br />

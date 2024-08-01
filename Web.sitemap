@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="/Home.aspx" title="Home"  description="">
-    <siteMapNode url="/Programme.aspx" title="Programme"  description="" />
-    <siteMapNode url="/University.aspx" title="University"  description="" />
-    <siteMapNode url="/CareerTest.aspx" title="Career Test"  description="" />
-    <siteMapNode url="/AIChatbot.aspx" title="AI Chatbot"  description="" />
-    <siteMapNode url="/AboutUs.aspx" title="About Us"  description="" />
-    <siteMapNode url="/Wishlist.aspx" title="Wishlist"  description="" />
-    <siteMapNode url="/Account.aspx" title="Account"  description="" />
-  </siteMapNode>
+	<siteMapNode url="" title="UniFinder"  description="">
+		<siteMapNode url="/Home.aspx" title="Home"  description="" />
+		<siteMapNode url="/CreateUser.aspx" title="CreateUser"  description="" />
+		<siteMapNode url="/LoginPage.aspx" title="LoginPage"  description="" />
+
+		<siteMapNode url="/Programme.aspx" title="Programme"  description="" >
+			<siteMapNode url="/ProgrammeDetail.aspx" title="ProgrammeDetail"  description="" />
+		</siteMapNode>
+		<siteMapNode url="/University.aspx" title="University"  description="" >
+			<siteMapNode url="/UniversityDetail.aspx" title="UniversityDetail"  description="" />
+		</siteMapNode>
+		<siteMapNode url="/CareerTest.aspx" title="Career Test"  description="" >
+			<siteMapNode url="/CareerTestQuiz.aspx" title="CareerTestQuiz"  description="" />
+			<siteMapNode url="/CareerTestResults.aspx" title="CareerTestResults"  description="" />
+		</siteMapNode>
+		<siteMapNode url="/AIChatbot.aspx" title="AI Chatbot"  description="" />
+		<siteMapNode url="/AboutUs.aspx" title="About Us"  description="" />
+		
+		<siteMapNode url="" title="MyAccount"  description="" >
+			<siteMapNode url="/Account.aspx" title="Account"  description="" />
+			<siteMapNode url="/ChangePassword.aspx" title="ChangePassword"  description="" />
+			<siteMapNode url="/Wishlist.aspx" title="Wishlist"  description="" />
+		</siteMapNode>
+		
+		<siteMapNode url="" title="Management"  description="" >
+			<siteMapNode url="/HomeAdmin.aspx" title="Account"  description="" />
+			<siteMapNode url="/AccountAdmin.aspx" title="Account"  description="" />
+			<siteMapNode url="/ChangePasswordAdmin.aspx" title="ChangePassword"  description="" />
+			<siteMapNode url="/BranchManagement.aspx" title="BranchManagement"  description="" >
+				<siteMapNode url="/AddBranch.aspx" title="AddBranch"  description="" />
+			</siteMapNode>
+			<siteMapNode url="/ProgrammeManagement.aspx" title="BranchManagement"  description="" >
+				<siteMapNode url="/AddProgramme.aspx" title="AddProgramme"  description="" />
+			</siteMapNode>
+			<siteMapNode url="/UniManagement2.aspx" title="BranchManagement"  description="" >
+				<siteMapNode url="/AddUniversity.aspx" title="AddUniversity"  description="" />
+			</siteMapNode>
+			<siteMapNode url="" title="RoleManagement"  description="" >
+				<siteMapNode url="/RoleManagement.aspx" title="BranchManagement"  description="" />
+			</siteMapNode>
+			<siteMapNode url="/CreateAdmin.aspx" title="AddUniversity"  description="" />
+		</siteMapNode>
+	</siteMapNode>
 </siteMap>

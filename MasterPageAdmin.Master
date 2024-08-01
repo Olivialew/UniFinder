@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageAdmin.master.cs" Inherits="UniFinder.MasterPageAdmin" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -13,93 +14,108 @@
             color: #000000;
             background-color: #FEFFFF;
         }
+
         .auto-style6 {
             width: 14px;
             height: 591px;
             top: 0px;
         }
+
         .auto-style7 {
             height: 1157px;
             margin-bottom: 46px;
         }
+
         .auto-style8 {
             height: 26px;
         }
+
         .auto-style9 {
             text-align: center;
             height: 104px;
         }
+
         .auto-style13 {
             width: 100%;
             height: 988px;
         }
+
         ul.navBar {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #333;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
         }
 
-        ul.navBar li {
-          float: left;
-        }
+            ul.navBar li {
+                float: left;
+            }
 
-        ul.navBar li a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
+                ul.navBar li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
 
-        ul.navBar li a:hover:not(.active) {
-          background-color: #111;
-        }
+                    ul.navBar li a:hover:not(.active) {
+                        background-color: #111;
+                    }
 
         .active {
-          background-color: #111;
-          color: #FFFF00;
+            background-color: #111;
+            color: #FFFF00;
         }
 
         ul.bottomNav {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
+
         .auto-style14 {
             height: 591px;
         }
+
         .auto-style16 {
             color: #FFFFFF;
         }
+
         .auto-style17 {
             width: 42px;
             height: 39px;
         }
+
         .auto-style18 {
             height: 35px;
             color: #FFFFFF;
             width: 317px;
         }
+
         .auto-style19 {
             height: 35px;
             color: #FFFFFF;
-            }
+        }
+
         .auto-style20 {
             color: #FFFFFF;
             text-align: center;
             height: 26px;
         }
+
         .auto-style24 {
             background-color: #FEFFFF;
             color: #000000;
         }
+
         .auto-style25 {
             font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
             text-transform: uppercase;
             vertical-align: middle;
         }
+
         .auto-style26 {
             color: #000000;
         }
@@ -111,18 +127,21 @@
             <table class="auto-style13">
                 <tr>
                     <td class="auto-style9" colspan="2" style="background-color: #FFFFFF; font-size: xx-large; color: #FFFFFF;">
-                        <!--<asp:Image ID="Logo" runat="server" ImageUrl="~/images/Logo.png" Height="500px" Width="500px" />     -->      
-                        <img src="/images/edupath-favicon-black.png" alt="Logo" class="auto-style5" style="vertical-align: middle; line-height: normal; text-align: center"> <span class="auto-style25"><span class="auto-style24">&nbsp;eDUPATH</span></span></td>
+                        <!--<asp:Image ID="Logo" runat="server" ImageUrl="~/images/Logo.png" Height="500px" Width="500px" />     -->
+                        <img src="/images/edupath-favicon-black.png" alt="Logo" class="auto-style5" style="vertical-align: middle; line-height: normal; text-align: center">
+                        <span class="auto-style25"><span class="auto-style24">&nbsp;eDUPATH</span></span></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
                         <ul class="navBar" style="height: 58px">
-<%--                            <li><a class="active" href="/Home.aspx">Home</a></li>--%>
-                            <li><a class="active" href="/Management/UniManagement2.aspx">Manage University</a></li>
+                            <%--                            <li><a class="active" href="/Home.aspx">Home</a></li>--%>
+                            <li><a class="active" href="/Management/HomeAdmin.aspx">Home</a></li>
+                            <li><a href="/Management/UniManagement2.aspx">Manage University</a></li>
                             <li><a href="/Management/BranchManagement.aspx">Manage Branch</a></li>
                             <li><a href="/Management/ProgrammeManagement.aspx">Manage Programme</a></li>
                             <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>
-                            <li style="float:right; color:#FFFF00;"><a href="/MyAccount/Account.aspx?logout=true">Account</a></li>
+                            <li><a href="/Management/CreateAdmin.aspx"><span class="auto-style16">Create Admin</span></a></li>
+                            <li style="float: right; color: #FFFF00;"><a href="/Management/AccountAdmin.aspx?logout=true">Account</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -140,15 +159,15 @@
                 </tr>
                 <tr>
                     <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style18">
-                        <ul class="bottomNav" style="padding: 20px; vertical-align: top;">                            
+                        <ul class="bottomNav" style="padding: 20px; vertical-align: top;">
                             <li><a href="/Management/UniManagement2.aspx"><span class="auto-style16">Manage University</span></a></li>
                             <li><a href="/Management/BranchManagement.aspx"><span class="auto-style16">Manage Branch</span></a></li>
                             <li><a href="/Management/ProgrammeManagement.aspx"><span class="auto-style16">Manage Programme</span></a></li>
                             <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>
-                        </ul>    
+                            <li><a href="/Management/CreateAdmin.aspx"><span class="auto-style16">Create Admin</span></a></li>
+                        </ul>
                     </td>
-                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style19">
-                        Need Help? 
+                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style19">Need Help? 
                         <br />
                         <asp:Button ID="Button1" runat="server" BackColor="#009999" Height="35px" OnClick="Button1_Click" Text="GET SUPPORT" BorderStyle="None" ForeColor="#242424" />
                         <br />
@@ -159,11 +178,10 @@
                         <img src="/images/wa.png" alt="WALogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
                         <img src="/images/yt.png" alt="YouTubeLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
                         <br />
-                        </td>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style20">
-                        © Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</td>
+                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style20">© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</td>
                 </tr>
             </table>
             <br />
