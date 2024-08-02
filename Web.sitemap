@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-	<siteMapNode url="" title="UniFinder"  description="">
+	<siteMapNode url="" title="EduPath"  description="">
 		<siteMapNode url="/Home.aspx" title="Home"  description="" />
 		<siteMapNode url="/CreateUser.aspx" title="CreateUser"  description="" />
 		<siteMapNode url="/LoginPage.aspx" title="LoginPage"  description="" />

@@ -27,6 +27,8 @@ namespace UniFinder
         {
             if (!IsPostBack)
             {
+                //Session["CompareList"] = new List<string>();
+
                 BindPrograms();
                 if (Session["Wishlist"] == null)
                 {
@@ -109,46 +111,44 @@ namespace UniFinder
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 string query = @"
-                    SELECT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration
-                    FROM Programme p
-                    JOIN University u ON p.uniID = u.uniID
-                    WHERE 1=1";
+                SELECT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
+                FROM Programme p
+                JOIN University u ON p.uniID = u.uniID
+                JOIN Branch b ON u.uniID = b.uniID
+                WHERE 1=1";
 
-                // Apply search filter
+                // Apply filters and sorting based on your logic
+
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     query += " AND p.programName LIKE @SearchQuery";
                 }
 
-                // Apply university filter
                 if (!string.IsNullOrEmpty(universityFilter) && universityFilter != "0")
                 {
                     query += " AND u.uniID = @UniversityFilter";
                 }
 
-                // Apply branch filter
                 if (!string.IsNullOrEmpty(branchFilter) && branchFilter != "0")
                 {
                     query += " AND p.branchID = @BranchFilter";
                 }
 
-                // Apply fee filters
                 if (!string.IsNullOrEmpty(minFees))
                 {
                     query += " AND p.fees >= @MinFees";
                 }
+
                 if (!string.IsNullOrEmpty(maxFees))
                 {
                     query += " AND p.fees <= @MaxFees";
                 }
 
-                // Apply duration filter
                 if (!string.IsNullOrEmpty(duration))
                 {
                     query += " AND p.duration = @Duration";
                 }
 
-                // Apply sorting
                 switch (sortOrder)
                 {
                     case "fees_desc":
@@ -163,26 +163,32 @@ namespace UniFinder
                 }
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     cmd.Parameters.AddWithValue("@SearchQuery", "%" + searchQuery + "%");
                 }
+
                 if (!string.IsNullOrEmpty(universityFilter) && universityFilter != "0")
                 {
                     cmd.Parameters.AddWithValue("@UniversityFilter", universityFilter);
                 }
+
                 if (!string.IsNullOrEmpty(branchFilter) && branchFilter != "0")
                 {
                     cmd.Parameters.AddWithValue("@BranchFilter", branchFilter);
                 }
+
                 if (!string.IsNullOrEmpty(minFees))
                 {
                     cmd.Parameters.AddWithValue("@MinFees", minFees);
                 }
+
                 if (!string.IsNullOrEmpty(maxFees))
                 {
                     cmd.Parameters.AddWithValue("@MaxFees", maxFees);
                 }
+
                 if (!string.IsNullOrEmpty(duration))
                 {
                     cmd.Parameters.AddWithValue("@Duration", duration);
@@ -221,12 +227,12 @@ namespace UniFinder
             }
         }
 
-        protected void CompareButton_Click(object sender, EventArgs e)
-        {
-            var wishlist = Session["Wishlist"] as List<int>;
-            Session["WishlistIds"] = wishlist;
-            Response.Redirect("~/MyAccount/Wishlist.aspx");
-        }
+        //protected void CompareButton_Click(object sender, EventArgs e)
+        //{
+        //    var wishlist = Session["Wishlist"] as List<int>;
+        //    Session["WishlistIds"] = wishlist;
+        //    Response.Redirect("~/MyAccount/Wishlist.aspx");
+        //}
 
         private void UpdateWishlistLabel()
         {
@@ -284,9 +290,153 @@ namespace UniFinder
             }
         }
 
-        private void UpdatePageNumberLabel()
+        private void UpdatePageNumberLabel
+()
         {
             lblPageNumber.Text = "Page " + CurrentPage.ToString();
         }
+
+        protected void ddlUni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void AddToCompareButton_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string programId = btn.CommandArgument;
+
+            List<string> compareList;
+            if (Session["CompareList"] == null)
+            {
+                compareList = new List<string>();
+            }
+            else
+            {
+                compareList = (List<string>)Session["CompareList"];
+            }
+
+            if (!compareList.Contains(programId) && compareList.Count < 4)
+            {
+                compareList.Add(programId);
+                Session["CompareList"] = compareList;
+            }
+        }
+
+        protected void CompareButton_Click(object sender, EventArgs e)
+        {
+            List<string> compareList = (List<string>)Session["CompareList"];
+
+            if (compareList != null && compareList.Count > 0)
+            {
+                ComparisonPanel.Style["display"] = "block";
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ProgrammeName");
+                dt.Columns.Add("Fees");
+                dt.Columns.Add("Location");
+                dt.Columns.Add("University");
+                dt.Columns.Add("Duration");
+
+                foreach (string programId in compareList)
+                {
+                    DataRow programDetails = GetProgramDetailsById(programId);
+                    if (programDetails != null)
+                    {
+                        DataRow row = dt.NewRow();
+                        row["ProgrammeName"] = programDetails["ProgrammeName"];
+                        row["Fees"] = programDetails["Fees"];
+                        row["Location"] = programDetails["Location"];
+                        row["University"] = programDetails["University"];
+                        row["Duration"] = programDetails["Duration"];
+                        dt.Rows.Add(row);
+                    }
+                }
+
+                comparisonGridView.DataSource = dt;
+                comparisonGridView.DataBind();
+            }
+        }
+
+        private DataRow GetProgramDetailsById(string programId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    "SELECT u.uniNameEng AS University, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration " +
+                    "FROM Programme p " +
+                    "JOIN University u ON p.uniID = u.uniID " +
+                    "JOIN Branch b ON u.uniID = b.uniID " +
+                    "WHERE p.programID = @programID", con))
+                {
+                    cmd.Parameters.AddWithValue("@programID", programId);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        protected void RemoveButton_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string programIdToRemove = btn.CommandArgument;
+
+            List<string> compareList = (List<string>)Session["CompareList"];
+            if (compareList != null)
+            {
+                compareList.Remove(programIdToRemove);
+                Session["CompareList"] = compareList;
+                BindComparisonGrid(); // Rebind the GridView to reflect the changes
+            }
+        }
+
+        private void BindComparisonGrid()
+        {
+            List<string> compareList = (List<string>)Session["CompareList"];
+
+            if (compareList != null && compareList.Count > 0)
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ProgrammeName");
+                dt.Columns.Add("Fees");
+                dt.Columns.Add("Location");
+                dt.Columns.Add("University");
+                dt.Columns.Add("Duration");
+
+                foreach (string programId in compareList)
+                {
+                    DataRow programDetails = GetProgramDetailsById(programId);
+                    if (programDetails != null)
+                    {
+                        DataRow row = dt.NewRow();
+                        row["ProgrammeName"] = programDetails["ProgrammeName"];
+                        row["Fees"] = programDetails["Fees"];
+                        row["Location"] = programDetails["Location"];
+                        row["University"] = programDetails["University"];
+                        row["Duration"] = programDetails["Duration"];
+                        dt.Rows.Add(row);
+                    }
+                }
+
+                comparisonGridView.DataSource = dt;
+                comparisonGridView.DataBind();
+            }
+            else
+            {
+                ComparisonPanel.Style["display"] = "none";
+            }
+        }
+
     }
 }
