@@ -17,6 +17,8 @@
     <script type="text/javascript">
         function sendMessage() {
             var userInput = $("#userInput").val();
+            console.log("Sending message: " + userInput);
+
             $.ajax({
                 type: "POST",
                 url: "AIChatbot2.aspx/Chat",
@@ -24,6 +26,8 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    console.log("Response received: " + response.d);
+
                     var messages = $("#messages");
                     messages.append("<p><strong>You:</strong> " + userInput + "</p>");
                     messages.append("<p><strong>EduBot:</strong> " + response.d + "</p>");

@@ -17,14 +17,12 @@ namespace UniFinder
         {
             if (!IsPostBack)
             {
-                //DataList1.DataSource = SqlDataSource1;
-                // Bind data to DataList1
+                DataTable dt = GetFilteredUniversities(null, null, null);
+                DataList1.DataSource = dt;
                 DataList1.DataBind();
-                //string username = Session["Username"] as string;
-                //Session["Wishlist"] = new List<int>();
-                //UpdateWishlistLabel();
             }
         }
+
 
         //private void BindUniversities()
         //{
@@ -52,43 +50,6 @@ namespace UniFinder
         //                wishlist.Add(universityId);
         //            }
         //        }
-
-        //        UpdateWishlistLabel();
-        //    }
-        //}
-
-        //protected void CompareButton_Click(object sender, EventArgs e)
-        //{
-        //    var wishlist = Session["Wishlist"] as List<int>;
-        //    Session["WishlistIds"] = wishlist;
-        //    Response.Redirect("Wishlist.aspx");
-        //}
-
-        //private void UpdateWishlistLabel()
-        //{
-        //    var wishlist = Session["Wishlist"] as List<int>;
-        //    WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlist);
-        //    WishlistCount.Value = wishlist.Count.ToString();
-        //}
-
-
-        //protected override void Render(HtmlTextWriter writer)
-        //{
-        //    // Register btnSearch for event validation
-        //    ClientScript.RegisterForEventValidation(btnSearch.UniqueID);
-
-        //    // Register each ImageButton within DataList1 for event validation
-        //    foreach (DataListItem item in DataList1.Items)
-        //    {
-        //        ImageButton imgBtn = item.FindControl("imgUni") as ImageButton;
-        //        if (imgBtn != null)
-        //        {
-        //            ClientScript.RegisterForEventValidation(imgBtn.UniqueID);
-        //        }
-        //    }
-
-        //    base.Render(writer);
-        //}
 
         protected string GetUniName(object uniNameEng, object uniNameMalay)
         {
@@ -138,66 +99,56 @@ namespace UniFinder
                 return ResolveUrl("~/Images/UniLogo/defaultLogo.png");
             }
         }
-
-        //protected void ddlMovieStatus_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    BindMovies();
-        //}
-
-        //private void BindMovies()
-        //{
-        //    try
-        //    {
-        //        string status = ddlMovieStatus.SelectedValue;
-        //        string searchString = txtSearch.Text.Trim();
-        //        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        //        string query;
-
-        //        if (status == "All")
-        //        {
-        //            query = "SELECT title, poster, status FROM Movie ORDER BY status";
-        //        }
-        //        else
-        //        {
-        //            query = "SELECT title, poster, status FROM Movie WHERE status = @Status ORDER BY status";
-        //        }
-
-        //        using (SqlConnection connection = new SqlConnection(connectionString))
-        //        {
-        //            using (SqlCommand command = new SqlCommand(query, connection))
-        //            {
-        //                if (status != "All")
-        //                {
-        //                    command.Parameters.AddWithValue("@Status", status);
-        //                    command.Parameters.AddWithValue("@SearchQuery", searchString);
-
-        //                }
-
-        //                connection.Open();
-        //                SqlDataReader reader = command.ExecuteReader();
-
-        //                DataList1.DataSource = reader;
-        //                DataList1.DataBind();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle exception
-        //    }
-        //}
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string searchQuery = txtSearch.Text.Trim();
-            // Call method to get program details based on search query
-            // GetProgramDetails(searchQuery);
+            string selectedType = ddlUniType.SelectedValue;
+            string selectedLocation = ddlLocation.SelectedValue;
+
+            DataTable dt = GetFilteredUniversities(searchQuery, selectedType, selectedLocation);
+            DataList1.DataSource = dt;
+            DataList1.DataBind();
         }
 
-        // Example method to get program details (uncomment if needed)
-        // private void GetProgramDetails(string programNameChosen)
-        // {
-        //     // Implementation to fetch program details from the database
-        // }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            ddlUniType.SelectedIndex = 0;
+            ddlLocation.SelectedIndex = 0;
+
+            DataTable dt = GetFilteredUniversities(null, null, null);
+            DataList1.DataSource = dt;
+            DataList1.DataBind();
+        }
+
+
+        private DataTable GetFilteredUniversities(string name, string type, string location)
+        {
+            DataTable dt = new DataTable();
+
+            string query = "SELECT U.[uniNameEng], U.[uniNameMalay], U.[uniLogo] " +
+                           "FROM [University] U " +
+                           "JOIN [Branch] B ON U.uniID = B.uniID " +
+                           "WHERE (@uniNameEng IS NULL OR U.[uniNameEng] LIKE '%' + @uniNameEng + '%') " +
+                           "AND (@uniType IS NULL OR U.[uniType] = @uniType) " +
+                           "AND (@location IS NULL OR B.location = @location)";
+
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@uniNameEng", string.IsNullOrEmpty(name) ? (object)DBNull.Value : name);
+                    cmd.Parameters.AddWithValue("@uniType", string.IsNullOrEmpty(type) ? (object)DBNull.Value : type);
+                    cmd.Parameters.AddWithValue("@location", string.IsNullOrEmpty(location) ? (object)DBNull.Value : location);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
     }
 }

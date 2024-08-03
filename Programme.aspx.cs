@@ -69,12 +69,6 @@ namespace UniFinder
             UpdatePageNumberLabel();
         }
 
-        protected void btnFilter_Click(object sender, EventArgs e)
-        {
-            BindPrograms();
-            UpdatePageNumberLabel();
-        }
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
             // Clear search box

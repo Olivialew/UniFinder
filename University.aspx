@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="University.aspx.cs" Inherits="UniFinder.University" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="script1.js" defer></script>
 
@@ -70,7 +71,7 @@
             box-sizing: border-box;
         }
 
-        .uniName{
+        .uniName {
             color: #242424;
         }
 
@@ -79,42 +80,16 @@
             height: 118px;
         }
 
-        .auto-style29 {
-            width: 175px;
-        }
-
-        .auto-style30 {
-            width: 1227px;
-        }
-
-        .auto-style33 {
-            color: #242424;
-            height: 77px;
-            width: 423px;
-        }
-
-        .auto-style34 {
-            color: #242424;
-            height: 77px;
-            width: 514px;
-        }
-
-        .auto-style35 {
-            color: #242424;
-            height: 83px;
-        }
-
         .auto-style37 {
             font-size: xx-large;
             color: #242424;
         }
 
-        .auto-style38 {
-            color: #242424;
-            height: 77px;
+        .search-btn {
+            margin-left: 10px;
         }
     </style>
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         function validateWishlist() {
             var wishlistCount = document.getElementById('WishlistCount').value;
             if (wishlistCount >= 4) {
@@ -137,47 +112,75 @@
 
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
 
+                &nbsp;<strong><asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
+                </strong>
+                <br />
+                <br />
+                <strong>
+                    <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
+                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
+                        <asp:ListItem>Research university</asp:ListItem>
+                        <asp:ListItem>International university</asp:ListItem>
+                        <asp:ListItem>Focused university</asp:ListItem>
+                        <asp:ListItem>Technical university</asp:ListItem>
+                        <asp:ListItem>Comprehensive university</asp:ListItem>
+                        <asp:ListItem>Islamic university</asp:ListItem>
+                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
+                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
+                        <asp:ListItem>METrO polytechnic</asp:ListItem>
+                        <asp:ListItem>Private university</asp:ListItem>
+                        <asp:ListItem>Private university college</asp:ListItem>
+                        <asp:ListItem>Others</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                    <br />
+                    <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
+                </strong>
+
                 <br />
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <br />
 
                 <div class="panel">
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">
-                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" DataSourceID="SqlDataSource1">
+                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
                                 <div class="uniImgContainer">
-                                    <asp:ImageButton 
-                                        ID="imgUni" 
-                                        runat="server" 
-                                        ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' 
-                                        AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>' 
-                                        CssClass="uniLogo" 
-                                        Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px" 
-                                        OnClick="imgBtnSelectUni" 
-                                        data-unieng='<%# Eval("uniNameEng") %>' 
+                                    <asp:ImageButton
+                                        ID="imgUni"
+                                        runat="server"
+                                        ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
+                                        AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
+                                        CssClass="uniLogo"
+                                        Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px"
+                                        OnClick="imgBtnSelectUni"
+                                        data-unieng='<%# Eval("uniNameEng") %>'
                                         data-unimalay='<%# Eval("uniNameMalay") %>' />
                                 </div>
                                 <div class="uniName">
-                                    <asp:Label 
-                                        ID="lblUniName" 
-                                        runat="server" 
-                                        Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>' 
+                                    <asp:Label
+                                        ID="lblUniName"
+                                        runat="server"
+                                        Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
                                         Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
                                 </div>
-<%--                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("UniversityId") %>' OnClientClick="return validateWishlist();" />--%>
                             </ItemTemplate>
-                        </asp:DataList>                        
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-                            SelectCommand="SELECT uniNameEng, uniNameMalay, uniLogo FROM University">
-                        </asp:SqlDataSource>
+                        </asp:DataList>
 
-<%--                        <br />
-                        <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
-                        <asp:HiddenField ID="WishlistCount" runat="server" />
-                        <br />
-                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />
-        --%>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                            ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT U.[uniNameEng], U.[uniNameMalay], U.[uniLogo]
+                                FROM [University] U
+                                JOIN [Branch] B ON U.uniID = B.uniID
+                                WHERE ((U.[uniNameEng] = @uniNameEng) AND (U.[uniType] = @uniType)) AND (B.location = @location))">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="txtSearch" Name="uniNameEng" PropertyName="Text" />
+                                <asp:ControlParameter ControlID="ddlUniType" Name="uniType" PropertyName="SelectedValue" />
+                                <asp:ControlParameter ControlID="ddlLocation" Name="location" PropertyName="SelectedValue" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
 
                         <script type="text/javascript">
                             function getImageTitle(imgButton) {

@@ -2,12 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style27 {
-            color: #000000;
-        }
-
         .auto-style28 {
             font-size: large;
+        }
+
+        .search-box {
+            width: 300px;
+        }
+
+        .search-btn {
+            margin-left: 10px;
         }
     </style>
 </asp:Content>
@@ -18,49 +22,69 @@
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                 <strong><span class="auto-style28">Programme Management</span><br />
                     <br />
-                    <strong><span>Search By</strong></span>
-                    <span class="auto-style16"><br />
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
+                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sort by: 
+               
+                        <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+                            <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                            <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+                        </asp:DropDownList>
                         <br />
+                        Filter by:<br />
                         <br />
-                        <span class="auto-style27"><strong>Filter By</strong></span>
-                        <br />
+                        University<br />
+                        <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID">
+                        </asp:DropDownList>
                     </span>
-                <asp:DropDownList ID="ddlUniType" runat="server">
-                    <asp:ListItem>- University Type -</asp:ListItem>
-                    <asp:ListItem>Research university</asp:ListItem>
-                    <asp:ListItem>International university</asp:ListItem>
-                    <asp:ListItem>Focused university</asp:ListItem>
-                    <asp:ListItem>Technical university</asp:ListItem>
-                    <asp:ListItem>Comprehensive university</asp:ListItem>
-                    <asp:ListItem>Islamic university</asp:ListItem>
-                    <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
-                    <asp:ListItem>Conventional polytechnic</asp:ListItem>
-                    <asp:ListItem>METrO polytechnic</asp:ListItem>
-                    <asp:ListItem>Private university</asp:ListItem>
-                    <asp:ListItem>Private university college</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click3" />
-                &nbsp;
+                    <%--                <br /><br />
+                <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>
+                    <asp:ListItem Text="University Name" Value="UniversityName"></asp:ListItem>
+                    <asp:ListItem Text="Fees" Value="Fees"></asp:ListItem>
+                    <asp:ListItem Text="Duration" Value="Duration"></asp:ListItem>
+                </asp:DropDownList>--%>
+                    <br />
+                    <br />
+                    <span class="auto-style26">Branch Location</span><br />
+                    <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
+                    </asp:DropDownList>
+                    <br />
+                    <br />
+                    <span class="auto-style26">Fees</span><br class="auto-style26" />
+                    <span class="auto-style26">Minimum: </span>
+                    <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
+                    <span class="auto-style26">Maximum: </span>
+                    <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox><span class="auto-style26"><br />
+                        <br />
+                        Duration<br />
+                    </span>
+                    <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+
+                    &nbsp;<asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click3" />
+                    &nbsp;
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click3" />
-                <br />
-                <br />
+                    <br />
+                    <br />
                 </strong>
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddProgramme.aspx">Add Programme</asp:HyperLink>
                 <strong>
-                <br />
-                <br />
+                    <br />
+                    <br />
                 </strong>
                 <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
                 <strong>
-                <br />
-
+                    <br />
 
                 </strong>
 
-
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="programID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="programID" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
@@ -86,7 +110,7 @@
                     <SortedDescendingCellStyle BackColor="#D4DFE1" />
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
                 </asp:GridView>
-                <strong>
+
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Programme] WHERE [programID] = @programID" InsertCommand="INSERT INTO [Programme] ([programID], [programName], [programLink], [introduction], [contact], [duration], [fees], [facLink], [uniID], [branchID]) VALUES (@programID, @programName, @programLink, @introduction, @contact, @duration, @fees, @facLink, @uniID, @branchID)" SelectCommand="SELECT * FROM [Programme]" UpdateCommand="UPDATE [Programme] SET [programName] = @programName, [programLink] = @programLink, [introduction] = @introduction, [contact] = @contact, [duration] = @duration, [fees] = @fees, [facLink] = @facLink, [uniID] = @uniID, [branchID] = @branchID WHERE [programID] = @programID">
                     <DeleteParameters>
                         <asp:Parameter Name="programID" Type="String" />
@@ -117,6 +141,12 @@
                     </UpdateParameters>
                 </asp:SqlDataSource>
             </td>
+        </tr>
+        <tr>
+            <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">&nbsp;</td>
         </tr>
     </table>
 </asp:Content>

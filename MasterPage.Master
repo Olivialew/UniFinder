@@ -125,7 +125,7 @@
                             <li><a href="/Programme.aspx">Programme</a></li>
                             <li><a href="/University.aspx">University</a></li>
                             <li><a href="/CareerTest.aspx">Career Test</a></li>
-                            <li><a href="/AIChatbot.aspx">AI Chatbot</a></li>
+                            <li><a href="/AIChatbot2.aspx">AI Chatbot</a></li>
                             <li><a href="/AboutUs.aspx">About Us</a></li>
                             <li style="float:right; color:#FFFF00;"><a href="/MyAccount/Wishlist.aspx?logout=true">Wishlist</a></li>
                             <li style="float:right; color:#FFFF00;"><a href="/MyAccount/Account.aspx?logout=true">Account</a></li>
@@ -157,7 +157,7 @@
                             <li><a href="/Programme.aspx"><span class="auto-style16">Programme</span></a></li>
                             <li><a href="/University.aspx"><span class="auto-style16">University</span></a></li>
                             <li><a href="/CareerTest.aspx"><span class="auto-style16">CareerTest</span></a></li>
-                            <li><a href="/AIChatbot.aspx"><span class="auto-style16">AIChatbot</span></a></li>
+                            <li><a href="/AIChatbot2.aspx"><span class="auto-style16">AIChatbot</span></a></li>
                             <li><a href="/AboutUs.aspx"><span class="auto-style16">AboutUs</span></a></li>
                         </ul>    
                     </td>

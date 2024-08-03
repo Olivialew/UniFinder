@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import sys
+import re
 
 # Set up the connection string
 connection_string = (
@@ -130,6 +131,17 @@ def classify_query(query):
                 return "No program found with the given name."
         else:
             return "Please specify the program name to get the duration details."
+
+    elif 'location' in query:
+        program_name = match_name(query, program_names)
+        if program_name:
+            details = fetch_program_details(program_name)
+            if details:
+                return f"Program: {details['programName']}\nLocation: {details['location']}"
+            else:
+                return "No location found with the given name."
+        else:
+            return "Please specify the program name to get the location details."
     
     elif 'university' in query:
         university_name = match_name(query, university_names)
@@ -197,7 +209,11 @@ def recommend_program(location, budget, duration, program_type):
 
 # Main function to choose between the algorithms
 def main():
-    input_query = sys.stdin.read().strip()
+    Message = sys.argv[1]
+    Message = re.sub("[']",'',Message)
+    print(Message)
+
+    input_query = Message.strip()
     print(f"Received query: {input_query}")
     
     response = classify_query(input_query)
