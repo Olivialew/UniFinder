@@ -319,36 +319,39 @@ namespace UniFinder
 
         protected void CompareButton_Click(object sender, EventArgs e)
         {
-            List<string> compareList = (List<string>)Session["CompareList"];
+            // Redirect to Comparison.aspx
+            Response.Redirect("~/MyAccount/Wishlist.aspx");
 
-            if (compareList != null && compareList.Count > 0)
-            {
-                ComparisonPanel.Style["display"] = "block";
-                DataTable dt = new DataTable();
-                dt.Columns.Add("ProgrammeName");
-                dt.Columns.Add("Fees");
-                dt.Columns.Add("Location");
-                dt.Columns.Add("University");
-                dt.Columns.Add("Duration");
+            //List<string> compareList = (List<string>)Session["CompareList"];
 
-                foreach (string programId in compareList)
-                {
-                    DataRow programDetails = GetProgramDetailsById(programId);
-                    if (programDetails != null)
-                    {
-                        DataRow row = dt.NewRow();
-                        row["ProgrammeName"] = programDetails["ProgrammeName"];
-                        row["Fees"] = programDetails["Fees"];
-                        row["Location"] = programDetails["Location"];
-                        row["University"] = programDetails["University"];
-                        row["Duration"] = programDetails["Duration"];
-                        dt.Rows.Add(row);
-                    }
-                }
+            //if (compareList != null && compareList.Count > 0)
+            //{
+            //    ComparisonPanel.Style["display"] = "block";
+            //    DataTable dt = new DataTable();
+            //    dt.Columns.Add("ProgrammeName");
+            //    dt.Columns.Add("Fees");
+            //    dt.Columns.Add("Location");
+            //    dt.Columns.Add("University");
+            //    dt.Columns.Add("Duration");
 
-                comparisonGridView.DataSource = dt;
-                comparisonGridView.DataBind();
-            }
+            //    foreach (string programId in compareList)
+            //    {
+            //        DataRow programDetails = GetProgramDetailsById(programId);
+            //        if (programDetails != null)
+            //        {
+            //            DataRow row = dt.NewRow();
+            //            row["ProgrammeName"] = programDetails["ProgrammeName"];
+            //            row["Fees"] = programDetails["Fees"];
+            //            row["Location"] = programDetails["Location"];
+            //            row["University"] = programDetails["University"];
+            //            row["Duration"] = programDetails["Duration"];
+            //            dt.Rows.Add(row);
+            //        }
+            //    }
+
+            //    comparisonGridView.DataSource = dt;
+            //    comparisonGridView.DataBind();
+            //}
         }
 
         private DataRow GetProgramDetailsById(string programId)
@@ -381,56 +384,56 @@ namespace UniFinder
             }
         }
 
-        protected void RemoveButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            string programIdToRemove = btn.CommandArgument;
+        //protected void RemoveButton_Click(object sender, EventArgs e)
+        //{
+        //    Button btn = (Button)sender;
+        //    string programIdToRemove = btn.CommandArgument;
 
-            List<string> compareList = (List<string>)Session["CompareList"];
-            if (compareList != null)
-            {
-                compareList.Remove(programIdToRemove);
-                Session["CompareList"] = compareList;
-                BindComparisonGrid(); // Rebind the GridView to reflect the changes
-            }
-        }
+        //    List<string> compareList = (List<string>)Session["CompareList"];
+        //    if (compareList != null)
+        //    {
+        //        compareList.Remove(programIdToRemove);
+        //        Session["CompareList"] = compareList;
+        //        BindComparisonGrid(); // Rebind the GridView to reflect the changes
+        //    }
+        //}
 
-        private void BindComparisonGrid()
-        {
-            List<string> compareList = (List<string>)Session["CompareList"];
+        //private void BindComparisonGrid()
+        //{
+        //    List<string> compareList = (List<string>)Session["CompareList"];
 
-            if (compareList != null && compareList.Count > 0)
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("ProgrammeName");
-                dt.Columns.Add("Fees");
-                dt.Columns.Add("Location");
-                dt.Columns.Add("University");
-                dt.Columns.Add("Duration");
+        //    if (compareList != null && compareList.Count > 0)
+        //    {
+        //        DataTable dt = new DataTable();
+        //        dt.Columns.Add("ProgrammeName");
+        //        dt.Columns.Add("Fees");
+        //        dt.Columns.Add("Location");
+        //        dt.Columns.Add("University");
+        //        dt.Columns.Add("Duration");
 
-                foreach (string programId in compareList)
-                {
-                    DataRow programDetails = GetProgramDetailsById(programId);
-                    if (programDetails != null)
-                    {
-                        DataRow row = dt.NewRow();
-                        row["ProgrammeName"] = programDetails["ProgrammeName"];
-                        row["Fees"] = programDetails["Fees"];
-                        row["Location"] = programDetails["Location"];
-                        row["University"] = programDetails["University"];
-                        row["Duration"] = programDetails["Duration"];
-                        dt.Rows.Add(row);
-                    }
-                }
+        //        foreach (string programId in compareList)
+        //        {
+        //            DataRow programDetails = GetProgramDetailsById(programId);
+        //            if (programDetails != null)
+        //            {
+        //                DataRow row = dt.NewRow();
+        //                row["ProgrammeName"] = programDetails["ProgrammeName"];
+        //                row["Fees"] = programDetails["Fees"];
+        //                row["Location"] = programDetails["Location"];
+        //                row["University"] = programDetails["University"];
+        //                row["Duration"] = programDetails["Duration"];
+        //                dt.Rows.Add(row);
+        //            }
+        //        }
 
-                comparisonGridView.DataSource = dt;
-                comparisonGridView.DataBind();
-            }
-            else
-            {
-                ComparisonPanel.Style["display"] = "none";
-            }
-        }
+        //        comparisonGridView.DataSource = dt;
+        //        comparisonGridView.DataBind();
+        //    }
+        //    else
+        //    {
+        //        ComparisonPanel.Style["display"] = "none";
+        //    }
+        //}
 
     }
 }

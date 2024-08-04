@@ -38,32 +38,57 @@ namespace UniFinder
             }
         }
 
+        //protected string GetImageUrl(object imageUrl)
+        //{
+        //    return imageUrl != DBNull.Value ? "data:image;base64," + Convert.ToBase64String((byte[])imageUrl) : "~/images/No_Image_Available.jpg";
+        //}
 
         protected void btnSearch_Click2(object sender, EventArgs e)
         {
-            // Set default values if controls are empty
-            SqlDataSource3.SelectParameters["uniType"].DefaultValue = ddlUniType.SelectedValue != "- University Type -" ? ddlUniType.SelectedValue : string.Empty;
-            SqlDataSource3.SelectParameters["uniNameEng"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
-            SqlDataSource3.SelectParameters["uniNameMalay"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
-            SqlDataSource3.SelectParameters["uniAcronym"].DefaultValue = !string.IsNullOrEmpty(txtSearch.Text.Trim()) ? txtSearch.Text.Trim() : string.Empty;
+            // Set filter parameters for the SqlDataSource
+            string searchQuery = txtSearch.Text.Trim();
+            string uniType = ddlUniType.SelectedValue;
+            string location = ddlLocation.SelectedValue;
 
-            // Bind the GridView to apply the filters set by the user
-            GridView1.DataBind();
+            SqlDataSource3.FilterExpression = "";
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                SqlDataSource3.FilterExpression += "uniNameEng LIKE '%" + searchQuery + "%'";
+            }
+
+            if (!string.IsNullOrEmpty(uniType) && uniType != "<-- Select University Type -->")
+            {
+                if (!string.IsNullOrEmpty(SqlDataSource3.FilterExpression))
+                {
+                    SqlDataSource3.FilterExpression += " AND ";
+                }
+                SqlDataSource3.FilterExpression += "uniType = '" + uniType + "'";
+            }
+
+            if (!string.IsNullOrEmpty(location))
+            {
+                if (!string.IsNullOrEmpty(SqlDataSource3.FilterExpression))
+                {
+                    SqlDataSource3.FilterExpression += " AND ";
+                }
+                SqlDataSource3.FilterExpression += "location = '" + location + "'";
+            }
         }
 
         protected void btnReset_Click2(object sender, EventArgs e)
         {
-            // Clear search criteria
-            txtSearch.Text = string.Empty;
+            // Clear filters and reset controls
+            txtSearch.Text = "";
             ddlUniType.SelectedIndex = 0;
+            ddlLocation.SelectedIndex = 0;
+            SqlDataSource3.FilterExpression = "";
+            GridView1.DataBind();
+        }
 
-            // Set default values to ensure all records are displayed
-            SqlDataSource3.SelectParameters["uniType"].DefaultValue = string.Empty;
-            SqlDataSource3.SelectParameters["uniNameEng"].DefaultValue = string.Empty;
-            SqlDataSource3.SelectParameters["uniNameMalay"].DefaultValue = string.Empty;
-            SqlDataSource3.SelectParameters["uniAcronym"].DefaultValue = string.Empty;
-
-            // Rebind the GridView to show all records
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataBind();
         }
 

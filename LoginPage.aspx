@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<form id="form1" runat="server">--%>
         <div>
-            Welcome to UniFinder!<br />
+            Welcome to EduPath!<br />
             <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate">
             </asp:Login>
             <br />

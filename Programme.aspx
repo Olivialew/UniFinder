@@ -181,7 +181,7 @@
                                 <div class="duration">
                                     <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>' Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
                                 </div>
-                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("programID") %>' OnClientClick="return validateWishlist();" />
+                                <%--                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("programID") %>' OnClientClick="return validateWishlist();" />--%>
                                 <asp:Button ID="AddToCompareButton" runat="server" Text="Add to Compare" CommandName="AddToCompare" CommandArgument='<%# Eval("programID") %>' OnClick="AddToCompareButton_Click" />
                             </ItemTemplate>
                         </asp:DataList>
@@ -203,7 +203,7 @@
                             <asp:ListItem Text="15" Value="15" />
                         </asp:DropDownList>
 
-                        <asp:Panel ID="ComparisonPanel" runat="server" CssClass="panel-class" Style="display: none" Width="815px">
+                     <%--   <asp:Panel ID="ComparisonPanel" runat="server" CssClass="panel-class" Style="display: none" Width="815px">
                             <h3>Comparison Table</h3>
                             <asp:GridView ID="comparisonGridView" runat="server" CssClass="comparison-table">
                                 <Columns>
@@ -220,7 +220,7 @@
                                 </Columns>
                             </asp:GridView>
 
-                        </asp:Panel>
+                        </asp:Panel>--%>
 
 
                         <script type="text/javascript">

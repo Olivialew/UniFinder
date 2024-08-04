@@ -19,50 +19,57 @@
         }
     </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <span class="auto-style16"><strong>&nbsp;University Management</strong></span><br class="auto-style16" />
     <table class="auto-style24">
         <tr>
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <strong><span class="auto-style28">University Management</span><br />
-                    <br />
-                    search by</strong></span><span class="auto-style16"><br />
+                <strong><span class="auto-style28">University Management</span><br /><br />
+                    search by:<br />
+                name</strong><span class="auto-style16"><br />
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
-                        <br />
-                        <br />
-                        <span class="auto-style27"><strong>Filter By</strong></span>
-                        <br />
+                        <br /><br />
+                        <span class="auto-style27"><strong>Filter By:</strong></span><br />
                     </span>
-                <asp:DropDownList ID="ddlUniType" runat="server">
-                    <asp:ListItem>- University Type -</asp:ListItem>
-                    <asp:ListItem>Research university</asp:ListItem>
-                    <asp:ListItem>International university</asp:ListItem>
-                    <asp:ListItem>Focused university</asp:ListItem>
-                    <asp:ListItem>Technical university</asp:ListItem>
-                    <asp:ListItem>Comprehensive university</asp:ListItem>
-                    <asp:ListItem>Islamic university</asp:ListItem>
-                    <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
-                    <asp:ListItem>Conventional polytechnic</asp:ListItem>
-                    <asp:ListItem>METrO polytechnic</asp:ListItem>
-                    <asp:ListItem>Private university</asp:ListItem>
-                    <asp:ListItem>Private university college</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                    <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
+                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
+                        <asp:ListItem>Research university</asp:ListItem>
+                        <asp:ListItem>International university</asp:ListItem>
+                        <asp:ListItem>Focused university</asp:ListItem>
+                        <asp:ListItem>Technical university</asp:ListItem>
+                        <asp:ListItem>Comprehensive university</asp:ListItem>
+                        <asp:ListItem>Islamic university</asp:ListItem>
+                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
+                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
+                        <asp:ListItem>METrO polytechnic</asp:ListItem>
+                        <asp:ListItem>Private university</asp:ListItem>
+                        <asp:ListItem>Private university college</asp:ListItem>
+                        <asp:ListItem>Others</asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                <br />
+                location<br />
+                    <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT location FROM Branch"></asp:SqlDataSource>
+                </strong>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click2" />
                 &nbsp;
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click2" />
-                <br />
-                <br />
+                <br /><br />
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddUniversity.aspx">Add University</asp:HyperLink>
-                <br />
-                <br />
+                <br /><br />
                 <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
                 <br />
                 <div style="margin-top: 30px">
                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
                         AllowPaging="True" AllowSorting="True" DataKeyNames="uniID" DataSourceID="SqlDataSource3"
                         OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowEditing="GridView1_RowEditing"
-                        OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">
+                        OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnPageIndexChanging="GridView1_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
@@ -101,15 +108,16 @@
                         DeleteCommand="DELETE FROM [University] WHERE [uniID] = @uniID"
                         InsertCommand="INSERT INTO [University] ([uniID], [uniNameEng], [uniNameMalay], [uniAcronym], [foundationYear], [uniType], [campusTourLink], [youtubeLink], [googleMapsLink], [uniLogo]) 
                                         VALUES (@uniID, @uniNameEng, @uniNameMalay, @uniAcronym, @foundationYear, @uniType, @campusTourLink, @youtubeLink, @googleMapsLink, @uniLogo)"
-                        SelectCommand="SELECT * FROM [University]"
+                        SelectCommand="SELECT U.uniID, U.uniNameEng, U.uniNameMalay, U.uniAcronym, U.foundationYear, U.uniType, U.campusTourLink, U.youtubeLink, U.googleMapsLink, U.uniLogo, B.location 
+                                        FROM University U INNER JOIN Branch B ON U.uniID = B.uniID"
                         UpdateCommand="UPDATE [University] SET [uniNameEng] = @uniNameEng, [uniNameMalay] = @uniNameMalay, [uniAcronym] = @uniAcronym, [foundationYear] = @foundationYear, 
                                         [uniType] = @uniType, [campusTourLink] = @campusTourLink, [youtubeLink] = @youtubeLink, [googleMapsLink] = @googleMapsLink, [uniLogo] = @uniLogo 
                                         WHERE [uniID] = @uniID">
                         <DeleteParameters>
-                            <asp:Parameter Name="uniID" Type="String" />
+                            <asp:Parameter Name="uniID" Type="Int32" />
                         </DeleteParameters>
                         <InsertParameters>
-                            <asp:Parameter Name="uniID" Type="String" />
+                            <asp:Parameter Name="uniID" Type="Int32" />
                             <asp:Parameter Name="uniNameEng" Type="String" />
                             <asp:Parameter Name="uniNameMalay" Type="String" />
                             <asp:Parameter Name="uniAcronym" Type="String" />
@@ -118,7 +126,7 @@
                             <asp:Parameter Name="campusTourLink" Type="String" />
                             <asp:Parameter Name="youtubeLink" Type="String" />
                             <asp:Parameter Name="googleMapsLink" Type="String" />
-                            <asp:Parameter Name="uniLogo" Type="Object" />
+                            <asp:Parameter Name="uniLogo" Type="String" />
                         </InsertParameters>
                         <UpdateParameters>
                             <asp:Parameter Name="uniNameEng" Type="String" />
@@ -129,15 +137,12 @@
                             <asp:Parameter Name="campusTourLink" Type="String" />
                             <asp:Parameter Name="youtubeLink" Type="String" />
                             <asp:Parameter Name="googleMapsLink" Type="String" />
-                            <asp:Parameter Name="uniLogo" Type="Object" />
-                            <asp:Parameter Name="uniID" Type="String" />
+                            <asp:Parameter Name="uniLogo" Type="String" />
+                            <asp:Parameter Name="uniID" Type="Int32" />
                         </UpdateParameters>
                     </asp:SqlDataSource>
-                    <br />
                 </div>
             </td>
         </tr>
     </table>
-    <br />
 </asp:Content>
-

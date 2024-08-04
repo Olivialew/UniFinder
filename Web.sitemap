@@ -34,7 +34,7 @@
 			<siteMapNode url="/Management/ProgrammeManagement.aspx" title="Programme Management"  description="" >
 				<siteMapNode url="/Management/AddProgramme.aspx" title="Add Programme"  description="" />
 			</siteMapNode> 
-			<siteMapNode url="/Management/UniManagement2.aspx" title="BranchManagement"  description="" >
+			<siteMapNode url="/Management/UniManagement2.aspx" title="University Management"  description="" >
 				<siteMapNode url="/Management/AddUniversity.aspx" title="Add University"  description="" />
 			</siteMapNode>
 			<siteMapNode url="" title="RoleManagement"  description="Role Management" >

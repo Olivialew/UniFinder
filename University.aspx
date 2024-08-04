@@ -110,12 +110,9 @@
             <div class="mainSide">
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
 
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
-
-                &nbsp;<strong><asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
-                </strong>
                 <br />
                 <br />
+                <span class="auto-style26"><strong>Filter by:</strong></span><br />
                 <strong>
                     <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
                         <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
@@ -134,9 +131,16 @@
                     </asp:DropDownList>
                     <br />
                     <br />
+                <span class="auto-style26">Branch</span><br />
                     <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
+                <br />
+
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
+
+                &nbsp;<asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
+                <br />
                 </strong>
 
                 <br />
