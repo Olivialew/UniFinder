@@ -28,7 +28,7 @@
                     &nbsp;
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click3" />
                     </strong></p>
-    <p class="auto-style2">
+<p class="auto-style2">
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/CreateAdmin.aspx">Create Admin</asp:HyperLink>
                 </p>
     <script type="text/javascript">
@@ -50,7 +50,7 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>--%>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="UserName">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="UserName" HeaderText="Username" />

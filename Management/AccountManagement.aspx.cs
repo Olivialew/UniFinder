@@ -41,29 +41,42 @@ namespace UniFinder.Management
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string username = GridView1.DataKeys[e.RowIndex].Value.ToString();
-            bool deleteAllRelatedData = true; // Set to true if you want to delete all related data like profiles, roles, etc.
-            bool result = Membership.DeleteUser(username, deleteAllRelatedData);
+            try
+            {
+                // Ensure RowIndex is valid
+                if (e.RowIndex < 0 || e.RowIndex >= GridView1.Rows.Count)
+                {
+                    throw new ArgumentOutOfRangeException("RowIndex is out of range.");
+                }
+                string username = GridView1.DataKeys[e.RowIndex].Value.ToString();
+                bool deleteAllRelatedData = true; // Set to true if you want to delete all related data like profiles, roles, etc.
+                bool result = Membership.DeleteUser(username, deleteAllRelatedData);
 
-            if (result)
-            {
-                // User deleted successfully
-                BindGrid(txtSearch.Text); // Rebind the grid to reflect changes
+                if (result)
+                {
+                    // User deleted successfully
+                    BindGrid(txtSearch.Text); // Rebind the grid to reflect changes
+                }
+                else
+                {
+                    // Handle error
+                    lblErrorMsg.Text = "An error occurred while deleting the user account.";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Handle error
-                lblErrorMsg.Text = "An error occurred while deleting the user account.";
+                lblErrorMsg.Text = "An error occurred: " + ex.Message;
+                // Log error
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+        protected void btnSearch_Click3(object sender, EventArgs e)
         {
             string searchTerm = txtSearch.Text.Trim();
             BindGrid(searchTerm);
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
+        protected void btnReset_Click3(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
             BindGrid();
