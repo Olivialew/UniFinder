@@ -16,12 +16,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style16"><strong>&nbsp;Programme Management</strong></span><br class="auto-style16" />
     <table class="auto-style24">
         <tr>
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                 <strong><span class="auto-style28">Programme Management</span><br />
                     <br />
+                    Search by<br />
                     <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sort by: 
                
@@ -31,8 +31,8 @@
                             <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
                         </asp:DropDownList>
                         <br />
-                        Filter by:<br />
                         <br />
+                        Filter by:<br />
                         University<br />
                         <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID">
                         </asp:DropDownList>
@@ -88,16 +88,99 @@
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                        <asp:BoundField DataField="programID" HeaderText="Programme ID" ReadOnly="True" SortExpression="programID" />
-                        <asp:BoundField DataField="programName" HeaderText="Name" SortExpression="programName" />
-                        <asp:BoundField DataField="programLink" HeaderText="Programme Link" SortExpression="programLink" />
-                        <asp:BoundField DataField="introduction" HeaderText="Introduction" SortExpression="introduction" />
-                        <asp:BoundField DataField="contact" HeaderText="Contact" SortExpression="contact" />
-                        <asp:BoundField DataField="duration" HeaderText="Duration" SortExpression="duration" />
-                        <asp:BoundField DataField="fees" HeaderText="Fees" SortExpression="fees" />
-                        <asp:BoundField DataField="facLink" HeaderText="Faculty Link" SortExpression="facLink" />
-                        <asp:BoundField DataField="uniID" HeaderText="University ID" SortExpression="uniID" />
-                        <asp:BoundField DataField="branchID" HeaderText="Branch ID" SortExpression="branchID" />
+
+                        <%--<asp:BoundField DataField="programID" HeaderText="Programme ID" SortExpression="programID" />--%>
+
+                        <asp:TemplateField HeaderText="Programme ID" SortExpression="programID">
+                            <ItemTemplate>
+                                <asp:Label ID="lblProgramID" runat="server" Text='<%# Eval("programID") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:Label ID="lblProgramID" runat="server" Text='<%# Eval("programID") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Programme Name" SortExpression="programName">
+                            <ItemTemplate>
+                                <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("programName") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtProgramName" runat="server" Text='<%# Eval("programName") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Programme Link" SortExpression="programLink">
+                            <ItemTemplate>
+                                <asp:Label ID="lblProgramLink" runat="server" Text='<%# Eval("programLink") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtProgramLink" runat="server" Text='<%# Bind("programLink") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Introduction" SortExpression="introduction">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIntroduction" runat="server" Text='<%# Eval("introduction") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtIntroduction" runat="server" Text='<%# Bind("introduction") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Contact" SortExpression="contact">
+                            <ItemTemplate>
+                                <asp:Label ID="lblContact" runat="server" Text='<%# Eval("contact") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtContact" runat="server" Text='<%# Bind("contact") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Duration" SortExpression="duration">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtDuration" runat="server" Text='<%# Bind("duration") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Fees" SortExpression="fees">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtFees" runat="server" Text='<%# Bind("fees") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Faculty Link" SortExpression="facLink">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFacLink" runat="server" Text='<%# Eval("facLink") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtFacLink" runat="server" Text='<%# Bind("facLink") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="University ID" SortExpression="uniID">
+                            <ItemTemplate>
+                                <asp:Label ID="lblUniID" runat="server" Text='<%# Eval("uniID") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtUniID" runat="server" Text='<%# Bind("uniID") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Branch ID" SortExpression="branchID">
+                            <ItemTemplate>
+                                <asp:Label ID="lblBranchID" runat="server" Text='<%# Eval("branchID") %>' />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtBranchID" runat="server" Text='<%# Bind("branchID") %>' />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
                     </Columns>
                     <EditRowStyle BackColor="#7C6F57" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

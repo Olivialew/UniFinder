@@ -10,7 +10,7 @@
         }
 
         .content {
-            width: 100%;
+/*            width: 100%;*/
             display: flex;
             justify-content: space-between;
             color: white;
@@ -111,6 +111,7 @@
         <div class="content">
             <div class="mainSide">
                 <strong>
+                    <span class="comparison-table">Search by:</span><br />
                     <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style26">Sort by: 
                
@@ -120,8 +121,8 @@
                             <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
                         </asp:DropDownList>
                         <br />
-                        Filter by:<br />
                         <br />
+                        Filter by:<br />
                         University<br />
                         <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniNameEng" DataValueField="uniID">
                         </asp:DropDownList>
@@ -163,7 +164,10 @@
                 <br />
 
                 <div class="panel">
-                    <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">
+                    <asp:Label ID="messageLabel" runat="server" CssClass="message-label"></asp:Label>
+                    <asp:HiddenField ID="compareListHiddenField" runat="server" />
+
+<%--                    <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">--%>
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
                                 <div class="programmeImgContainer">
@@ -182,14 +186,14 @@
                                     <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>' Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
                                 </div>
                                 <%--                                <asp:Button ID="AddToWishlistButton" runat="server" Text="Add to Wishlist" CommandName="AddToWishlist" CommandArgument='<%# Eval("programID") %>' OnClientClick="return validateWishlist();" />--%>
-                                <asp:Button ID="AddToCompareButton" runat="server" Text="Add to Compare" CommandName="AddToCompare" CommandArgument='<%# Eval("programID") %>' OnClick="AddToCompareButton_Click" />
+                                <asp:Button ID="btnAddToCompare" runat="server" Text="Add to Compare" CommandName="AddToCompare" CommandArgument='<%# Eval("programID") %>' OnClick="AddToCompareButton_Click" />
                             </ItemTemplate>
                         </asp:DataList>
 
                         <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
                         <asp:HiddenField ID="WishlistCount" runat="server" />
                         <br />
-                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />
+<%--                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />--%>
 
                         <div class="pagination">
                             <asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" />
@@ -203,7 +207,7 @@
                             <asp:ListItem Text="15" Value="15" />
                         </asp:DropDownList>
 
-                     <%--   <asp:Panel ID="ComparisonPanel" runat="server" CssClass="panel-class" Style="display: none" Width="815px">
+                        <%--   <asp:Panel ID="ComparisonPanel" runat="server" CssClass="panel-class" Style="display: none" Width="815px">
                             <h3>Comparison Table</h3>
                             <asp:GridView ID="comparisonGridView" runat="server" CssClass="comparison-table">
                                 <Columns>
@@ -233,7 +237,7 @@
                                 return true;
                             }
                         </script>
-                    </asp:Panel>
+<%--                    </asp:Panel>--%>
                 </div>
             </div>
         </div>

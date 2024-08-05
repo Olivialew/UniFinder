@@ -226,6 +226,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Images\EduPathBanner.png" />
     <Content Include="Management\AccountAdmin.aspx" />
+    <Content Include="Management\AccountManagement.aspx" />
     <Content Include="Management\AddBranch.aspx" />
     <Content Include="Management\AddProgramme.aspx" />
     <Content Include="Management\AddUniversity.aspx" />
@@ -315,6 +316,13 @@
     </Compile>
     <Compile Include="Management\AccountAdmin.aspx.designer.cs">
       <DependentUpon>AccountAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\AccountManagement.aspx.cs">
+      <DependentUpon>AccountManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\AccountManagement.aspx.designer.cs">
+      <DependentUpon>AccountManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\AddBranch.aspx.cs">
       <DependentUpon>AddBranch.aspx</DependentUpon>
@@ -406,6 +414,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage2.Master.cs">
+      <DependentUpon>MasterPage2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage2.Master.designer.cs">
+      <DependentUpon>MasterPage2.Master</DependentUpon>
     </Compile>
     <Compile Include="MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
@@ -531,6 +546,7 @@
     <Content Include="Management\Web.config" />
     <Content Include="MyAccount\Web.config" />
     <Content Include="MasterPageAdmin.Master" />
+    <Content Include="MasterPage2.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

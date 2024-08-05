@@ -11,17 +11,23 @@ namespace UniFinder
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GridView1.DataBind();
+            }
         }
 
         protected void btnReset_Click2(object sender, EventArgs e)
         {
+            ddlUni.SelectedIndex = 0;
+            ddlBranch.SelectedIndex = 0;
 
+            GridView1.DataBind();
         }
 
         protected void btnSearch_Click2(object sender, EventArgs e)
         {
-
+            GridView1.DataBind();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

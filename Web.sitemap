@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 	<siteMapNode url="" title="EduPath"  description="">
 		<siteMapNode url="/Home.aspx" title="Home"  description="" />
-		<siteMapNode url="/CreateUser.aspx" title="Creat eUser"  description="" />
+		<siteMapNode url="/CreateUser.aspx" title="Create User"  description="" />
 		<siteMapNode url="/LoginPage.aspx" title="Login Page"  description="" />
 
 		<siteMapNode url="/Programme.aspx" title="Programme"  description="" >
@@ -17,13 +17,13 @@
 		</siteMapNode>
 		<siteMapNode url="/AIChatbot2.aspx" title="AI Chatbot"  description="" />
 		<siteMapNode url="/AboutUs.aspx" title="About Us"  description="" />
-		
+
 		<siteMapNode url="" title="MyAccount"  description="" >
 			<siteMapNode url="/MyAccount/Account.aspx" title="Account"  description="" />
-			<siteMapNode url="/MyAccount/ChangePassword.aspx" title="ChangePassword"  description="" />
+			<siteMapNode url="/MyAccount/ChangePassword.aspx" title="Change Password"  description="" />
 			<siteMapNode url="/MyAccount/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
-		
+
 		<siteMapNode url="" title="Management"  description="" >
 			<siteMapNode url="/Management/HomeAdmin.aspx" title="Home Admin"  description="" />
 			<siteMapNode url="/Management/AccountAdmin.aspx" title="Account Admin"  description="" />
@@ -33,14 +33,16 @@
 			</siteMapNode>
 			<siteMapNode url="/Management/ProgrammeManagement.aspx" title="Programme Management"  description="" >
 				<siteMapNode url="/Management/AddProgramme.aspx" title="Add Programme"  description="" />
-			</siteMapNode> 
+			</siteMapNode>
 			<siteMapNode url="/Management/UniManagement2.aspx" title="University Management"  description="" >
 				<siteMapNode url="/Management/AddUniversity.aspx" title="Add University"  description="" />
 			</siteMapNode>
-			<siteMapNode url="" title="RoleManagement"  description="Role Management" >
+			<siteMapNode url="" title="Role Management"  description="" >
 				<siteMapNode url="/Management/RoleManagement.aspx" title="Role Management"  description="" />
 			</siteMapNode>
-			<siteMapNode url="/Management/CreateAdmin.aspx" title="Create Admin"  description="" />
+			<siteMapNode url="/Management/AccountManagement.aspx" title="Account Management"  description="" >
+				<siteMapNode url="/Management/CreateAdmin.aspx" title="Create Admin"  description="" />
+			</siteMapNode>
 		</siteMapNode>
 	</siteMapNode>
 </siteMap>

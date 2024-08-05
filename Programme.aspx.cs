@@ -30,12 +30,15 @@ namespace UniFinder
                 //Session["CompareList"] = new List<string>();
 
                 BindPrograms();
+
                 if (Session["Wishlist"] == null)
                 {
                     Session["Wishlist"] = new List<int>();
                 }
                 UpdateWishlistLabel();
                 UpdatePageNumberLabel();
+
+                RestoreCompareState();
             }
         }
 
@@ -299,26 +302,54 @@ namespace UniFinder
         {
             Button btn = (Button)sender;
             string programId = btn.CommandArgument;
+            List<string> compareList = (List<string>)Session["CompareList"] ?? new List<string>();
 
-            List<string> compareList;
-            if (Session["CompareList"] == null)
+            if (compareList.Count >= 4)
             {
-                compareList = new List<string>();
-            }
-            else
-            {
-                compareList = (List<string>)Session["CompareList"];
+                messageLabel.Text = "Only up to 4 universities can be added to wishlist.";
+                return;
             }
 
-            if (!compareList.Contains(programId) && compareList.Count < 4)
+            if (!compareList.Contains(programId))
             {
                 compareList.Add(programId);
                 Session["CompareList"] = compareList;
+                btn.Text = "Added to Compare";
+                btn.Enabled = false;
+
+                // Update hidden field to store compare list
+                compareListHiddenField.Value = string.Join(",", compareList);
+            }
+        }
+
+        private void RestoreCompareState()
+        {
+            List<string> compareList = (List<string>)Session["CompareList"];
+            if (compareList != null)
+            {
+                foreach (DataListItem item in DataList1.Items)
+                {
+                    Button btn = (Button)item.FindControl("btnAddToCompare");
+                    string programId = btn.CommandArgument;
+
+                    if (compareList.Contains(programId))
+                    {
+                        btn.Text = "Added to Compare";
+                        btn.Enabled = false;
+                    }
+                }
+
+                // Update hidden field to store compare list
+                compareListHiddenField.Value = string.Join(",", compareList);
             }
         }
 
         protected void CompareButton_Click(object sender, EventArgs e)
         {
+            // Ensure compare list is up-to-date
+            List<string> compareList = new List<string>(compareListHiddenField.Value.Split(','));
+            Session["CompareList"] = compareList;
+
             // Redirect to Comparison.aspx
             Response.Redirect("~/MyAccount/Wishlist.aspx");
 

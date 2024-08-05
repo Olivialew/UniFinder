@@ -48,6 +48,7 @@ namespace UniFinder
             {
                 query += " AND duration = @duration";
             }
+
             if (!string.IsNullOrEmpty(sortBy))
             {
                 if (sortBy == "fees_asc")
@@ -78,15 +79,15 @@ namespace UniFinder
                     }
                     if (!string.IsNullOrEmpty(minFees))
                     {
-                        cmd.Parameters.AddWithValue("@minFees", minFees);
+                        cmd.Parameters.AddWithValue("@minFees", int.Parse(minFees));
                     }
                     if (!string.IsNullOrEmpty(maxFees))
                     {
-                        cmd.Parameters.AddWithValue("@maxFees", maxFees);
+                        cmd.Parameters.AddWithValue("@maxFees", int.Parse(maxFees));
                     }
                     if (!string.IsNullOrEmpty(duration))
                     {
-                        cmd.Parameters.AddWithValue("@duration", duration);
+                        cmd.Parameters.AddWithValue("@duration", int.Parse(duration));
                     }
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -97,6 +98,7 @@ namespace UniFinder
                 }
             }
         }
+
 
         protected void btnSearch_Click3(object sender, EventArgs e)
         {
@@ -110,6 +112,7 @@ namespace UniFinder
 
             BindGrid(searchQuery, uniID, branchID, minFees, maxFees, duration, sortBy);
         }
+
 
         protected void btnReset_Click3(object sender, EventArgs e)
         {
@@ -130,6 +133,7 @@ namespace UniFinder
             base.OnInit(e);
             this.GridView1.RowCancelingEdit += new GridViewCancelEditEventHandler(GridView1_RowCancelingEdit);
             this.GridView1.RowUpdating += new GridViewUpdateEventHandler(GridView1_RowUpdating);
+            this.GridView1.RowEditing += new GridViewEditEventHandler(GridView1_RowEditing); // Add this line
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -147,44 +151,69 @@ namespace UniFinder
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
-            string programID = (row.FindControl("lblProgramID") as Label).Text;
-            string programName = HttpUtility.HtmlEncode((row.FindControl("txtProgramName") as TextBox).Text);
-            string programLink = HttpUtility.HtmlEncode((row.FindControl("txtProgramLink") as TextBox).Text);
-            string introduction = HttpUtility.HtmlEncode((row.FindControl("txtIntroduction") as TextBox).Text);
-            string contact = HttpUtility.HtmlEncode((row.FindControl("txtContact") as TextBox).Text);
-            int duration = int.Parse((row.FindControl("txtDuration") as TextBox).Text);
-            int fees = int.Parse((row.FindControl("txtFees") as TextBox).Text);
-            string facLink = HttpUtility.HtmlEncode((row.FindControl("txtFacLink") as TextBox).Text);
-            string uniID = HttpUtility.HtmlEncode((row.FindControl("txtUniID") as TextBox).Text);
-            string branchID = HttpUtility.HtmlEncode((row.FindControl("txtBranchID") as TextBox).Text);
+            Label lblProgramID = row.FindControl("lblProgramID") as Label;
+            TextBox txtProgramName = row.FindControl("txtProgramName") as TextBox;
+            TextBox txtProgramLink = row.FindControl("txtProgramLink") as TextBox;
+            TextBox txtIntroduction = row.FindControl("txtIntroduction") as TextBox;
+            TextBox txtContact = row.FindControl("txtContact") as TextBox;
+            TextBox txtDuration = row.FindControl("txtDuration") as TextBox;
+            TextBox txtFees = row.FindControl("txtFees") as TextBox;
+            TextBox txtFacLink = row.FindControl("txtFacLink") as TextBox;
+            TextBox txtUniID = row.FindControl("txtUniID") as TextBox;
+            TextBox txtBranchID = row.FindControl("txtBranchID") as TextBox;
 
-            string query = "UPDATE [Programme] SET programName=@programName, programLink=@programLink, introduction=@introduction, contact=@contact, duration=@duration, fees=@fees, facLink=@facLink, uniID=@uniID, branchID=@branchID WHERE programID=@programID";
-
-            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            if (lblProgramID != null && txtProgramName != null && txtProgramLink != null &&
+                txtIntroduction != null && txtContact != null && txtDuration != null &&
+                txtFees != null && txtFacLink != null && txtUniID != null && txtBranchID != null)
             {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                string programID = lblProgramID.Text;
+                string programName = HttpUtility.HtmlEncode(txtProgramName.Text);
+                string programLink = HttpUtility.HtmlEncode(txtProgramLink.Text);
+                string introduction = HttpUtility.HtmlEncode(txtIntroduction.Text);
+                string contact = HttpUtility.HtmlEncode(txtContact.Text);
+                int duration = int.Parse(txtDuration.Text);
+                int fees = int.Parse(txtFees.Text);
+                string facLink = HttpUtility.HtmlEncode(txtFacLink.Text);
+                string uniID = HttpUtility.HtmlEncode(txtUniID.Text);
+                string branchID = HttpUtility.HtmlEncode(txtBranchID.Text);
+
+                string query = "UPDATE [Programme] SET programName=@programName, programLink=@programLink, introduction=@introduction, contact=@contact, duration=@duration, fees=@fees, facLink=@facLink, uniID=@uniID, branchID=@branchID WHERE programID=@programID";
+
+                using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 {
-                    cmd.Parameters.AddWithValue("@programID", programID);
-                    cmd.Parameters.AddWithValue("@programName", programName);
-                    cmd.Parameters.AddWithValue("@programLink", programLink);
-                    cmd.Parameters.AddWithValue("@introduction", introduction);
-                    cmd.Parameters.AddWithValue("@contact", contact);
-                    cmd.Parameters.AddWithValue("@duration", duration);
-                    cmd.Parameters.AddWithValue("@fees", fees);
-                    cmd.Parameters.AddWithValue("@facLink", facLink);
-                    cmd.Parameters.AddWithValue("@uniID", uniID);
-                    cmd.Parameters.AddWithValue("@branchID", branchID);
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@programID", programID);
+                        cmd.Parameters.AddWithValue("@programName", programName);
+                        cmd.Parameters.AddWithValue("@programLink", programLink);
+                        cmd.Parameters.AddWithValue("@introduction", introduction);
+                        cmd.Parameters.AddWithValue("@contact", contact);
+                        cmd.Parameters.AddWithValue("@duration", duration);
+                        cmd.Parameters.AddWithValue("@fees", fees);
+                        cmd.Parameters.AddWithValue("@facLink", facLink);
+                        cmd.Parameters.AddWithValue("@uniID", uniID);
+                        cmd.Parameters.AddWithValue("@branchID", branchID);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
                 }
-            }
 
-            GridView1.EditIndex = -1;
-            BindGrid();
+                GridView1.EditIndex = -1;
+                BindGrid(); // Ensure this method updates the GridView with the latest data
+            }
+            else
+            {
+                // Handle the case where controls are not found
+                lblErrorMsg.Text = "Error: Could not find all controls.";
+            }
         }
 
-
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            BindGrid();
+        }
     }
 }

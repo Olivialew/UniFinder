@@ -1,58 +1,64 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageAdmin.master.cs" Inherits="UniFinder.MasterPageAdmin" %>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPath</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <style type="text/css">
-        .auto-style5 {
-            width: 100px;
-            height: 100px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
             color: #000000;
-            background-color: #FEFFFF;
         }
 
-        .auto-style6 {
-            width: 14px;
-            height: 591px;
-            top: 0px;
-        }
-
-        .auto-style7 {
-            height: 1157px;
-            margin-bottom: 46px;
-        }
-
-        .auto-style8 {
-            height: 26px;
-        }
-
-        .auto-style9 {
+        .header {
+            background-color: #FFFFFF;
             text-align: center;
-            height: 104px;
+            padding: 10px 0;
         }
 
-        .auto-style13 {
-            width: 100%;
-            height: 988px;
-        }
+            .header img {
+                width: 100px;
+                height: 100px;
+                vertical-align: middle;
+            }
 
-        ul.navBar {
+            .header h1 {
+                display: inline;
+                font-size: xx-large;
+                color: #000000;
+                margin-left: 10px;
+            }
+
+        .navBar {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            display: flex;
+            justify-content: center;
         }
 
-            ul.navBar li {
+            .navBar .nav-left {
+                display: flex;
+            }
+
+            .navBar .nav-right {
+                margin-left: auto; /* Pushes this section to the right */
+            }
+
+
+            .navBar li {
                 float: left;
             }
 
-                ul.navBar li a {
+                .navBar li a {
                     display: block;
                     color: white;
                     text-align: center;
@@ -60,134 +66,188 @@
                     text-decoration: none;
                 }
 
-                    ul.navBar li a:hover:not(.active) {
+                    .navBar li a:hover {
                         background-color: #111;
                     }
 
-        .active {
+            .navBar .active {
+                background-color: #111;
+                color: #FFFFFF;
+            }
+
+        .sitemap {
             background-color: #111;
-            color: #FFFF00;
+            padding: 5px;
         }
 
-        ul.bottomNav {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
+        .main-content {
+            /*display: flex;*/
+            width:100%;
+            margin: 10px;
         }
 
-        .auto-style14 {
-            height: 591px;
+        .sidebar {
+            width: 20%;
+            background-color: #FFFFFF;
+            padding: 10px;
         }
 
-        .auto-style16 {
+        .content {
+            width: 80%;
+            padding: 10px;
+        }
+
+        .footer {
+            background-color: #242424;
             color: #FFFFFF;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .auto-style17 {
-            width: 42px;
-            height: 39px;
-        }
+            .footer .column {
+                flex: 1;
+                min-width: 200px;
+            }
 
-        .auto-style18 {
-            height: 35px;
-            color: #FFFFFF;
-            width: 317px;
-        }
+            .footer .footer-left {
+                margin-right: auto;
+            }
 
-        .auto-style19 {
-            height: 35px;
-            color: #FFFFFF;
-        }
+                .footer .footer-left p {
+                    margin: 0;
+                    font-weight: bold;
+                }
 
-        .auto-style20 {
-            color: #FFFFFF;
+                .footer .footer-left ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                    .footer .footer-left ul li {
+                        margin: 5px 0;
+                        text-align: center;
+                    }
+
+                        .footer .footer-left ul li a {
+                            color: #FFFFFF;
+                            text-decoration: none;
+                        }
+
+                            .footer .footer-left ul li a:hover {
+                                text-decoration: underline;
+                            }
+
+            .footer .support {
+                text-align: center;
+                margin-top: auto; /* Pushes the support section to the top */
+            }
+
+                .footer .support button {
+                    background-color: #009999;
+                    color: #242424;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                }
+
+                .footer .support img {
+                    width: 42px;
+                    height: 39px;
+                    margin: 0 5px;
+                }
+
+            .footer p {
+                margin: 0;
+                padding-top: 10px;
+                text-align: center;
+                width: 100%;
+            }
+
+        .auto-style1 {
             text-align: center;
-            height: 26px;
-        }
-
-        .auto-style24 {
-            background-color: #FEFFFF;
-            color: #000000;
-        }
-
-        .auto-style25 {
-            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            text-transform: uppercase;
-            vertical-align: middle;
-        }
-
-        .auto-style26 {
-            color: #000000;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="auto-style7" style="background-color: #FFFFFF">
-            <table class="auto-style13">
-                <tr>
-                    <td class="auto-style9" colspan="2" style="background-color: #FFFFFF; font-size: xx-large; color: #FFFFFF;">
-                        <!--<asp:Image ID="Logo" runat="server" ImageUrl="~/images/Logo.png" Height="500px" Width="500px" />     -->
-                        <img src="/images/edupath-favicon-black.png" alt="Logo" class="auto-style5" style="vertical-align: middle; line-height: normal; text-align: center">
-                        <span class="auto-style25"><span class="auto-style24">&nbsp;eDUPATH</span></span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
-                        <ul class="navBar" style="height: 58px">
-                            <%--                            <li><a class="active" href="/Home.aspx">Home</a></li>--%>
-                            <li><a class="active" href="/Management/HomeAdmin.aspx">Home</a></li>
-                            <li><a href="/Management/UniManagement2.aspx">Manage University</a></li>
-                            <li><a href="/Management/BranchManagement.aspx">Manage Branch</a></li>
-                            <li><a href="/Management/ProgrammeManagement.aspx">Manage Programme</a></li>
-                            <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>
-                            <li><a href="/Management/CreateAdmin.aspx"><span class="auto-style16">Create Admin</span></a></li>
-                            <li style="float: right; color: #FFFF00;"><a href="/Management/AccountAdmin.aspx?logout=true">Account</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
-                        <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16">
-                        </asp:SiteMapPath>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #FFFFFF; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style14">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style18">
-                        <ul class="bottomNav" style="padding: 20px; vertical-align: top;">
-                            <li><a href="/Management/UniManagement2.aspx"><span class="auto-style16">Manage University</span></a></li>
-                            <li><a href="/Management/BranchManagement.aspx"><span class="auto-style16">Manage Branch</span></a></li>
-                            <li><a href="/Management/ProgrammeManagement.aspx"><span class="auto-style16">Manage Programme</span></a></li>
-                            <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>
-                            <li><a href="/Management/CreateAdmin.aspx"><span class="auto-style16">Create Admin</span></a></li>
-                        </ul>
-                    </td>
-                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style19">Need Help? 
-                        <br />
-                        <asp:Button ID="Button1" runat="server" BackColor="#009999" Height="35px" OnClick="Button1_Click" Text="GET SUPPORT" BorderStyle="None" ForeColor="#242424" />
-                        <br />
-                        <br />
-                        <strong>Follow Us On 
-                        </strong>&nbsp;<img src="/images/fb.png" alt="FBLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
-                        <img src="/images/ig.png" alt="IGLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
-                        <img src="/images/wa.png" alt="WALogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
-                        <img src="/images/yt.png" alt="YouTubeLogo" class="auto-style17" style="vertical-align: middle; line-height: normal; text-align: center">
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #242424; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" colspan="2" class="auto-style20">© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</td>
-                </tr>
-            </table>
-            <br />
-            <br />
-        </div>
+        <header class="header">
+            <img src="/images/edupath-favicon-black.png" alt="Logo">
+            <h1>EduPath</h1>
+        </header>
+        <nav>
+            <ul class="navBar" style="height: 58px">
+                <li><a runat="server" id="homeAdminLink" href="/Management/HomeAdmin.aspx">Home</a></li>
+                <li><a runat="server" id="programmeManagementLink" href="/Management/ProgrammeManagement.aspx">Manage Programme</a></li>
+                <li><a runat="server" id="uniManagementLink" href="/Management/UniManagement2.aspx">Manage University</a></li>
+                <li><a runat="server" id="branchManagementLink" href="/Management/BranchManagement.aspx">Manage Branch</a></li>
+                <%--                <li><a runat="server" id="roleManagementLink" href="/Management/RoleManagement.aspx">Manage Role</a></li>--%>
+                <li><a runat="server" id="accountManagementLink" href="/Management/AccountManagement.aspx">Manage Account</a></li>
+                <li style="margin-left: auto;"><a runat="server" id="accountAdminLink" href="/Management/AccountAdmin.aspx?logout=true">Account</a></li>
+            </ul>
+            <div class="sitemap">
+                <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16" Style="font-size: small; color: #FFFFFF;">
+                </asp:SiteMapPath>
+            </div>
+        </nav>
+        <main class="main-content">
+            <%--<aside class="sidebar">
+                <div id="treeView" class="auto-style1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                    <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" ImageSet="Arrows">
+                        <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                        <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                        <ParentNodeStyle Font-Bold="False" />
+                        <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+                    </asp:TreeView>
+                </div>
+            </aside>--%>
+<%--            <section class="content">--%>
+                <div id="contentHolder">
+                    <%--<asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />--%>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+<%--            </section>--%>
+        </main>
+
+        <footer class="footer">
+            <div class="column footer-left">
+                <p><strong>Quick Links</strong></p>
+                <ul class="bottomNav">
+                    <li><a href="/Management/ProgrammeManagement.aspx"><span class="auto-style16">Manage Programme</span></a></li>
+                    <li><a href="/Management/UniManagement2.aspx"><span class="auto-style16">Manage University</span></a></li>
+                    <li><a href="/Management/BranchManagement.aspx"><span class="auto-style16">Manage Branch</span></a></li>
+                    <li><a href="/Management/AccountManagement.aspx"><span class="auto-style16">Manage Account</span></a></li>
+<%--                    <li><a href="/Management/RoleManagement.aspx"><span class="auto-style16">Manage Role</span></a></li>--%>
+<%--                    <li style="margin-left: auto;"><a href="/Management/CreateAdmin.aspx"><span class="auto-style16">Create Admin</span></a></li>--%>
+                </ul>
+            </div>
+           <%-- <div class="column support">
+                <p>Need Help?</p>
+                <button>GET SUPPORT</button>
+                <p><strong>Follow Us On</strong></p>
+                <img src="/images/fb.png" alt="Facebook" class="auto-style28">
+                <img src="/images/ig.png" alt="Instagram" class="auto-style28">
+                <img src="/images/wa.png" alt="WhatsApp" class="auto-style28">
+                <img src="/images/yt.png" alt="YouTube" class="auto-style28">
+            </div>--%>
+            <p>© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</p>
+        </footer>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentUrl = window.location.pathname;
+            var navLinks = document.querySelectorAll('.navBar li a');
+
+            navLinks.forEach(function (link) {
+                if (link.getAttribute('href') === currentUrl) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

@@ -11,47 +11,52 @@
             font-size: medium;
         }
 
-        .auto-style29 {
-            color: #000000;
-            font-size: medium;
-        }
         .auto-style30 {
             font-size: large;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style16"><strong>&nbsp;Branch Management</strong></span><br class="auto-style16" />
-    <table class="auto-style24">
+    <%--  <span class="auto-style16"><strong>&nbsp;</strong></span><table class="auto-style24">
         <tr>
-            <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">--%>
                 <strong><span class="auto-style30">Branch Management</span><br class="auto-style30" />
                     <br class="auto-style30" />
                 <p class="auto-style27">
-                    <span class="auto-style29"><strong>Search By</strong></span><span class="auto-style16"><br class="auto-style28" />
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
-                        <span class="auto-style28">
-                            <br />
-                            <br />
-                        </span>
-                        <span class="auto-style29"><strong>Filter By</strong></span>
-                        <br class="auto-style28" />
+<%--                    <span class="auto-style29"><strong>Search By</strong></span><span class="auto-style16"><br class="auto-style28" />--%>
+                        <%--<asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>--%>
+                    </span><span class="auto-style28">
+                <strong> <span class="auto-style26">Filter By:
                     </span>
-                    <asp:DropDownList ID="ddlUniType" runat="server">
-                        <asp:ListItem>- University Type -</asp:ListItem>
-                        <asp:ListItem>Research university</asp:ListItem>
-                        <asp:ListItem>International university</asp:ListItem>
-                        <asp:ListItem>Focused university</asp:ListItem>
-                        <asp:ListItem>Technical university</asp:ListItem>
-                        <asp:ListItem>Comprehensive university</asp:ListItem>
-                        <asp:ListItem>Islamic university</asp:ListItem>
-                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
-                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
-                        <asp:ListItem>METrO polytechnic</asp:ListItem>
-                        <asp:ListItem>Private university</asp:ListItem>
-                        <asp:ListItem>Private university college</asp:ListItem>
+                </strong>
+                    </span>
+    <p class="auto-style27">
+        <span class="auto-style28">
+                <span class="auto-style26">University<br />
+                        <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID">
+                        </asp:DropDownList>
+                    </span>
+                    <%--                <br /><br />
+                <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>
+                    <asp:ListItem Text="University Name" Value="UniversityName"></asp:ListItem>
+                    <asp:ListItem Text="Fees" Value="Fees"></asp:ListItem>
+                    <asp:ListItem Text="Duration" Value="Duration"></asp:ListItem>
+                </asp:DropDownList>--%>
+                    </span>
+    <p class="auto-style27">
+                    <span class="auto-style26">Branch Location</span><br />
+                    <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
                     </asp:DropDownList>
-                    <span class="auto-style28">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+
+                    <p class="auto-style27">
+                        <span class="auto-style28">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click2" />
                     <span class="auto-style28">&nbsp;
@@ -70,18 +75,15 @@
                         </strong>
                         <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
                     </span>
-                <p class="auto-style27">
-                    &nbsp;
-                </p>
-                <p class="auto-style27">
+                <div>
                     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="branchID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                            <asp:BoundField DataField="branchID" HeaderText="Branch ID" ReadOnly="True" SortExpression="branchID" />
-                            <asp:BoundField DataField="uniID" HeaderText="University ID" SortExpression="uniID" />
-                            <asp:BoundField DataField="location" HeaderText="Location" SortExpression="location" />
-                            <asp:BoundField DataField="address" HeaderText="Address" SortExpression="address" />
+                            <asp:BoundField DataField="branchID" HeaderText="branchID" ReadOnly="True" SortExpression="branchID" />
+                            <asp:BoundField DataField="uniID" HeaderText="uniID" SortExpression="uniID" />
+                            <asp:BoundField DataField="location" HeaderText="location" SortExpression="location" />
+                            <asp:BoundField DataField="address" HeaderText="address" SortExpression="address" />
                         </Columns>
                         <EditRowStyle BackColor="#999999" />
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -94,8 +96,9 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                    </div>
                 <strong>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Branch] WHERE [branchID] = @branchID" InsertCommand="INSERT INTO [Branch] ([branchID], [uniID], [location], [address]) VALUES (@branchID, @uniID, @location, @address)" SelectCommand="SELECT * FROM [Branch]" UpdateCommand="UPDATE [Branch] SET [uniID] = @uniID, [location] = @location, [address] = @address WHERE [branchID] = @branchID">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Branch] WHERE [branchID] = @branchID" InsertCommand="INSERT INTO [Branch] ([branchID], [uniID], [location], [address]) VALUES (@branchID, @uniID, @location, @address)" SelectCommand="SELECT * FROM [Branch] WHERE (([uniID] = @uniID) AND ([branchID] = @branchID))" UpdateCommand="UPDATE [Branch] SET [uniID] = @uniID, [location] = @location, [address] = @address WHERE [branchID] = @branchID">
                         <DeleteParameters>
                             <asp:Parameter Name="branchID" Type="String" />
                         </DeleteParameters>
@@ -105,6 +108,10 @@
                             <asp:Parameter Name="location" Type="String" />
                             <asp:Parameter Name="address" Type="String" />
                         </InsertParameters>
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+                            <asp:ControlParameter ControlID="ddlBranch" Name="branchID" PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
                         <UpdateParameters>
                             <asp:Parameter Name="uniID" Type="String" />
                             <asp:Parameter Name="location" Type="String" />
@@ -113,7 +120,8 @@
                         </UpdateParameters>
                     </asp:SqlDataSource>
                 </p>
-            </td>
+<%--            </td>
         </tr>
-    </table>
+    </table>--%>
+    </strong>
 </asp:Content>

@@ -30,7 +30,7 @@ namespace Practical_5
 
                     if (userType == "admin")
                     {
-                        Response.Redirect("/Management/Maintenance.aspx");
+                        Response.Redirect("/Management/HomeAdmin.aspx");
                     }
                     else if (userType == "student")
                     {

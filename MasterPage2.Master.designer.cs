@@ -11,7 +11,7 @@ namespace UniFinder
 {
 
 
-    public partial class MasterPage
+    public partial class MasterPage2
     {
 
         /// <summary>

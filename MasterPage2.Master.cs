@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace UniFinder
 {
-    public partial class MasterPageAdmin : System.Web.UI.MasterPage
+    public partial class MasterPage2 : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,12 +16,14 @@ namespace UniFinder
             string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath).ToLower();
 
             // Check the current page and set the active class
-            SetActiveNavLink(homeAdminLink, "HomeAdmin.aspx", currentPage);
-            SetActiveNavLink(programmeManagementLink, "ProgrammeManagement.aspx", currentPage);
-            SetActiveNavLink(uniManagementLink, "UniManagement2.aspx", currentPage);
-            SetActiveNavLink(branchManagementLink, "BranchManagement.aspx", currentPage);
-            SetActiveNavLink(accountManagementLink, "AccountManagement.aspx", currentPage);
-            SetActiveNavLink(accountAdminLink, "AccountAdmin.aspx", currentPage);
+            SetActiveNavLink(homeLink, "Home.aspx", currentPage);
+            SetActiveNavLink(programmeLink, "Programme.aspx", currentPage);
+            SetActiveNavLink(universityLink, "University.aspx", currentPage);
+            SetActiveNavLink(careerTestLink, "CareerTest.aspx", currentPage);
+            SetActiveNavLink(aiChatbotLink, "AIChatbot2.aspx", currentPage);
+            SetActiveNavLink(aboutUsLink, "AboutUs.aspx", currentPage);
+            SetActiveNavLink(wishlistLink, "Wishlist.aspx", currentPage);
+            SetActiveNavLink(accountLink, "Account.aspx", currentPage);
         }
 
         private void SetActiveNavLink(HtmlAnchor anchor, string pageName, string currentPage)

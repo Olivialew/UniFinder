@@ -21,68 +21,141 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <span class="auto-style16"><strong>&nbsp;University Management</strong></span><br class="auto-style16" />
     <table class="auto-style24">
         <tr>
             <td class="auto-style25" style="background-color: #ECECEC; vertical-align: top; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <strong><span class="auto-style28">University Management</span><br /><br />
-                    search by:<br />
-                name</strong><span class="auto-style16"><br />
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
-                        <br /><br />
-                        <span class="auto-style27"><strong>Filter By:</strong></span><br />
-                    </span>
-                <strong>
-                    <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
-                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
-                        <asp:ListItem>Research university</asp:ListItem>
-                        <asp:ListItem>International university</asp:ListItem>
-                        <asp:ListItem>Focused university</asp:ListItem>
-                        <asp:ListItem>Technical university</asp:ListItem>
-                        <asp:ListItem>Comprehensive university</asp:ListItem>
-                        <asp:ListItem>Islamic university</asp:ListItem>
-                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
-                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
-                        <asp:ListItem>METrO polytechnic</asp:ListItem>
-                        <asp:ListItem>Private university</asp:ListItem>
-                        <asp:ListItem>Private university college</asp:ListItem>
-                        <asp:ListItem>Others</asp:ListItem>
-                    </asp:DropDownList>
+                <strong><span class="auto-style28">University Management</span><br />
                     <br />
-                <br />
-                location<br />
-                    <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT location FROM Branch"></asp:SqlDataSource>
-                </strong>
+                    Search By:<br />
+                    University Name</strong><span class="auto-style16"><br />
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
+                        <br />
+                        <br />
+                        <span class="auto-style27"><strong>Filter By:<br />
+                            University Type<br />
+                            <%--<asp:DropDownList ID="ddlUniType" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniType" DataValueField="uniType">
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+                            <br />--%>
+                            <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
+                                <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
+                                <asp:ListItem>Research university</asp:ListItem>
+                                <asp:ListItem>International university</asp:ListItem>
+                                <asp:ListItem>Focused university</asp:ListItem>
+                                <asp:ListItem>Technical university</asp:ListItem>
+                                <asp:ListItem>Comprehensive university</asp:ListItem>
+                                <asp:ListItem>Islamic university</asp:ListItem>
+                                <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
+                                <asp:ListItem>Conventional polytechnic</asp:ListItem>
+                                <asp:ListItem>METrO polytechnic</asp:ListItem>
+                                <asp:ListItem>Private university</asp:ListItem>
+                                <asp:ListItem>Private university college</asp:ListItem>
+                                <asp:ListItem Value="&quot;&quot;">Others</asp:ListItem>
+                            </asp:DropDownList>
+                        <br />
+                        </strong></span>
+                    </span><strong>
+                        <br />
+                        Location<br />
+                        <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
+                    </strong>
 
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click2" />
                 &nbsp;
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click2" />
-                <br /><br />
+                <br />
+                <br />
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddUniversity.aspx">Add University</asp:HyperLink>
-                <br /><br />
+                <br />
+                <br />
                 <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
                 <br />
                 <div style="margin-top: 30px">
                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
-                        AllowPaging="True" AllowSorting="True" DataKeyNames="uniID" DataSourceID="SqlDataSource3"
+                        AllowPaging="True" AllowSorting="True" DataKeyNames="uniID"
                         OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowEditing="GridView1_RowEditing"
                         OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnPageIndexChanging="GridView1_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                            <asp:BoundField DataField="uniID" HeaderText="uniID" ReadOnly="True" SortExpression="uniID" />
-                            <asp:BoundField DataField="uniNameEng" HeaderText="uniNameEng" SortExpression="uniNameEng" />
-                            <asp:BoundField DataField="uniNameMalay" HeaderText="uniNameMalay" SortExpression="uniNameMalay" />
-                            <asp:BoundField DataField="uniAcronym" HeaderText="uniAcronym" SortExpression="uniAcronym" />
-                            <asp:BoundField DataField="foundationYear" HeaderText="foundationYear" SortExpression="foundationYear" />
-                            <asp:BoundField DataField="uniType" HeaderText="uniType" SortExpression="uniType" />
-                            <asp:BoundField DataField="campusTourLink" HeaderText="campusTourLink" SortExpression="campusTourLink" />
-                            <asp:BoundField DataField="youtubeLink" HeaderText="youtubeLink" SortExpression="youtubeLink" />
-                            <asp:BoundField DataField="googleMapsLink" HeaderText="googleMapsLink" SortExpression="googleMapsLink" />
-                            <asp:TemplateField HeaderText="Image">
+                            <asp:BoundField DataField="uniID" HeaderText="University ID" ReadOnly="True" SortExpression="uniID" />
+
+                            <asp:TemplateField HeaderText="English Name" SortExpression="uniNameEng">
+                                <ItemTemplate>
+                                    <%# Eval("uniNameEng") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtNameEng" runat="server" Text='<%# Bind("uniNameEng") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Malay Name" SortExpression="uniNameMalay">
+                                <ItemTemplate>
+                                    <%# Eval("uniNameMalay") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtNameMalay" runat="server" Text='<%# Bind("uniNameMalay") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Acronym" SortExpression="uniAcronym">
+                                <ItemTemplate>
+                                    <%# Eval("uniAcronym") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtAcronym" runat="server" Text='<%# Bind("uniAcronym") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Found Year" SortExpression="foundationYear">
+                                <ItemTemplate>
+                                    <%# Eval("foundationYear") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtFoundationYear" runat="server" Text='<%# Bind("foundationYear") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="University Type" SortExpression="uniType">
+                                <ItemTemplate>
+                                    <%# Eval("uniType") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtUniType" runat="server" Text='<%# Bind("uniType") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Campus Tour Link" SortExpression="campusTourLink">
+                                <ItemTemplate>
+                                    <%# Eval("campusTourLink") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtCampusTourLink" runat="server" Text='<%# Bind("campusTourLink") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Youtube Link" SortExpression="youtubeLink">
+                                <ItemTemplate>
+                                    <%# Eval("youtubeLink") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtYoutubeLink" runat="server" Text='<%# Bind("youtubeLink") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Google Maps Link" SortExpression="googleMapsLink">
+                                <ItemTemplate>
+                                    <%# Eval("googleMapsLink") %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtGoogleMapsLink" runat="server" Text='<%# Bind("googleMapsLink") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Logo Image">
                                 <ItemTemplate>
                                     <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' Width="100px" Height="100px" />
                                 </ItemTemplate>

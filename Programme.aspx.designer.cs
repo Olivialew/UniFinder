@@ -123,13 +123,22 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Label lblErrorMessage;
 
         /// <summary>
-        /// pnlStep1 control.
+        /// messageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep1;
+        protected global::System.Web.UI.WebControls.Label messageLabel;
+
+        /// <summary>
+        /// compareListHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compareListHiddenField;
 
         /// <summary>
         /// DataList1 control.
@@ -157,15 +166,6 @@ namespace UniFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField WishlistCount;
-
-        /// <summary>
-        /// CompareButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CompareButton;
 
         /// <summary>
         /// btnPrevious control.

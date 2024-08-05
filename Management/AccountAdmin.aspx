@@ -20,5 +20,12 @@
     <br />
     <br />
 <%--    <asp:LoginStatus ID="LoginStatus1" runat="server" LoginPageUrl="~/LoginPage.aspx" OnLoggingOut="LoginStatus1_LoggingOut"/>--%>
+    <asp:Button ID="btnDeleteAccount" runat="server" OnClick="btnDeleteAccount_Click" Text="Delete Account" OnClientClick="return confirmDelete();" />
     <br />
+    <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+    <br />
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete your account? This action cannot be undone.");
+    </script>
 </asp:Content>

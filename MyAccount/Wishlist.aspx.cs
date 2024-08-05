@@ -23,7 +23,7 @@ namespace UniFinder
 
         private void BindComparisonData()
         {
-            List<string> compareList = (List<string>)Session["CompareList"];
+            List<string> compareList = Session["CompareList"] as List<string>;
 
             if (compareList != null && compareList.Count > 0)
             {
@@ -33,6 +33,7 @@ namespace UniFinder
                 dt.Columns.Add("Location");
                 dt.Columns.Add("University");
                 dt.Columns.Add("Duration");
+                dt.Columns.Add("ProgramID"); // This is used for the CommandArgument
 
                 foreach (string programId in compareList)
                 {
@@ -45,14 +46,23 @@ namespace UniFinder
                         row["Location"] = programDetails["Location"];
                         row["University"] = programDetails["University"];
                         row["Duration"] = programDetails["Duration"];
+                        row["ProgramID"] = programId; // Populate ProgramID
                         dt.Rows.Add(row);
                     }
+                }
+
+                // Debugging: Output columns to ensure no duplicates
+                foreach (DataColumn column in dt.Columns)
+                {
+                    System.Diagnostics.Debug.WriteLine("Column: " + column.ColumnName);
                 }
 
                 comparisonGridView.DataSource = dt;
                 comparisonGridView.DataBind();
             }
         }
+
+
 
         private DataRow GetProgramDetailsById(string programId)
         {
@@ -84,59 +94,63 @@ namespace UniFinder
 
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            string programName = btn.CommandArgument;
-            List<string> compareList = (List<string>)Session["CompareList"];
+            Button btn = sender as Button;
 
-            if (compareList != null)
+            if (btn != null)
             {
-                compareList.RemoveAll(id => GetProgramDetailsById(id)["ProgrammeName"].ToString() == programName);
-                Session["CompareList"] = compareList;
-                BindComparisonData();
+                string programId = btn.CommandArgument;
+                List<string> compareList = Session["CompareList"] as List<string>;
+
+                if (compareList != null)
+                {
+                    compareList.Remove(programId);
+                    Session["CompareList"] = compareList;
+                    BindComparisonData();
+                }
             }
         }
-
-        //private void BindComparisonData()
-        //{
-        //    var wishlist = Session["WishlistIds"] as List<int>;
-        //    if (wishlist != null && wishlist.Count > 0)
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-        //        {
-        //            string query = @"
-        //                SELECT u.uniNameEng AS UniversityName, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration
-        //                FROM Programme p
-        //                JOIN University u ON p.uniID = u.uniID
-        //                JOIN Branch b ON u.uniID = b.uniID
-        //                WHERE p.programID IN (" + string.Join(",", wishlist) + ")";
-
-        //            SqlDataAdapter da = new SqlDataAdapter(query, conn);
-        //            DataTable dt = new DataTable();
-        //            da.Fill(dt);
-
-        //            // Debugging: Check if DataTable contains data
-        //            if (dt.Rows.Count > 0)
-        //            {
-        //                foreach (DataRow row in dt.Rows)
-        //                {
-        //                    System.Diagnostics.Debug.WriteLine("Programme Name: " + row["ProgrammeName"]);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                System.Diagnostics.Debug.WriteLine("No data found for the given wishlist IDs.");
-        //            }
-
-        //            ComparisonGridView.DataSource = dt;
-        //            ComparisonGridView.DataBind();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ComparisonGridView.DataSource = null;
-        //        ComparisonGridView.DataBind();
-        //    }
-        //}
-
     }
 }
+
+
+//private void BindComparisonData()
+//{
+//    var wishlist = Session["WishlistIds"] as List<int>;
+//    if (wishlist != null && wishlist.Count > 0)
+//    {
+//        using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+//        {
+//            string query = @"
+//                SELECT u.uniNameEng AS UniversityName, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration
+//                FROM Programme p
+//                JOIN University u ON p.uniID = u.uniID
+//                JOIN Branch b ON u.uniID = b.uniID
+//                WHERE p.programID IN (" + string.Join(",", wishlist) + ")";
+
+//            SqlDataAdapter da = new SqlDataAdapter(query, conn);
+//            DataTable dt = new DataTable();
+//            da.Fill(dt);
+
+//            // Debugging: Check if DataTable contains data
+//            if (dt.Rows.Count > 0)
+//            {
+//                foreach (DataRow row in dt.Rows)
+//                {
+//                    System.Diagnostics.Debug.WriteLine("Programme Name: " + row["ProgrammeName"]);
+//                }
+//            }
+//            else
+//            {
+//                System.Diagnostics.Debug.WriteLine("No data found for the given wishlist IDs.");
+//            }
+
+//            ComparisonGridView.DataSource = dt;
+//            ComparisonGridView.DataBind();
+//        }
+//    }
+//    else
+//    {
+//        ComparisonGridView.DataSource = null;
+//        ComparisonGridView.DataBind();
+//    }
+//}
