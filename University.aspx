@@ -75,18 +75,24 @@
             color: #242424;
         }
 
-        .auto-style25 {
-            color: #242424;
-            height: 118px;
-        }
-
         .auto-style37 {
             font-size: xx-large;
-            color: #242424;
+            color: #000000;
         }
 
         .search-btn {
             margin-left: 10px;
+        }
+        .auto-style38 {
+            display: none;
+            max-width: 1000px;
+            border: 1px solid pink;
+            margin-top: 20px;
+            align-content: center;
+            color: #000000;
+        }
+        .auto-style39 {
+            color: #000000;
         }
     </style>
     <%--    <script type="text/javascript">
@@ -110,9 +116,12 @@
             <div class="mainSide">
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
 
+                <span class="auto-style39">
+
                 <br />
                 <br />
                 <span class="auto-style26"><strong>Filter by:</strong></span><br />
+                </span>
                 <strong>
                     <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
                         <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
@@ -129,26 +138,33 @@
                         <asp:ListItem>Private university college</asp:ListItem>
                         <asp:ListItem>Others</asp:ListItem>
                     </asp:DropDownList>
+                    <span class="auto-style39">
                     <br />
                     <br />
                 <span class="auto-style26">Branch</span><br />
+                    </span>
                     <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
-                <br />
+                <br class="auto-style39" />
 
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
 
                 &nbsp;<asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
+                <span class="auto-style39">
                 <br />
+                </span>
                 </strong>
 
+                <span class="auto-style39">
+
                 <br />
-                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
-                <br />
+                </span>
+                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="auto-style39"></asp:Label>
+                <br class="auto-style39" />
 
                 <div class="panel">
-                    <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">
+                    <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="815px">
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
                                 <div class="uniImgContainer">

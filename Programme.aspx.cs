@@ -39,6 +39,9 @@ namespace UniFinder
                 UpdatePageNumberLabel();
 
                 RestoreCompareState();
+
+                // Register the event handler
+                ddlSortBy.SelectedIndexChanged += new EventHandler(ddlSortBy_SelectedIndexChanged);
             }
         }
 
@@ -68,6 +71,7 @@ namespace UniFinder
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            CurrentPage = 1;
             BindPrograms();
             UpdatePageNumberLabel();
         }
@@ -95,6 +99,10 @@ namespace UniFinder
             UpdatePageNumberLabel();
         }
 
+        private const int pageSize = 12; // Ensure this is set to 12
+
+        PagedDataSource pagedData = new PagedDataSource();
+
         private void BindPrograms()
         {
             string searchQuery = txtSearch.Text.Trim();
@@ -108,11 +116,11 @@ namespace UniFinder
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 string query = @"
-                SELECT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
-                FROM Programme p
-                JOIN University u ON p.uniID = u.uniID
-                JOIN Branch b ON u.uniID = b.uniID
-                WHERE 1=1";
+                    SELECT DISTINCT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
+                    FROM Programme p
+                    JOIN University u ON p.uniID = u.uniID
+                    LEFT JOIN Branch b ON p.branchID = b.branchID
+                    WHERE 1=1";
 
                 // Apply filters and sorting based on your logic
 
@@ -195,10 +203,33 @@ namespace UniFinder
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                DataList1.DataSource = dt;
+                // Implement pagination
+                pagedData.DataSource = dt.DefaultView;
+                pagedData.AllowPaging = true;
+                pagedData.PageSize = pageSize;
+                pagedData.CurrentPageIndex = CurrentPage - 1;
+
+                DataList1.DataSource = pagedData;
                 DataList1.DataBind();
+
+                // Update page navigation controls
+                UpdatePageNumberLabel();
             }
         }
+
+        protected void ddlSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindPrograms();
+            UpdatePageNumberLabel();
+        }
+
+        private void UpdatePageNumberLabel()
+        {
+            lblPageNumber.Text = $"Page {CurrentPage} of {pagedData.PageCount}";
+
+            //lblPageNumber.Text = "Page " + CurrentPage.ToString();
+        }
+
 
         protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
         {
@@ -287,17 +318,6 @@ namespace UniFinder
             }
         }
 
-        private void UpdatePageNumberLabel
-()
-        {
-            lblPageNumber.Text = "Page " + CurrentPage.ToString();
-        }
-
-        protected void ddlUni_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void AddToCompareButton_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -352,37 +372,6 @@ namespace UniFinder
 
             // Redirect to Comparison.aspx
             Response.Redirect("~/MyAccount/Wishlist.aspx");
-
-            //List<string> compareList = (List<string>)Session["CompareList"];
-
-            //if (compareList != null && compareList.Count > 0)
-            //{
-            //    ComparisonPanel.Style["display"] = "block";
-            //    DataTable dt = new DataTable();
-            //    dt.Columns.Add("ProgrammeName");
-            //    dt.Columns.Add("Fees");
-            //    dt.Columns.Add("Location");
-            //    dt.Columns.Add("University");
-            //    dt.Columns.Add("Duration");
-
-            //    foreach (string programId in compareList)
-            //    {
-            //        DataRow programDetails = GetProgramDetailsById(programId);
-            //        if (programDetails != null)
-            //        {
-            //            DataRow row = dt.NewRow();
-            //            row["ProgrammeName"] = programDetails["ProgrammeName"];
-            //            row["Fees"] = programDetails["Fees"];
-            //            row["Location"] = programDetails["Location"];
-            //            row["University"] = programDetails["University"];
-            //            row["Duration"] = programDetails["Duration"];
-            //            dt.Rows.Add(row);
-            //        }
-            //    }
-
-            //    comparisonGridView.DataSource = dt;
-            //    comparisonGridView.DataBind();
-            //}
         }
 
         private DataRow GetProgramDetailsById(string programId)
@@ -415,56 +404,9 @@ namespace UniFinder
             }
         }
 
-        //protected void RemoveButton_Click(object sender, EventArgs e)
-        //{
-        //    Button btn = (Button)sender;
-        //    string programIdToRemove = btn.CommandArgument;
-
-        //    List<string> compareList = (List<string>)Session["CompareList"];
-        //    if (compareList != null)
-        //    {
-        //        compareList.Remove(programIdToRemove);
-        //        Session["CompareList"] = compareList;
-        //        BindComparisonGrid(); // Rebind the GridView to reflect the changes
-        //    }
-        //}
-
-        //private void BindComparisonGrid()
-        //{
-        //    List<string> compareList = (List<string>)Session["CompareList"];
-
-        //    if (compareList != null && compareList.Count > 0)
-        //    {
-        //        DataTable dt = new DataTable();
-        //        dt.Columns.Add("ProgrammeName");
-        //        dt.Columns.Add("Fees");
-        //        dt.Columns.Add("Location");
-        //        dt.Columns.Add("University");
-        //        dt.Columns.Add("Duration");
-
-        //        foreach (string programId in compareList)
-        //        {
-        //            DataRow programDetails = GetProgramDetailsById(programId);
-        //            if (programDetails != null)
-        //            {
-        //                DataRow row = dt.NewRow();
-        //                row["ProgrammeName"] = programDetails["ProgrammeName"];
-        //                row["Fees"] = programDetails["Fees"];
-        //                row["Location"] = programDetails["Location"];
-        //                row["University"] = programDetails["University"];
-        //                row["Duration"] = programDetails["Duration"];
-        //                dt.Rows.Add(row);
-        //            }
-        //        }
-
-        //        comparisonGridView.DataSource = dt;
-        //        comparisonGridView.DataBind();
-        //    }
-        //    else
-        //    {
-        //        ComparisonPanel.Style["display"] = "none";
-        //    }
-        //}
-
+        protected void ddlUni_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            ddlBranch.DataBind(); // Rebind ddlBranch to refresh its items based on the selected university
+        }
     }
 }

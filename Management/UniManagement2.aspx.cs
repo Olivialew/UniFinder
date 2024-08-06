@@ -25,9 +25,7 @@ namespace UniFinder
             }
         }
 
-        
         //Display Image
-
         protected string GetImageUrl(object uniLogo)
         {
             if (uniLogo != DBNull.Value && uniLogo != null)
@@ -37,67 +35,76 @@ namespace UniFinder
             }
             else
             {
-                return "/Images/LogoNew.png"; // Provide a path to your default image
+                return "/Images/defaultLogo.png"; // Provide a path to your default image
             }
         }
 
-        //protected string GetImageUrl(object imageUrl)
+        //private void BindGrid(string searchQuery = "", string uniType = "", string branch = "")
         //{
-        //    return imageUrl != DBNull.Value ? "data:image;base64," + Convert.ToBase64String((byte[])imageUrl) : "~/images/No_Image_Available.jpg";
-        //}
-
-        //protected void btnSearch_Click2(object sender, EventArgs e)
-        //{
-        //    // Set filter parameters for the SqlDataSource
-        //    string searchQuery = txtSearch.Text.Trim();
-        //    string uniType = ddlUniType.SelectedValue;
-        //    string location = ddlLocation.SelectedValue;
-
-        //    // Clear existing parameters
-        //    SqlDataSource3.SelectParameters.Clear();
-
-        //    // Build the filter expression
-        //    List<string> filters = new List<string>();
+        //    string query = @"
+        //        SELECT u.*, b.location 
+        //        FROM University u
+        //        INNER JOIN Branch b ON u.uniID = b.uniID
+        //        WHERE (1=1)";
 
         //    if (!string.IsNullOrEmpty(searchQuery))
         //    {
-        //        filters.Add("uniNameEng LIKE '%' + @SearchQuery + '%'");
-        //        SqlDataSource3.SelectParameters.Add("SearchQuery", searchQuery);
+        //        query += " AND u.uniNameEng LIKE @searchQuery";
         //    }
 
-        //    if (!string.IsNullOrEmpty(uniType) && uniType != "<-- Select University Type -->")
+        //    if (!string.IsNullOrEmpty(uniType))
         //    {
-        //        filters.Add("uniType = @UniType");
-        //        SqlDataSource3.SelectParameters.Add("UniType", uniType);
+        //        query += " AND u.uniType = @UniType";
         //    }
 
-        //    if (!string.IsNullOrEmpty(location))
+        //    if (!string.IsNullOrEmpty(branch))
         //    {
-        //        filters.Add("location = @Location");
-        //        SqlDataSource3.SelectParameters.Add("Location", location);
+        //        query += " AND b.location = @Location";
         //    }
 
-        //    // Join all filters with AND
-        //    if (filters.Count > 0)
-        //    {
-        //        SqlDataSource3.FilterExpression = string.Join(" AND ", filters);
-        //    }
-        //    else
-        //    {
-        //        SqlDataSource3.FilterExpression = ""; // No filter expression if no filters are applied
-        //    }
+        //    //query += " ORDER BY u.uniID DESC"; // Ensure records are ordered by ID or timestamp
 
-        //    // Rebind data to GridView
-        //    GridView1.DataBind();
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            if (!string.IsNullOrEmpty(searchQuery))
+        //            {
+        //                cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
+        //            }
+        //            if (!string.IsNullOrEmpty(uniType))
+        //            {
+        //                cmd.Parameters.AddWithValue("@UniType", uniType);
+        //            }
+        //            if (!string.IsNullOrEmpty(branch))
+        //            {
+        //                cmd.Parameters.AddWithValue("@Location", branch);
+        //            }
+
+        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            da.Fill(dt);
+        //            GridView1.DataSource = dt;
+        //            GridView1.DataBind();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblErrorMsg.Text = "Error: " + ex.Message;
+        //    }
         //}
 
         private void BindGrid(string searchQuery = "", string uniType = "", string branch = "")
         {
             string query = @"
-                SELECT u.*, b.location 
-                FROM University u
-                INNER JOIN Branch b ON u.uniID = b.uniID
-                WHERE (1=1)";
+                    SELECT u.uniID, u.uniNameEng, u.uniNameMalay, u.uniAcronym, u.foundationYear, 
+                           u.uniType, u.campusTourLink, u.youtubeLink, u.googleMapsLink, 
+                           MAX(CASE WHEN b.location IS NOT NULL THEN b.location ELSE '' END) AS Location,
+                           MAX(CASE WHEN u.uniLogo IS NOT NULL THEN u.uniLogo ELSE NULL END) AS uniLogo
+                    FROM University u
+                    LEFT JOIN Branch b ON u.uniID = b.uniID
+                    WHERE (1=1)";
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -113,6 +120,8 @@ namespace UniFinder
             {
                 query += " AND b.location = @Location";
             }
+
+            query += " GROUP BY u.uniID, u.uniNameEng, u.uniNameMalay, u.uniAcronym, u.foundationYear, u.uniType, u.campusTourLink, u.youtubeLink, u.googleMapsLink";
 
             try
             {
@@ -141,10 +150,10 @@ namespace UniFinder
             }
             catch (Exception ex)
             {
-                // Log or handle the exception
                 lblErrorMsg.Text = "Error: " + ex.Message;
             }
         }
+
 
         protected void btnSearch_Click2(object sender, EventArgs e)
         {
@@ -209,139 +218,17 @@ namespace UniFinder
             System.Diagnostics.Debug.WriteLine(message);
         }
 
-        //protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Ensure RowIndex is valid
-        //        if (e.RowIndex < 0 || e.RowIndex >= GridView1.Rows.Count)
-        //        {
-        //            throw new ArgumentOutOfRangeException("RowIndex is out of range.");
-        //        }
-
-        //        // Get the ID of the row being updated
-        //        string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
-        //        if (string.IsNullOrEmpty(id))
-        //        {
-        //            throw new InvalidOperationException("DataKey is null or empty.");
-        //        }
-
-        //        // Log the ID for debugging purposes
-        //        System.Diagnostics.Debug.WriteLine("Updating record with ID: " + id);
-
-        //        // Get the new values from the text boxes
-        //        TextBox txtNameEng = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtNameEng");
-        //        string newNameEng = txtNameEng?.Text ?? string.Empty;
-
-        //        TextBox txtNameMalay = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtNameMalay");
-        //        string newNameMalay = txtNameMalay?.Text ?? string.Empty;
-
-        //        TextBox txtAcronym = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAcronym");
-        //        string newAcronym = txtAcronym?.Text ?? string.Empty;
-
-        //        TextBox txtFoundationYear = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFoundationYear");
-        //        string newFoundationYear = txtFoundationYear?.Text ?? string.Empty;
-
-        //        TextBox txtUniType = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtUniType");
-        //        string newUniType = txtUniType?.Text ?? string.Empty;
-
-        //        TextBox txtCampusTourLink = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCampusTourLink");
-        //        string newCampusTourLink = txtCampusTourLink?.Text ?? string.Empty;
-
-        //        TextBox txtYoutubeLink = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtYoutubeLink");
-        //        string newYoutubeLink = txtYoutubeLink?.Text ?? string.Empty;
-
-        //        TextBox txtGoogleMapsLink = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtGoogleMapsLink");
-        //        string newGoogleMapsLink = txtGoogleMapsLink?.Text ?? string.Empty;
-
-        //        // Log the new values for debugging purposes
-        //        System.Diagnostics.Debug.WriteLine($"New values: NameEng={newNameEng}, NameMalay={newNameMalay}, Acronym={newAcronym}, FoundationYear={newFoundationYear}, UniType={newUniType}, CampusTourLink={newCampusTourLink}, YoutubeLink={newYoutubeLink}, GoogleMapsLink={newGoogleMapsLink}");
-
-        //        // Get the FileUpload control and check if a file is uploaded
-        //        FileUpload fileUpload = (FileUpload)GridView1.Rows[e.RowIndex].FindControl("fileUploadImage");
-        //        byte[] imageBytes = null;
-
-        //        if (fileUpload != null && fileUpload.HasFile)
-        //        {
-        //            using (BinaryReader reader = new BinaryReader(fileUpload.PostedFile.InputStream))
-        //            {
-        //                imageBytes = reader.ReadBytes(fileUpload.PostedFile.ContentLength);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            // No new file uploaded, keep the old image
-        //            DataRow row = GetRecordById(id);
-        //            if (row != null && row["uniLogo"] != DBNull.Value)
-        //            {
-        //                imageBytes = (byte[])row["uniLogo"];
-        //            }
-        //        }
-
-        //        // Update the database with the new values
-        //        UpdateRecord(id, newNameEng, newNameMalay, newAcronym, newFoundationYear, newUniType, newCampusTourLink, newYoutubeLink, newGoogleMapsLink, imageBytes);
-
-        //        // Reset the edit index and rebind the GridView to reflect changes
-        //        GridView1.EditIndex = -1;
-        //        BindGrid();
-        //    }
-        //    catch (FormatException formatEx)
-        //    {
-        //        lblErrorMsg.Text = "Input string was not in a correct format. Please check your input.";
-        //        LogError(formatEx.ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblErrorMsg.Text = "An error occurred: " + ex.Message;
-        //        LogError(ex.ToString());
-        //    }
-        //}
-
-        //private void UpdateRecord(string id, string nameEng, string nameMalay, string acronym, string foundationYear, string uniType, string campusTourLink, string youtubeLink, string googleMapsLink, byte[] imageBytes)
-        //{
-        //    string query = @"
-        //        UPDATE University 
-        //        SET uniNameEng = @NameEng, 
-        //            uniNameMalay = @NameMalay, 
-        //            uniAcronym = @Acronym, 
-        //            foundationYear = @FoundationYear, 
-        //            uniType = @UniType, 
-        //            campusTourLink = @CampusTourLink, 
-        //            youtubeLink = @YoutubeLink, 
-        //            googleMapsLink = @GoogleMapsLink, 
-        //            uniLogo = @ImageData 
-        //        WHERE uniID = @ID";
-
-        //    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand(query, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@ID", id);
-        //            cmd.Parameters.AddWithValue("@NameEng", nameEng);
-        //            cmd.Parameters.AddWithValue("@NameMalay", nameMalay);
-        //            cmd.Parameters.AddWithValue("@Acronym", acronym);
-        //            cmd.Parameters.AddWithValue("@FoundationYear", foundationYear);
-        //            cmd.Parameters.AddWithValue("@UniType", uniType);
-        //            cmd.Parameters.AddWithValue("@CampusTourLink", campusTourLink);
-        //            cmd.Parameters.AddWithValue("@YoutubeLink", youtubeLink);
-        //            cmd.Parameters.AddWithValue("@GoogleMapsLink", googleMapsLink);
-
-        //            SqlParameter imageParam = new SqlParameter("@ImageData", SqlDbType.VarBinary);
-        //            imageParam.Value = imageBytes ?? (object)DBNull.Value;
-        //            cmd.Parameters.Add(imageParam);
-
-        //            con.Open();
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-        //        }
-        //    }
-        //}
-
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             try
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
+
+                // Debug: List all controls in the row
+                foreach (Control control in row.Controls)
+                {
+                    System.Diagnostics.Debug.WriteLine("Control found: " + control.ID);
+                }
 
                 // Find the controls in the row
                 TextBox txtNameEng = row.FindControl("txtNameEng") as TextBox;
@@ -443,6 +330,62 @@ namespace UniFinder
             {
                 lblErrorMsg.Text = "Input string was not in a correct format. Please check your input.";
                 LogError(formatEx.ToString());
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "An error occurred: " + ex.Message;
+                LogError(ex.ToString());
+            }
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                // Get the ID of the record to delete
+                string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
+
+                // Define the SQL queries
+                string deleteBranchesQuery = "DELETE FROM Branch WHERE uniID = @ID";
+                string deleteUniversityQuery = "DELETE FROM University WHERE uniID = @ID";
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+
+                    // Begin transaction
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Delete related Branch records
+                            using (SqlCommand cmd = new SqlCommand(deleteBranchesQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ID", id);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Delete University record
+                            using (SqlCommand cmd = new SqlCommand(deleteUniversityQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ID", id);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Commit transaction
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            // Rollback transaction in case of error
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                // Rebind the GridView to reflect changes
+                BindGrid();
             }
             catch (Exception ex)
             {

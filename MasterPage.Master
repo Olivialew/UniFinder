@@ -92,7 +92,7 @@
         }
 
         .content {
-            width: 80%;
+            width: 100%;
             padding: 10px;
         }
 
@@ -192,7 +192,7 @@
             </div>
         </nav>
         <main class="main-content">
-            <aside class="sidebar">
+            <%--<aside class="sidebar">
                 <div id="treeView" class="auto-style1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
                     <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" ImageSet="Arrows">
                         <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
@@ -201,7 +201,7 @@
                         <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
                     </asp:TreeView>
                 </div>
-            </aside>
+            </aside>--%>
             <section class="content">
                 <div id="contentHolder">
                     <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />

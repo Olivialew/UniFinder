@@ -215,5 +215,34 @@ namespace UniFinder
             GridView1.EditIndex = e.NewEditIndex;
             BindGrid();
         }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            // Get the programID of the row being deleted
+            string programID = GridView1.DataKeys[e.RowIndex].Value.ToString();
+
+            // Delete the record from the database
+            string query = "DELETE FROM [Programme] WHERE [programID] = @programID";
+
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@programID", programID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+
+            // Rebind the GridView to reflect the changes
+            BindGrid();
+        }
+
+        protected void ddlUni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlBranch.DataBind(); // Rebind ddlBranch to refresh its items based on the selected university
+        }
     }
 }

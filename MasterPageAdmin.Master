@@ -83,7 +83,8 @@
         .main-content {
             /*display: flex;*/
             width:100%;
-            margin: 10px;
+            margin: 0px;
+            padding: 0px;
         }
 
         .sidebar {
@@ -94,7 +95,10 @@
 
         .content {
             width: 80%;
-            padding: 10px;
+            padding: 0px;
+            background-color: #ECECEC; 
+            vertical-align: top; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .footer {
