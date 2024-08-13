@@ -114,6 +114,7 @@
         </div>
         <div class="content">
             <div class="mainSide">
+                <span class="auto-style39"><strong>Search by:</strong></span><br />
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
 
                 <span class="auto-style39">

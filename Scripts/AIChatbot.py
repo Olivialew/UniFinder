@@ -1,11 +1,6 @@
 import pyodbc
-import pandas as pd
 import re
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 import sys
-import re
 
 # Set up the connection string
 connection_string = (
@@ -34,6 +29,10 @@ def fetch_all_names():
 
 program_names, university_names = fetch_all_names()
 
+def clean_text(text):
+    # Clean and remove unwanted characters
+    return text.replace('\xa0', ' ').strip()
+
 # Fetch program details
 def fetch_program_details(program_name):
     query = """
@@ -57,12 +56,12 @@ def fetch_program_details(program_name):
     result = cursor.fetchone()
     if result:
         return {
-            'programName': result.programName,
-            'introduction': result.introduction,
+            'programName': clean_text(result.programName),
+            'introduction': clean_text(result.introduction),
             'duration': result.duration,
             'fees': result.fees,
-            'university': result.uniNameEng,
-            'location': result.location
+            'university': clean_text(result.uniNameEng),
+            'location': clean_text(result.location)
         }
     else:
         return None
@@ -88,12 +87,12 @@ def fetch_university_details(university_name):
     result = cursor.fetchone()
     if result:
         return {
-            'universityName': result.uniNameEng,
-            'universityAcronym': result.uniAcronym,
+            'universityName': clean_text(result.uniNameEng),
+            'universityAcronym': clean_text(result.uniAcronym),
             'foundationYear': result.foundationYear,
             'uniType': result.uniType,
-            'location': result.location,
-            'address': result.address
+            'location': clean_text(result.location),
+            'address': clean_text(result.address)
         }
     else:
         return None
@@ -106,6 +105,58 @@ def match_name(query, names_list):
             return name
     return None
 
+# Recommend programs based on location, max_fees, and program_type
+def recommend_program(location=None, max_fees=None, program_type=None, duration=None):
+    query = """
+    SELECT TOP 10
+        p.programName, 
+        p.introduction, 
+        p.duration, 
+        p.fees, 
+        u.uniNameEng, 
+        b.location
+    FROM 
+        Programme p
+    JOIN 
+        University u ON p.uniID = u.uniID
+    JOIN 
+        Branch b ON u.uniID = b.uniID
+    WHERE 
+        1=1
+    """
+    
+    params = []
+    if location:
+        query += " AND b.location LIKE ?"
+        params.append(f"%{location}%")
+    if max_fees is not None:
+        query += " AND p.fees <= ?"
+        params.append(max_fees)
+    if program_type:
+        query += " AND p.programName LIKE ?"
+        params.append(f"%{program_type}%")
+    if duration:
+        query += " AND p.duration <= ?"
+        params.append(duration)
+
+    cursor.execute(query, params)
+    results = cursor.fetchall()
+    
+    if results:
+        recommendations = "Recommended Programs:<br>"
+        for result in results:
+            recommendations += (
+                f"Program: {result.programName}<br>"
+                f"Introduction: {result.introduction}<br>"
+                f"Duration: {result.duration} years<br>"
+                f"Fees: {result.fees}<br>"
+                f"University: {result.uniNameEng}<br>"
+                f"Location: {result.location}<br><br>"
+            )
+        return recommendations
+    else:
+        return "No programs found matching your criteria."
+
 # Classify query to provide information on a university or program
 def classify_query(query):
     query = query.lower()
@@ -115,7 +166,7 @@ def classify_query(query):
         if program_name:
             details = fetch_program_details(program_name)
             if details:
-                return f"Program: {details['programName']}\nFees: {details['fees']}"
+                return f"Program: {details['programName']}<br>Fees: {details['fees']}"
             else:
                 return "No program found with the given name."
         else:
@@ -126,7 +177,7 @@ def classify_query(query):
         if program_name:
             details = fetch_program_details(program_name)
             if details:
-                return f"Program: {details['programName']}\nDuration: {details['duration']}"
+                return f"Program: {details['programName']}<br>Duration: {details['duration']}"
             else:
                 return "No program found with the given name."
         else:
@@ -137,7 +188,7 @@ def classify_query(query):
         if program_name:
             details = fetch_program_details(program_name)
             if details:
-                return f"Program: {details['programName']}\nLocation: {details['location']}"
+                return f"Program: {details['programName']}<br>Location: {details['location']}"
             else:
                 return "No location found with the given name."
         else:
@@ -148,14 +199,31 @@ def classify_query(query):
         if university_name:
             details = fetch_university_details(university_name)
             if details:
-                return (f"University: {details['universityName']}\nAcronym: {details['universityAcronym']}\n"
-                        f"Founded Year: {details['foundationYear']}\nUniversity Type: {details['uniType']}\n"
-                        f"Location: {details['location']}\nAddress: {details['address']}")
+                return (f"University: {details['universityName']}<br>"
+                        f"Acronym: {details['universityAcronym']}<br>"
+                        f"Founded Year: {details['foundationYear']}<br>"
+                        f"University Type: {details['uniType']}<br>"
+                        f"Location: {details['location']}<br>"
+                        f"Address: {details['address']}")
             else:
                 return "No university found with the given name."
         else:
             return "Please specify the university name to get the details."
-    
+
+    elif 'recommend' in query:
+        # Extract criteria from the query
+        location = re.search(r'(in|near) (\w+)', query)
+        max_fees_match = re.search(r'(below|under|within) (\d+)', query)
+        program_type = re.search(r'(computer science|engineering|business|it|law|art|biology|social science|medicine)', query)
+        duration_match = re.search(r'(\d+) years', query)
+
+        location = location.group(2) if location else None
+        max_fees = int(max_fees_match.group(2)) if max_fees_match else None
+        program_type = program_type.group(0) if program_type else None
+        duration = int(duration_match.group(1)) if duration_match else None
+        
+        return recommend_program(location=location, max_fees=max_fees, program_type=program_type, duration=duration)
+
     else:
         # Extract criteria from the query
         location = re.search(r'near (\w+)', query)
@@ -172,51 +240,21 @@ def classify_query(query):
         
         return "Sorry, I couldn't understand your query. Please provide more details."
 
-# Recommend programs based on location, budget, duration, and program type
-def recommend_program(location, budget, duration, program_type):
-    query = """
-    SELECT 
-        p.programName, 
-        p.introduction, 
-        p.duration, 
-        p.fees, 
-        u.uniNameEng, 
-        b.location
-    FROM 
-        Programme p
-    JOIN 
-        University u ON p.uniID = u.uniID
-    JOIN 
-        Branch b ON u.uniID = b.uniID
-    WHERE 
-        b.location = ? AND p.fees <= ? AND p.duration <= ? AND p.programName LIKE ?
-    """
-    cursor.execute(query, (location, budget, duration, f'%{program_type}%'))
-    results = cursor.fetchall()
-    
-    if results:
-        recommendations = "Recommended Programs:\n"
-        for result in results:
-            recommendations += (f"Program: {result.programName}\n"
-                                f"Introduction: {result.introduction}\n"
-                                f"Duration: {result.duration} years\n"
-                                f"Fees: {result.fees}\n"
-                                f"University: {result.uniNameEng}\n"
-                                f"Location: {result.location}\n\n")
-        return recommendations
-    else:
-        return "No programs found matching your criteria."
+def format_output_for_html(text):
+    return text.replace('\n', '<br>')
 
 # Main function to choose between the algorithms
 def main():
     Message = sys.argv[1]
     Message = re.sub("[']",'',Message)
-    print(Message)
 
     input_query = Message.strip()
-    print(f"Received query: {input_query}")
     
     response = classify_query(input_query)
+
+    # When outputting the response:
+    response = format_output_for_html(response)
+
     print(response)
 
 if __name__ == "__main__":

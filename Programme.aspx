@@ -131,7 +131,7 @@
                 <strong>
                     <span class="comparison-table">Search by:</span><br class="comparison-table" />
                     <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
-                    <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="auto-style26"><span class="comparison-table">Sort by: 
+                    <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="auto-style26"><span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sort by: 
                
                     </span>
 
@@ -161,7 +161,7 @@
 
 
                 <span class="auto-style26"><strong>Fees</strong></span><br class="auto-style26" />
-                <span class="auto-style26">Minimum: </span>
+                <span class="auto-style26"><span class="comparison-table">Minimum: </span> </span>
                 <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><span class="comparison-table"><br class="auto-style26" />
                     <span class="auto-style26">Maximum: </span>
                 </span>
@@ -182,6 +182,7 @@
                 </asp:SqlDataSource>
 
                 <strong>
+                    <br />
                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" Width="60px" />
                     <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><span class="comparison-table"><br />
@@ -191,7 +192,6 @@
                     <br />
 
                     <div class="panel">
-                        <asp:Label ID="messageLabel" runat="server" CssClass="message-label"></asp:Label>
                         <asp:HiddenField ID="compareListHiddenField" runat="server" />
 
                         <%--                    <asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">--%>
@@ -221,8 +221,8 @@
                             </ItemTemplate>
                         </asp:DataList>
 
-<%--                        <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
-                        <asp:HiddenField ID="WishlistCount" runat="server" />--%>
+                        <asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
+                        <asp:HiddenField ID="WishlistCount" runat="server" />
                         <br />
                         <%--                        <asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />--%>
                 </span>

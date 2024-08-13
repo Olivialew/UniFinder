@@ -326,7 +326,7 @@ namespace UniFinder
 
             if (compareList.Count >= 4)
             {
-                messageLabel.Text = "Only up to 4 universities can be added to wishlist.";
+                lblErrorMessage.Text = "Only up to 4 universities can be added to wishlist.";
                 return;
             }
 

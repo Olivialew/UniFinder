@@ -10,10 +10,14 @@
             height: 351px;
             width: 983px;
         }
+        .auto-style30 {
+            font-size: large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <strong><span class="auto-style30">AI Chatbot</span><br class="auto-style30" />
+    <span class="auto-style30">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         function sendMessage() {
             var userInput = $("#userInput").val();
@@ -39,6 +43,8 @@
             });
         }
     </script>
+
+    </span></strong>
 
     <div id="chatbox">
         <div id="messages" style="border: 1px solid #ccc; padding: 10px; overflow-y: scroll;" class="auto-style29"></div>

@@ -17,7 +17,7 @@
         </asp:RadioButtonList>
 
         <!-- Question 2 -->
-        <h3>2. . What type of activities do you find most engaging?</h3>
+        <h3>2. What type of activities do you find most engaging?</h3>
         <asp:RadioButtonList ID="Question2" runat="server">
             <asp:ListItem Value="E">Organizing events or managing projects</asp:ListItem>
             <asp:ListItem Value="D">Drawing, painting, or designing</asp:ListItem>      
@@ -27,7 +27,7 @@
         </asp:RadioButtonList>
 
         <!-- Question 3 -->
-        <h3>3. . How do you prefer to work on projects?</h3>
+        <h3>3. How do you prefer to work on projects?</h3>
         <asp:RadioButtonList ID="Question3" runat="server">
             <asp:ListItem Value="A">Independently with less supervision</asp:ListItem>
             <asp:ListItem Value="C">Writing and analyzing texts</asp:ListItem>
