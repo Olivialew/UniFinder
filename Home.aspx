@@ -154,32 +154,32 @@
 
             <div class="mySlides fade">
                 <div class="numbertext">1 / 5</div>
-                <a href="#">
-                    <img src="/Images/EduPathBanner.png" style="width: 100%; height: 418px"></a>
+                <a href="/AboutUs.aspx">
+                    <img src="/Images/EduPathBanner2.png" style="width: 100%; height: 418px"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 5</div>
-                <a href="#">
-                    <img src="/Images/EduPathBanner.png" style="width: 100%; height: 418px"></a>
+                <a href="/University.aspx">
+                    <img src="/Images/UniversityBanner2.png" style="width: 100%; height: 418px"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 5</div>
-                <a href="#">
-                    <img src="/Images/EduPathBanner.png" style="width: 100%; height: 418px"></a>
+                <a href="/Programme.aspx">
+                    <img src="/Images/ProgrammeBanner.png" style="width: 100%; height: 418px"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">4 / 5</div>
-                <a href="#">
-                    <img src="/Images/EduPathBanner.png" style="width: 100%; height: 418px"></a>
+                <a href="/CareerTest.aspx">
+                    <img src="/Images/CareerTestBanner.png" style="width: 100%; height: 418px"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">5 / 5</div>
-                <a href="#">
-                    <img src="/Images/EduPathBanner.png" style="width: 100%; height: 418px"></a>
+                <a href="/AIChatbot2.aspx">
+                    <img src="/Images/AIChatbotBanner.png" style="width: 100%; height: 418px"></a>
             </div>
 
         </div>

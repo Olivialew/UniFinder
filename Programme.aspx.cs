@@ -18,10 +18,10 @@ namespace UniFinder
             set { ViewState["CurrentPage"] = value; }
         }
 
-        private int PageSize
-        {
-            get { return int.Parse(ddlPageSize.SelectedValue); }
-        }
+        //private int PageSize
+        //{
+        //    get { return int.Parse(ddlPageSize.SelectedValue); }
+        //}
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -288,12 +288,13 @@ namespace UniFinder
             }
             else
             {
-                WishlistLabel.Text = "Wishlist: (empty)";
+                //    WishlistLabel.Text = "Wishlist: (empty)";
             }
 
-            WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlistNames);
-            WishlistCount.Value = wishlist.Count.ToString();
+            //WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlistNames);
+            //WishlistCount.Value = wishlist.Count.ToString();
         }
+
 
         protected void imgBtnSelectProgram(object sender, ImageClickEventArgs e)
         {
@@ -321,6 +322,10 @@ namespace UniFinder
         protected void AddToCompareButton_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            btn.Text = "Added to Compare";
+            btn.CssClass += " greyed-out";
+            btn.Enabled = false;
+
             string programId = btn.CommandArgument;
             List<string> compareList = (List<string>)Session["CompareList"] ?? new List<string>();
 

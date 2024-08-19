@@ -21,6 +21,7 @@
 		<siteMapNode url="" title="MyAccount"  description="" >
 			<siteMapNode url="/MyAccount/Account.aspx" title="Account"  description="" />
 			<siteMapNode url="/MyAccount/ChangePassword.aspx" title="Change Password"  description="" />
+			<siteMapNode url="/MyAccount/ChangeProfile.aspx" title="Change Profile"  description="" />
 			<siteMapNode url="/MyAccount/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
 

@@ -8,12 +8,26 @@
     <title>EduPath</title>
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <style type="text/css">
+        /* Apply a minimum height to the body */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #FFFFFF;
             color: #000000;
+        }
+
+        /* Create a wrapper that takes up at least the full height of the viewport */
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -80,20 +94,41 @@
             padding: 5px;
         }
 
+        /*.main-content {
+            flex: 1;*/ /* This allows the content area to grow and push the footer down */
+        /*display: flex;
+            margin: 10px;
+        }*/
+
         .main-content {
             display: flex;
+            justify-content: center; /* Center the content horizontally */
             margin: 10px;
+            width: 100%; /* Ensure the main-content takes full width of its container */
+            max-width: 100%; /* Prevent overflow */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
 
-        .sidebar {
+        /*.sidebar {
             width: 20%;
             background-color: #FFFFFF;
             padding: 10px;
-        }
+        }*/
 
-        .content {
+        /* Content area grows to fill the remaining space */
+        /*.content {
             width: 100%;
             padding: 10px;
+            flex: 1;
+        }*/
+
+        .content {
+            width: 80%; /* Set the content section to 80% of the .main-content width */
+            /*max-width: 1200px;*/ /* Optional: Set a max-width for larger screens */
+            padding: 10px; /* Add padding inside the content area */
+            background-color: #fff; /* Optional: Set a background color */
+            /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/ /* Optional: Add a subtle shadow */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
 
         .footer {
@@ -103,6 +138,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            text-align: center;
+            margin-top: auto;
         }
 
             .footer .column {
@@ -164,6 +201,7 @@
                 text-align: center;
                 width: 100%;
             }
+
         .auto-style1 {
             text-align: center;
         }
@@ -171,28 +209,30 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header class="header">
-            <img src="/images/edupath-favicon-black.png" alt="Logo">
-            <h1>EduPath</h1>
-        </header>
-        <nav>
-            <ul class="navBar" style="height: 58px">
-                <li><a runat="server" id="homeLink" href="/Home.aspx">Home</a></li>
-                <li><a runat="server" id="programmeLink" href="/Programme.aspx">Programme</a></li>
-                <li><a runat="server" id="universityLink" href="/University.aspx">University</a></li>
-                <li><a runat="server" id="careerTestLink" href="/CareerTest.aspx">Career Test</a></li>
-                <li><a runat="server" id="aiChatbotLink" href="/AIChatbot2.aspx">AI Chatbot</a></li>
-                <li><a runat="server" id="aboutUsLink" href="/AboutUs.aspx">About Us</a></li>
-                <li style="margin-left: auto;"><a runat="server" id="wishlistLink" href="/MyAccount/Wishlist.aspx?logout=true">Wishlist</a></li>
-                <li><a runat="server" id="accountLink" href="/MyAccount/Account.aspx?logout=true">Account</a></li>
-            </ul>
-            <div class="sitemap">
-                <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16" Style="font-size: small; color: #FFFFFF;">
-                </asp:SiteMapPath>
-            </div>
-        </nav>
-        <main class="main-content">
-            <%--<aside class="sidebar">
+        <div class="wrapper">
+            <header class="header">
+                <img src="/images/edupath-favicon-black.png" alt="Logo">
+                <h1>EduPath</h1>
+            </header>
+            <nav>
+                <ul class="navBar" style="height: 58px">
+                    <li><a runat="server" id="homeLink" href="/Home.aspx">Home</a></li>
+                    <li><a runat="server" id="programmeLink" href="/Programme.aspx">Programme</a></li>
+                    <li><a runat="server" id="universityLink" href="/University.aspx">University</a></li>
+                    <li><a runat="server" id="careerTestLink" href="/CareerTest.aspx">Career Test</a></li>
+                    <li><a runat="server" id="aiChatbotLink" href="/AIChatbot2.aspx">AI Chatbot</a></li>
+                    <li><a runat="server" id="aboutUsLink" href="/AboutUs.aspx">About Us</a></li>
+                    <%--                    <li><a runat="server" id="eduBotLink" href="/Default.aspx">EduBot</a></li>--%>
+                    <li style="margin-left: auto;"><a runat="server" id="wishlistLink" href="/MyAccount/Wishlist.aspx?logout=true">Wishlist</a></li>
+                    <li><a runat="server" id="accountLink" href="/MyAccount/Account.aspx?logout=true">Account</a></li>
+                </ul>
+                <div class="sitemap">
+                    <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16" Style="font-size: small; color: #FFFFFF;">
+                    </asp:SiteMapPath>
+                </div>
+            </nav>
+            <main class="main-content">
+                <%--<aside class="sidebar">
                 <div id="treeView" class="auto-style1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
                     <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" ImageSet="Arrows">
                         <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
@@ -202,36 +242,37 @@
                     </asp:TreeView>
                 </div>
             </aside>--%>
-            <section class="content">
-                <div id="contentHolder">
-                    <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                </div>
-            </section>
-        </main>
+                <section class="content">
+                    <div id="contentHolder">
+                        <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                    </div>
+                </section>
+            </main>
 
-        <footer class="footer">
-            <div class="column footer-left">
-                <p><strong>Quick Links</strong></p>
-                <ul class="bottomNav">
-                    <li><a href="/Programme.aspx">Programme</a></li>
-                    <li><a href="/University.aspx">University</a></li>
-                    <li><a href="/CareerTest.aspx">Career Test</a></li>
-                    <li><a href="/AIChatbot2.aspx">AI Chatbot</a></li>
-                    <li><a href="/AboutUs.aspx">About Us</a></li>
-                </ul>
-            </div>
-            <div class="column support">
-                <p>Need Help?</p>
-                <button>GET SUPPORT</button>
-                <p><strong>Follow Us On</strong></p>
-                <img src="/images/fb.png" alt="Facebook" class="auto-style28">
-                <img src="/images/ig.png" alt="Instagram" class="auto-style28">
-                <img src="/images/wa.png" alt="WhatsApp" class="auto-style28">
-                <img src="/images/yt.png" alt="YouTube" class="auto-style28">
-            </div>
-            <p>© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</p>
-        </footer>
+            <footer class="footer">
+                <div class="column footer-left">
+                    <p><strong>Quick Links</strong></p>
+                    <ul class="bottomNav">
+                        <li><a href="/Programme.aspx">Programme</a></li>
+                        <li><a href="/University.aspx">University</a></li>
+                        <li><a href="/CareerTest.aspx">Career Test</a></li>
+                        <li><a href="/AIChatbot2.aspx">AI Chatbot</a></li>
+                        <li><a href="/AboutUs.aspx">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="column support">
+                    <p>Need Help?</p>
+                    <button>GET SUPPORT</button>
+                    <p><strong>Follow Us On</strong></p>
+                    <img src="/images/fb.png" alt="Facebook" class="auto-style28">
+                    <img src="/images/ig.png" alt="Instagram" class="auto-style28">
+                    <img src="/images/wa.png" alt="WhatsApp" class="auto-style28">
+                    <img src="/images/yt.png" alt="YouTube" class="auto-style28">
+                </div>
+                <p>© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</p>
+            </footer>
+        </div>
     </form>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

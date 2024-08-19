@@ -251,6 +251,7 @@
     <Content Include="MyAccount\Account.aspx" />
     <Content Include="MyAccount\ChangePassword.aspx" />
     <Content Include="Management\ProgrammeManagement.aspx" />
+    <Content Include="MyAccount\ChangeProfile.aspx" />
     <Content Include="Programme.aspx" />
     <Content Include="Programme2.aspx" />
     <Content Include="ProgrammeDetail.aspx" />
@@ -422,6 +423,13 @@
     <Compile Include="MasterPage2.Master.designer.cs">
       <DependentUpon>MasterPage2.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage3.Master.cs">
+      <DependentUpon>MasterPage3.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage3.Master.designer.cs">
+      <DependentUpon>MasterPage3.Master</DependentUpon>
+    </Compile>
     <Compile Include="MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -449,6 +457,13 @@
     </Compile>
     <Compile Include="Management\ProgrammeManagement.aspx.designer.cs">
       <DependentUpon>ProgrammeManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount\ChangeProfile.aspx.cs">
+      <DependentUpon>ChangeProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount\ChangeProfile.aspx.designer.cs">
+      <DependentUpon>ChangeProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Programme.aspx.cs">
@@ -547,6 +562,7 @@
     <Content Include="MyAccount\Web.config" />
     <Content Include="MasterPageAdmin.Master" />
     <Content Include="MasterPage2.Master" />
+    <Content Include="MasterPage3.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

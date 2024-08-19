@@ -1,0 +1,278 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage3.master.cs" Inherits="UniFinder.MasterPage3" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPath</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style type="text/css">
+        /* Apply a minimum height to the body */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+
+        /* Create a wrapper that takes up at least the full height of the viewport */
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #FFFFFF;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+            .header img {
+                width: 100px;
+                height: 100px;
+                vertical-align: middle;
+            }
+
+            .header h1 {
+                display: inline;
+                font-size: xx-large;
+                color: #000000;
+                margin-left: 10px;
+            }
+
+        .navBar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+            .navBar .nav-left {
+                display: flex;
+            }
+
+            .navBar .nav-right {
+                margin-left: auto; /* Pushes this section to the right */
+            }
+
+
+            .navBar li {
+                float: left;
+            }
+
+                .navBar li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+                    .navBar li a:hover {
+                        background-color: #111;
+                    }
+
+            .navBar .active {
+                background-color: #111;
+                color: #FFFFFF;
+            }
+
+        .sitemap {
+            background-color: #111;
+            padding: 5px;
+        }
+
+        .main-content {
+            flex: 1; /* This allows the content area to grow and push the footer down */
+            display: flex;
+            margin: 10px;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #FFFFFF;
+            padding: 10px;
+        }
+
+        /* Content area grows to fill the remaining space */
+        .content {
+            width: 100%;
+            padding: 10px;
+            flex: 1;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .contentholder {
+            align-content: center;
+        }
+
+        .footer {
+            background-color: #242424;
+            color: #FFFFFF;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+            .footer .column {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .footer .footer-left {
+                margin-right: auto;
+            }
+
+                .footer .footer-left p {
+                    margin: 0;
+                    font-weight: bold;
+                }
+
+                .footer .footer-left ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                    .footer .footer-left ul li {
+                        margin: 5px 0;
+                        text-align: center;
+                    }
+
+                        .footer .footer-left ul li a {
+                            color: #FFFFFF;
+                            text-decoration: none;
+                        }
+
+                            .footer .footer-left ul li a:hover {
+                                text-decoration: underline;
+                            }
+
+            .footer .support {
+                text-align: center;
+                margin-top: auto; /* Pushes the support section to the top */
+            }
+
+                .footer .support button {
+                    background-color: #009999;
+                    color: #242424;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                }
+
+                .footer .support img {
+                    width: 42px;
+                    height: 39px;
+                    margin: 0 5px;
+                }
+
+            .footer p {
+                margin: 0;
+                padding-top: 10px;
+                text-align: center;
+                width: 100%;
+            }
+
+        .auto-style1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <header class="header">
+                <img src="/images/edupath-favicon-black.png" alt="Logo">
+                <h1>EduPath</h1>
+            </header>
+            <nav>
+                <ul class="navBar" style="height: 58px">
+                    <li><a runat="server" id="loginLink" href="/LoginPage.aspx">Login</a></li>
+                    <li><a runat="server" id="registerLink" href="/CreateUser.aspx">Register</a></li>
+                    <li><a runat="server" id="changePwLink" href="/ChangePassword.aspx">Change Password</a></li>
+                    <li><a runat="server" id="changeProfileLink" href="/ChangeProfile.aspx">Change Profile</a></li>
+                </ul>
+                <div class="sitemap">
+                    <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16" Style="font-size: small; color: #FFFFFF;">
+                    </asp:SiteMapPath>
+                </div>
+            </nav>
+            <main class="main-content">
+                <%--<aside class="sidebar">
+                <div id="treeView" class="auto-style1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                    <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" ImageSet="Arrows">
+                        <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                        <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                        <ParentNodeStyle Font-Bold="False" />
+                        <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+                    </asp:TreeView>
+                </div>
+            </aside>--%>
+                <section class="content">
+                    <div id="contentHolder">
+                        <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            <div class="auto-style1">
+                            </div>
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div class="column footer-left">
+                    <p><strong>Quick Links</strong></p>
+                    <ul class="bottomNav">
+                        <li><a href="/LoginPage.aspx">Login</a></li>
+                        <li><a href="/CreateUser.aspx">Register</a></li>
+                        <li><a href="/MyAccount/ChangePassword.aspx">Change Password</a></li>
+                        <li><a href="/MyAccount/ChangeProfile.aspx">Change Profile</a></li>
+                    </ul>
+                </div>
+                <div class="column support">
+                    <p>Need Help?</p>
+                    <button>GET SUPPORT</button>
+                    <p><strong>Follow Us On</strong></p>
+                    <img src="/images/fb.png" alt="Facebook" class="auto-style28">
+                    <img src="/images/ig.png" alt="Instagram" class="auto-style28">
+                    <img src="/images/wa.png" alt="WhatsApp" class="auto-style28">
+                    <img src="/images/yt.png" alt="YouTube" class="auto-style28">
+                </div>
+                <p>© Copyright 2024 EduPath Sdn Bhd 195901000123 (3660-M). All Rights Reserved</p>
+            </footer>
+        </div>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentUrl = window.location.pathname;
+            var navLinks = document.querySelectorAll('.navBar li a');
+
+            navLinks.forEach(function (link) {
+                if (link.getAttribute('href') === currentUrl) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

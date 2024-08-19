@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        
         .auto-style29 {
             width: 1114px;
         }
@@ -10,15 +9,32 @@
         .auto-style31 {
             width: 204px;
         }
+
         .auto-style32 {
             width: 866px;
+        }
+
+        /* Ensure the container has flexbox applied */
+        .SummaryHeader {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            width: 300px; /* Adjust width as needed */
+            height: 300px; /* Adjust height as needed */
+            margin: auto; /* Center the container horizontally if needed */
+        }
+
+        .imgUniversityLogo {
+            max-width: 100%; /* Ensure the image fits within its container */
+            max-height: 100%; /* Ensure the image fits within its container */
+            object-fit: contain; /* Maintain aspect ratio and fit the image */
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="SummaryHeader">
-        <asp:Image ID="imgUniversityLogo" runat="server" Height="180px" Width="180px" />
+        <asp:Image ID="imgUniversityLogo" runat="server" CssClass="imgUniversityLogo" Height="180px" Width="180px" />
         <br />
     </div>
     <div class="SummaryContent">
@@ -81,7 +97,7 @@
                             <td class="auto-style32">
                                 <asp:Label ID="lblProgrammeDuration" runat="server"></asp:Label>
                                 <br />
-                                </td>
+                            </td>
                         </tr>
                         <tr>
                             <td class="auto-style31">&nbsp;</td>
@@ -90,8 +106,8 @@
                         <tr>
                             <td class="auto-style31"><strong>Tuition Fees (Local):</strong></td>
                             <td class="auto-style32">
-                                    <asp:Label ID="lblTuitionFee" runat="server"></asp:Label>
-                                </td>
+                                <asp:Label ID="lblTuitionFee" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2">&nbsp;</td>

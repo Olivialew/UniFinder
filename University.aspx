@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="script1.js" defer></script>
-
     <style type="text/css">
         .header {
             text-align: center;
@@ -10,23 +9,27 @@
         }
 
         .content {
-            width: 100%;
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap; /* Allow items to wrap if necessary */
             color: white;
+            padding: 20px; /* Optional padding for spacing */
+            box-sizing: border-box; /* Include padding in width/height */
         }
 
         .mainSide {
-            width: 80%;
-            flex: 1;
-            padding-right: 100px;
+            flex: 1 1 auto; /* Allow it to grow and shrink based on content */
+            padding: 10px;
+            max-width: 100%; /* Ensure it does not exceed container width */
+            box-sizing: border-box; /* Include padding in element's width */
         }
 
         .rightSide {
-            flex: 0.5;
-            padding-left: 100px;
+            flex: 0 0 300px; /* Fixed width for the right side */
+            padding: 10px; /* Adjust padding as needed */
             border: 4px double gold;
             border-radius: 5%;
+            box-sizing: border-box; /* Include padding in width/height */
         }
 
         .buttons button {
@@ -50,29 +53,22 @@
         }
 
         .uniImgContainer {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            position: relative;
-            max-height: 400px;
-            max-width: 400px;
+            width: 300px;
+            height: 300px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
+            align-items: center;
         }
 
         .uniLogo {
-            width: 253px;
-            height: 375.14px;
-            margin-right: 2.5%;
-            box-sizing: border-box;
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensure the image fits within the container without distortion */
         }
 
         .uniName {
             color: #242424;
+            text-align: center; /* Center-align text */
         }
 
         .auto-style37 {
@@ -80,31 +76,86 @@
             color: #000000;
         }
 
+        .search-box {
+            width: 300px;
+        }
+
         .search-btn {
             margin-left: 10px;
         }
-        .auto-style38 {
-            display: none;
+
+        .auto-style38, .auto-style39 {
+            display: none; /* Hide unused styles */
             max-width: 1000px;
             border: 1px solid pink;
             margin-top: 20px;
             align-content: center;
             color: #000000;
         }
-        .auto-style39 {
+
+        .program-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            flex: 1 1 calc(25% - 20px); /* Adjust width to fit multiple items per row */
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box; /* Include padding in element's width */
+        }
+
+            .program-item .btnAddToCompare {
+                padding: 10px 20px;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #005f5f;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                text-align: center;
+                margin-top: 10px; /* Adds space between the button and the content above */
+                transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+            }
+
+                .program-item .btnAddToCompare:hover {
+                    background-color: #009999; /* Change background on hover */
+                }
+
+        .compare-btn {
+            padding: 8px 25px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #009999;
+            border: none;
+            border-radius: 8px;
+            color: ghostwhite;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .compare-btn.greyed-out {
+                background-color: #A9A9A9; /* Greyed out color */
+                cursor: not-allowed;
+            }
+
+        .auto-style37 {
+            font-size: xx-large;
             color: #000000;
         }
-    </style>
-    <%--    <script type="text/javascript">
-        function validateWishlist() {
-            var wishlistCount = document.getElementById('WishlistCount').value;
-            if (wishlistCount >= 4) {
-                alert("You can only add up to 4 universities to the wishlist.");
-                return false;
-            }
-            return true;
+
+        .search-box {
+            width: 300px;
         }
-    </script>--%>
+
+        .search-btn {
+            margin-left: 10px;
+        }
+    .auto-style40 {
+        color: black;
+    }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -114,16 +165,22 @@
         </div>
         <div class="content">
             <div class="mainSide">
-                <span class="auto-style39"><strong>Search by:</strong></span><br />
+                <span class="auto-style40"><strong>S</strong></span><span class="auto-style39"><strong>Search by:</strong></span><span class="auto-style40"><strong>earch by:<br />
+                </strong></span>
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
 
-                <span class="auto-style39">
+                <br />
 
-                <br />
-                <br />
-                <span class="auto-style26"><strong>Filter by:</strong></span><br />
+                <span class="auto-style39">
+                    <br />
+                    <br />
+                    <span class="auto-style26"><strong>Filter by:</strong></span><br />
                 </span>
+                <br />
                 <strong>
+                    <span class="auto-style40">
+                <br />
+                Filter by:</span><br />
                     <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
                         <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
                         <asp:ListItem>Research university</asp:ListItem>
@@ -139,27 +196,28 @@
                         <asp:ListItem>Private university college</asp:ListItem>
                         <asp:ListItem>Others</asp:ListItem>
                     </asp:DropDownList>
+                    <br />
+                <br />
                     <span class="auto-style39">
-                    <br />
-                    <br />
-                <span class="auto-style26">Branch</span><br />
+                        <br />
+                        <br />
+                        <span class="auto-style26">Branch</span><br />
                     </span>
                     <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
-                <br class="auto-style39" />
+                    <br class="auto-style39" />
 
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
 
-                &nbsp;<asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
-                <span class="auto-style39">
-                <br />
-                </span>
+                    &nbsp;<asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
+                    <span class="auto-style39">
+                        <br />
+                    </span>
                 </strong>
 
                 <span class="auto-style39">
-
-                <br />
+                    <br />
                 </span>
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="auto-style39"></asp:Label>
                 <br class="auto-style39" />
@@ -168,24 +226,26 @@
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="815px">
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
-                                <div class="uniImgContainer">
-                                    <asp:ImageButton
-                                        ID="imgUni"
-                                        runat="server"
-                                        ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
-                                        AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
-                                        CssClass="uniLogo"
-                                        Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px"
-                                        OnClick="imgBtnSelectUni"
-                                        data-unieng='<%# Eval("uniNameEng") %>'
-                                        data-unimalay='<%# Eval("uniNameMalay") %>' />
-                                </div>
-                                <div class="uniName">
-                                    <asp:Label
-                                        ID="lblUniName"
-                                        runat="server"
-                                        Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
-                                        Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
+                                <div class="program-item">
+                                    <div class="uniImgContainer">
+                                        <asp:ImageButton
+                                            ID="imgUni"
+                                            runat="server"
+                                            ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
+                                            AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
+                                            CssClass="uniLogo"
+                                            Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px"
+                                            OnClick="imgBtnSelectUni"
+                                            data-unieng='<%# Eval("uniNameEng") %>'
+                                            data-unimalay='<%# Eval("uniNameMalay") %>' />
+                                    </div>
+                                    <div class="uniName">
+                                        <asp:Label
+                                            ID="lblUniName"
+                                            runat="server"
+                                            Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
+                                            Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
+                                    </div>
                                 </div>
                             </ItemTemplate>
                         </asp:DataList>
@@ -208,7 +268,7 @@
                                 var uniNameEng = $(imgButton).data('unieng'); // Retrieve the title from data-title attribute
                                 var uniNameMalay = $(imgButton).data('unimalay');
                                 var uniName = uniNameEng || uniNameMalay; // Use uniNameEng if available, otherwise use uniNameMalay
-                                $('#lbluniNameEng').text(uniName); // Update the label text with the selected movie title
+                                $('#lbluniNameEng').text(uniName); // Update the label text with the selected university title
                             }
                         </script>
                     </asp:Panel>
