@@ -2,6 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
+        .centered-text {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            height: 100%; /* Ensure the container has height if vertical centering is needed */
+            text-align: center; /* Center text within the container */
+        }
+
         .auto-style2 {
             font-size: large;
         }
@@ -18,10 +26,15 @@
             width: 300px;
             font-size: medium;
         }
+        .auto-style5 {
+            font-size: x-large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p class="auto-style2"><strong>Account Management</strong></p>
+    <div class="centered-text">
+        <strong><span class="auto-style5">Account Management</span></strong>
+    </div>
     <p class="auto-style3"><strong>Search By:</strong></p>
     <p class="auto-style2">
         <strong>

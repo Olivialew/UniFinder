@@ -13,5 +13,33 @@ namespace UniFinder
         {
 
         }
+
+        protected void ChangePassword1_CancelButtonClick(object sender, EventArgs e)
+        {
+            RedirectToRoleBasedPage();
+        }
+
+        protected void ChangePassword1_ContinueButtonClick(object sender, EventArgs e)
+        {
+            RedirectToRoleBasedPage();
+        }
+
+        private void RedirectToRoleBasedPage()
+        {
+            if (User.IsInRole("admin"))
+            {
+                Response.Redirect("~/Management/AccountAdmin.aspx");
+            }
+            else if (User.IsInRole("student"))
+            {
+                Response.Redirect("~/MyAccount/Account.aspx");
+            }
+            else
+            {
+                // Default page if the role is neither Admin nor Student
+                Response.Redirect("~/MyAccount/Account.aspx");
+            }
+        }
+
     }
 }

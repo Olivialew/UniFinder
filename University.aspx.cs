@@ -127,7 +127,8 @@ namespace UniFinder
         {
             DataTable dt = new DataTable();
 
-            string query = "SELECT U.[uniNameEng], U.[uniNameMalay], U.[uniLogo] " +
+            // Your original query to get data
+            string query = "SELECT U.[uniID], U.[uniNameEng], U.[uniNameMalay], U.[uniLogo] " +
                            "FROM [University] U " +
                            "JOIN [Branch] B ON U.uniID = B.uniID " +
                            "WHERE (@uniNameEng IS NULL OR U.[uniNameEng] LIKE '%' + @uniNameEng + '%') " +
@@ -147,8 +148,13 @@ namespace UniFinder
                 }
             }
 
-            return dt;
-        }
+            // Use LINQ to remove duplicates based on uniID
+            DataTable distinctUniversities = dt.AsEnumerable()
+                .GroupBy(row => row.Field<string>("uniID"))
+                .Select(g => g.First())
+                .CopyToDataTable();
 
+            return distinctUniversities;
+        }
     }
 }

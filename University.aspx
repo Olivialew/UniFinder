@@ -47,7 +47,6 @@
         .panel-class {
             display: none;
             max-width: 1000px;
-            border: 1px solid pink;
             margin-top: 20px;
             align-content: center;
         }
@@ -87,7 +86,6 @@
         .auto-style38, .auto-style39 {
             display: none; /* Hide unused styles */
             max-width: 1000px;
-            border: 1px solid pink;
             margin-top: 20px;
             align-content: center;
             color: #000000;
@@ -155,6 +153,23 @@
     .auto-style40 {
         color: black;
     }
+        .auto-style41 {
+            flex: 1 1 auto; /* Allow it to grow and shrink based on content */;
+            padding: 10px;
+            max-width: 100%; /* Ensure it does not exceed container width */;
+            box-sizing: border-box;
+            width: 1413px;
+        }
+        .auto-style42 {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: white;
+            box-sizing: border-box;
+            width: 98%;
+            padding: 10px;
+            background-color: #fff;
+        }
     </style>
 </asp:Content>
 
@@ -163,8 +178,8 @@
         <div class="header">
             <h3 class="auto-style37">University</h3>
         </div>
-        <div class="content">
-            <div class="mainSide">
+        <div class="auto-style42">
+            <div class="auto-style41">
                 <span class="auto-style40"><strong>S</strong></span><span class="auto-style39"><strong>Search by:</strong></span><span class="auto-style40"><strong>earch by:<br />
                 </strong></span>
                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
@@ -223,7 +238,7 @@
                 <br class="auto-style39" />
 
                 <div class="panel">
-                    <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="815px">
+                    <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="1413px">
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
                             <ItemTemplate>
                                 <div class="program-item">
@@ -240,11 +255,10 @@
                                             data-unimalay='<%# Eval("uniNameMalay") %>' />
                                     </div>
                                     <div class="uniName">
-                                        <asp:Label
+                                        <strong><asp:Label
                                             ID="lblUniName"
                                             runat="server"
-                                            Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
-                                            Style="margin-top: 3px; margin-bottom: 5px; margin-left: 30px;"></asp:Label>
+                                            Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'></asp:Label></strong>
                                     </div>
                                 </div>
                             </ItemTemplate>
@@ -252,7 +266,7 @@
 
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server"
                             ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-                            SelectCommand="SELECT U.[uniNameEng], U.[uniNameMalay], U.[uniLogo]
+                            SelectCommand="SELECT DISTINCT U.[uniNameEng], U.[uniNameMalay], U.[uniLogo]
                                 FROM [University] U
                                 JOIN [Branch] B ON U.uniID = B.uniID
                                 WHERE ((U.[uniNameEng] = @uniNameEng) AND (U.[uniType] = @uniType)) AND (B.location = @location))">

@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style24 {
-            width: 100%;
-        }
-
-        .auto-style25 {
-            height: 467px;
+        .centered-text {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            height: 100%; /* Ensure the container has height if vertical centering is needed */
+            text-align: center; /* Center text within the container */
         }
 
         .auto-style27 {
@@ -15,7 +15,7 @@
         }
 
         .auto-style28 {
-            font-size: large;
+            font-size: x-large;
         }
 
         .gridview-container {
@@ -58,13 +58,26 @@
                     box-sizing: border-box;
                 }
         }
+
+        .auto-style29 {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            ;
+            align-items: center; /* Centers vertically */
+            ;
+            height: 100%;
+            text-align: center;
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong><span class="auto-style28">University Management</span><br />
+    <div class="centered-text">
+        <strong><span class="auto-style28">University Management</span></strong>
+    </div>
+    <br />
+    <strong>Search By:
         <br />
-        Search By:<br />
         University Name</strong><span class="auto-style16"><br />
             <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Enter university title"></asp:TextBox>
             <br />

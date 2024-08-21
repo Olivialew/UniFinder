@@ -230,7 +230,6 @@
     <Content Include="Management\AddBranch.aspx" />
     <Content Include="Management\AddProgramme.aspx" />
     <Content Include="Management\AddUniversity.aspx" />
-    <Content Include="AIChatbot.aspx" />
     <Content Include="App_Data\EduPathDatabase.mdf" />
     <Content Include="App_Data\EduPathDatabase_log.ldf">
       <DependentUpon>EduPathDatabase.mdf</DependentUpon>
@@ -258,7 +257,6 @@
     <Content Include="Management\RoleManagement.aspx" />
     <Content Include="Management\UniManagement2.aspx" />
     <Content Include="UniversityDetail.aspx" />
-    <Content Include="Management\UniversityManagement.aspx" />
     <Content Include="University.aspx" />
     <Content Include="UploadCsv\UploadBranchCsv.aspx" />
     <Content Include="UploadCsv\UploadProgrammeCsv.aspx" />
@@ -302,8 +300,6 @@
     <Compile Include="CareerTestResults.aspx.designer.cs">
       <DependentUpon>CareerTestResults.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="DataCleaner.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -345,13 +341,6 @@
     </Compile>
     <Compile Include="Management\AddUniversity.aspx.designer.cs">
       <DependentUpon>AddUniversity.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AIChatbot.aspx.cs">
-      <DependentUpon>AIChatbot.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AIChatbot.aspx.designer.cs">
-      <DependentUpon>AIChatbot.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\BranchManagement.aspx.cs">
       <DependentUpon>BranchManagement.aspx</DependentUpon>
@@ -465,7 +454,6 @@
     <Compile Include="MyAccount\ChangeProfile.aspx.designer.cs">
       <DependentUpon>ChangeProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Programme.aspx.cs">
       <DependentUpon>Programme.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -502,23 +490,12 @@
     <Compile Include="Management\UniManagement2.aspx.designer.cs">
       <DependentUpon>UniManagement2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TextProcessor.cs" />
-    <Compile Include="University.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="UniversityDetail.aspx.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UniversityDetail.aspx.designer.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Management\UniversityManagement.aspx.cs">
-      <DependentUpon>UniversityManagement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Management\UniversityManagement.aspx.designer.cs">
-      <DependentUpon>UniversityManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="University.aspx.cs">
       <DependentUpon>University.aspx</DependentUpon>

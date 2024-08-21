@@ -28,10 +28,13 @@
                 background-color: #004085; /* Even darker shade when clicked */
                 transform: scale(0.98); /* Slightly shrink the button on click */
             }
+    .auto-style2 {
+        font-size: x-large;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong>My Account<br />
+    <strong><span class="auto-style2">My Account</span><br />
     </strong>
     <br />
     <asp:LoginName ID="LoginName1" runat="server" FormatString="You are logged in as: {0}" />

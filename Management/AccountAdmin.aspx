@@ -2,6 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        .centered-text {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            height: 100%; /* Ensure the container has height if vertical centering is needed */
+            text-align: center; /* Center text within the container */
+        }
+
         /* Basic button styling */
         .button {
             display: inline-block;
@@ -28,11 +36,15 @@
                 background-color: #004085; /* Even darker shade when clicked */
                 transform: scale(0.98); /* Slightly shrink the button on click */
             }
+        .auto-style2 {
+            font-size: x-large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong>My Account<br />
-    </strong>
+    <div class="centered-text">
+        <strong><span class="auto-style2">My Account</span></strong>
+    </div>
     <br />
     <asp:LoginName ID="LoginName1" runat="server" FormatString="You are logged in as: {0}" />
     <br />

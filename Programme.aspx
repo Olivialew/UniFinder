@@ -13,13 +13,37 @@
             /*            width: 100%;*/
             display: flex;
             justify-content: space-between;
-            color: white;
+            color: white
         }
 
         .mainSide {
             flex: 1;
             padding-left: 10px;
             padding-right: 10px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .search-sort-container {
+            display: flex;
+            justify-content: space-between; /* Distributes space between search and sort */
+            align-items: center;
+        }
+
+        .search-container {
+            flex-grow: 1; /* Optional: ensures search box takes up remaining space */
+        }
+
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between "Sort by" text and dropdown */
+        }
+
+        .sort-by-text {
+            color: rgb(255, 255, 255);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: medium;
         }
 
         .rightSide {
@@ -158,6 +182,21 @@
                 background-color: #A9A9A9; /* Greyed out color */
                 cursor: not-allowed;
             }
+
+        .auto-style38 {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            width: 98%;
+            box-sizing: border-box;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .auto-style39 {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: medium;
+        }
     </style>
 </asp:Content>
 
@@ -166,27 +205,32 @@
         <div class="header">
             <h3 class="auto-style37"><strong>Programme</strong></h3>
         </div>
-        <div class="content">
+        <div class="auto-style38">
             <div class="mainSide">
-                <strong>
-                    <span class="comparison-table">Search by:</span><br class="comparison-table" />
-                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
+                <div class="search-sort-container">
+                    <div class="search-container">
+                        <strong class="auto-style39"><span class="comparison-table">Search by:</span></strong>
+                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
+                    </div>
 
-                    <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
-                        <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
-                        <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
-                        <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
-                    </asp:DropDownList>
+                    <div class="sort-container">
+                        <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
+                        <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+                            <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                            <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
 
-                    <span class="comparison-table">
-                        <br />
-                        <br />
-                        Filter by:<br />
-                        University<br />
-                    </span>
-                    <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True">
-                    </asp:DropDownList>
-                    </span></strong>
+                <span class="comparison-table">
+                    <br />
+                    <strong>Filter by:<br />
+                        University</strong><br />
+                </span>
+                <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True">
+                </asp:DropDownList>
+                </span></strong>
                 <span class="comparison-table">
 
                     <br />
@@ -199,8 +243,8 @@
 
 
                 <span class="auto-style26"><strong>Fees<br />
-                <br />
-                <span class="comparison-table">Tuition Fees</span></strong></span><br class="auto-style26" />
+                    <br />
+                    <span class="comparison-table">Tuition Fees</span></strong></span><br class="auto-style26" />
                 <span class="auto-style26"><span class="comparison-table">Minimum: </span></span>
                 <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><span class="comparison-table"><br class="auto-style26" />
                     <span class="auto-style26">Maximum: </span>
@@ -208,7 +252,7 @@
                 <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox><span class="comparison-table"><br />
                     <br />
 
-                    <strong>Duration</strong><br />
+                    <strong>Duration:</strong>
                 </span>
                 <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
 
@@ -236,7 +280,7 @@
 
                         <%--<asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">--%>
 
-                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
+                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" Width="1419px">
                             <ItemTemplate>
                                 <div class="program-item">
                                     <div class="programmeImgContainer">

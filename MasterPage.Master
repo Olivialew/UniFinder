@@ -102,11 +102,23 @@
 
         .main-content {
             display: flex;
-            justify-content: center; /* Center the content horizontally */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
             margin: 10px;
-            width: 100%; /* Ensure the main-content takes full width of its container */
-            max-width: 100%; /* Prevent overflow */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            width: 100%;
+            min-height: calc(100vh - 440px); /* Ensure content area has minimum height, adjust 160px based on header and footer height */
+            box-sizing: border-box;
+        }
+
+        .content {
+            width: 80%; /* Adjust this width based on your design */
+            max-width: 1200px; /* Optional: Set a max-width for larger screens */
+            padding: 10px;
+            background-color: #fff;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center; /* Center inner content horizontally */
+            align-items: center; /* Center inner content vertically */
         }
 
         /*.sidebar {
@@ -121,15 +133,6 @@
             padding: 10px;
             flex: 1;
         }*/
-
-        .content {
-            width: 80%; /* Set the content section to 80% of the .main-content width */
-            /*max-width: 1200px;*/ /* Optional: Set a max-width for larger screens */
-            padding: 10px; /* Add padding inside the content area */
-            background-color: #fff; /* Optional: Set a background color */
-            /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/ /* Optional: Add a subtle shadow */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        }
 
         .footer {
             background-color: #242424;
@@ -232,16 +235,6 @@
                 </div>
             </nav>
             <main class="main-content">
-                <%--<aside class="sidebar">
-                <div id="treeView" class="auto-style1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
-                    <asp:TreeView ID="TreeView1" runat="server" ForeColor="Black" DataSourceID="SiteMapDataSource2" CssClass="auto-style26" ImageSet="Arrows">
-                        <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-                        <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
-                        <ParentNodeStyle Font-Bold="False" />
-                        <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
-                    </asp:TreeView>
-                </div>
-            </aside>--%>
                 <section class="content">
                     <div id="contentHolder">
                         <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />

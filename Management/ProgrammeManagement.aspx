@@ -2,8 +2,47 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
+        .centered-text {
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            height: 100%; /* Ensure the container has height if vertical centering is needed */
+            text-align: center; /* Center text within the container */
+        }
+
+        .search-sort-container {
+            display: flex;
+            justify-content: space-between; /* Distributes space between search and sort */
+            align-items: center;
+        }
+
+        .search-container {
+            flex-grow: 1; /* Optional: ensures search box takes up remaining space */
+        }
+
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between "Sort by" text and dropdown */
+        }
+
+        .sort-by-text {
+            color: rgb(255, 255, 255);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: medium;
+        }
+
+        .comparison-table {
+            color: black;
+        }
+
+        .auto-style39 {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: medium;
+        }
+
         .auto-style28 {
-            font-size: large;
+            font-size: x-large;
         }
 
         .search-box {
@@ -57,24 +96,32 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong><span class="auto-style28">Programme Management</span><br />
-        <br />
-        Search by<br />
-        <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sort by: 
-               
-                        <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
-                            <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
-                            <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
-                            <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
-                        </asp:DropDownList>
-            <br />
-            <br />
-            Filter by:<br />
-            University<br />
-            <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged">
+    <div class="centered-text">
+        <strong><span class="auto-style28">Programme Management</span></strong>
+    </div>
+    <br />
+    <div class="search-sort-container">
+        <div class="search-container">
+            <strong class="auto-style39"><span class="comparison-table">Search by:</span></strong>
+            <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
+        </div>
+
+        <div class="sort-container">
+            <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
+            <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+                <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
+                <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
             </asp:DropDownList>
-        </span>
+        </div>
+    </div>
+    <br />
+    <br />
+    <strong>Filter by:<br />
+    University<br />
+    <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged">
+    </asp:DropDownList>
+    </span>
         <%--                <br /><br />
                 <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
                     <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>
@@ -82,36 +129,42 @@
                     <asp:ListItem Text="Fees" Value="Fees"></asp:ListItem>
                     <asp:ListItem Text="Duration" Value="Duration"></asp:ListItem>
                 </asp:DropDownList>--%>
+    <br />
+    <br />
+    </strong>
+    <span class="auto-style26"><strong>Branch Location</strong></span><strong><br />
+    <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
+    </asp:DropDownList>
+    <br />
+    <br />
+    </strong>
+    <span class="auto-style26"><strong>Fees</strong></span><strong><br class="auto-style26" />
+    </strong>
+    <span class="auto-style26"><strong>Minimum: </strong> </span>
+    <strong>
+    <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
+    </strong>
+    <span class="auto-style26"><strong>Maximum: </strong> </span>
+    <strong>
+    <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox></strong><span class="auto-style26"><strong><br />
         <br />
-        <br />
-        <span class="auto-style26">Branch Location</span><br />
-        <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
-        </asp:DropDownList>
-        <br />
-        <br />
-        <span class="auto-style26">Fees</span><br class="auto-style26" />
-        <span class="auto-style26">Minimum: </span>
-        <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
-        <span class="auto-style26">Maximum: </span>
-        <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox><span class="auto-style26"><br />
-            <br />
-            Duration<br />
-        </span>
-        <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server"
-            ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-            SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
-            <SelectParameters>
-                <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+        Duration</strong><br />
+    </span>
+    <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server"
+        ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+        SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
-        &nbsp;<asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click3" />
-        &nbsp;
+    &nbsp;<asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click3" />
+    &nbsp;
                 <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click3" />
-        <br />
-        <br />
+    <br />
+    <br />
     </strong>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddProgramme.aspx">Add Programme</asp:HyperLink>
     <strong>
@@ -142,7 +195,7 @@
                         <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("programName") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtProgramName" runat="server" Text='<%# Eval("programName") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtProgramName" runat="server" Text='<%# Eval("programName") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -151,7 +204,7 @@
                         <asp:Label ID="lblProgramLink" runat="server" Text='<%# Eval("programLink") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtProgramLink" runat="server" Text='<%# Bind("programLink") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtProgramLink" runat="server" Text='<%# Bind("programLink") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -160,7 +213,7 @@
                         <asp:Label ID="lblIntroduction" runat="server" Text='<%# Eval("introduction") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtIntroduction" runat="server" Text='<%# Bind("introduction") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtIntroduction" runat="server" Text='<%# Bind("introduction") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -169,7 +222,7 @@
                         <asp:Label ID="lblContact" runat="server" Text='<%# Eval("contact") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtContact" runat="server" Text='<%# Bind("contact") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtContact" runat="server" Text='<%# Bind("contact") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -178,7 +231,7 @@
                         <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtDuration" runat="server" Text='<%# Bind("duration") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtDuration" runat="server" Text='<%# Bind("duration") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -187,7 +240,7 @@
                         <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtFees" runat="server" Text='<%# Bind("fees") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtFees" runat="server" Text='<%# Bind("fees") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -196,7 +249,7 @@
                         <asp:Label ID="lblFacLink" runat="server" Text='<%# Eval("facLink") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtFacLink" runat="server" Text='<%# Bind("facLink") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtFacLink" runat="server" Text='<%# Bind("facLink") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -205,7 +258,7 @@
                         <asp:Label ID="lblUniID" runat="server" Text='<%# Eval("uniID") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtUniID" runat="server" Text='<%# Bind("uniID") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtUniID" runat="server" Text='<%# Bind("uniID") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -214,7 +267,7 @@
                         <asp:Label ID="lblBranchID" runat="server" Text='<%# Eval("branchID") %>' />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtBranchID" runat="server" Text='<%# Bind("branchID") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox"/>
+                        <asp:TextBox ID="txtBranchID" runat="server" Text='<%# Bind("branchID") %>' TextMode="MultiLine" Rows="3" CssClass="editable-textbox" />
                     </EditItemTemplate>
                 </asp:TemplateField>
 

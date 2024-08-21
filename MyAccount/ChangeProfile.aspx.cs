@@ -70,7 +70,24 @@ namespace UniFinder.MyAccount
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/MyAccount/Account.aspx");
+            RedirectToRoleBasedPage();
+        }
+
+        private void RedirectToRoleBasedPage()
+        {
+            if (User.IsInRole("admin"))
+            {
+                Response.Redirect("~/Management/AccountAdmin.aspx");
+            }
+            else if (User.IsInRole("student"))
+            {
+                Response.Redirect("~/MyAccount/Account.aspx");
+            }
+            else
+            {
+                // Default page if the role is neither Admin nor Student
+                Response.Redirect("~/MyAccount/Account.aspx");
+            }
         }
     }
 }

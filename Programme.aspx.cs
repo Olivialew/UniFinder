@@ -413,5 +413,10 @@ namespace UniFinder
         {
             ddlBranch.DataBind(); // Rebind ddlBranch to refresh its items based on the selected university
         }
+
+        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
