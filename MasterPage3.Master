@@ -212,8 +212,9 @@
                 <ul class="navBar" style="height: 58px">
                     <li><a runat="server" id="loginLink" href="/LoginPage.aspx">Login</a></li>
                     <li><a runat="server" id="registerLink" href="/CreateUser.aspx">Register</a></li>
-                    <li><a runat="server" id="changePwLink" href="/ChangePassword.aspx">Change Password</a></li>
-                    <li><a runat="server" id="changeProfileLink" href="/ChangeProfile.aspx">Change Profile</a></li>
+                    <li><a runat="server" id="changePwLink" href="/MyAccount/ChangePassword.aspx">Change Password</a></li>
+                    <li><a runat="server" id="resetPwLink" href="/MyAccount/ResetPassword.aspx">Reset Password</a></li>
+                    <li><a runat="server" id="changeProfileLink" href="/MyAccount/ChangeProfile.aspx">Change Profile</a></li>
                 </ul>
                 <div class="sitemap">
                     <asp:SiteMapPath ID="sitemapPath" runat="server" ForeColor="White" CssClass="auto-style16" Style="font-size: small; color: #FFFFFF;">
@@ -249,6 +250,7 @@
                         <li><a href="/LoginPage.aspx">Login</a></li>
                         <li><a href="/CreateUser.aspx">Register</a></li>
                         <li><a href="/MyAccount/ChangePassword.aspx">Change Password</a></li>
+                        <li><a href="/MyAccount/ResetPassword.aspx">Reset Password</a></li>
                         <li><a href="/MyAccount/ChangeProfile.aspx">Change Profile</a></li>
                     </ul>
                 </div>

@@ -19,6 +19,7 @@ namespace UniFinder
             SetActiveNavLink(loginLink, "LoginPage.aspx", currentPage);
             SetActiveNavLink(registerLink, "CreateUser.aspx", currentPage);
             SetActiveNavLink(changePwLink, "ChangePassword.aspx", currentPage);
+            SetActiveNavLink(resetPwLink, "ResetPassword.aspx", currentPage);
             SetActiveNavLink(changeProfileLink, "ChangeProfile.aspx", currentPage);
         }
 

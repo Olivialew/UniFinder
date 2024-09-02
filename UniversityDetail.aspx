@@ -3,24 +3,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style29 {
-            width: 1114px;
+            width: 100%; /* Adjust width to fit the parent */
         }
 
         .auto-style30 {
-            width: 412px;
+            width: auto; /* Adjust based on content */
         }
 
         .auto-style31 {
-            width: 212px;
+            width: auto; /* Adjust based on content */
         }
 
         .auto-style32 {
-            width: 20px;
+            width: auto; /* Adjust based on content */
+        }
+
+        .auto-style38 {
+            width: 100%; /* Ensure this row spans the full width */
+        }
+
+        .SummaryHeader {
+            text-align: center;
+        }
+
+        table {
+            width: 100%; /* Ensure table takes up the full width of its parent */
+            border-collapse: collapse; /* Optional: For better border handling */
+        }
+
+        td {
+            padding: 8px; /* Optional: Adjust padding as needed */
+            border: 1px solid #ddd; /* Optional: Add border for clarity */
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="SummaryHeader">
         <asp:Image ID="imgUniversityLogo" runat="server" Height="180px" Width="180px" />
     </div>
@@ -72,7 +90,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style38" colspan="3">
-                                <strong>YouTube Intoduction:</strong><br />
+                                <strong>YouTube Introduction:</strong><br />
                                 <asp:Literal ID="ltYouTubeVideo" runat="server"></asp:Literal>
                             </td>
                         </tr>
@@ -82,27 +100,9 @@
                                 <asp:Literal ID="ltGoogleMaps" runat="server"></asp:Literal>
                             </td>
                         </tr>
-                        <%-- <tr>
-                            <td class="auto-style31">
-<%--                                <asp:Literal ID="LiteralMainUniversity" runat="server"></asp:Literal>--%>
-                        <%--  </td>
-                            <td class="auto-style32">
-                                &nbsp;</td>
-                            <td class="auto-style30">
-                                &nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style31">
-                                <strong>Branches</strong></td>
-                            <td class="auto-style32">
-                                :</td>
-                            <td class="auto-style30">
-                                <asp:Literal ID="LiteralBranches" runat="server"></asp:Literal>
-                            </td>
-                        </tr>--%>
                     </table>
-                    <td>&nbsp;</td>
+                </td>
+            </tr>
         </table>
     </div>
-
 </asp:Content>

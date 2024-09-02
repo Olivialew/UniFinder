@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Configuration;
+using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.UI.WebControls;
+using System.Web.UI;
+using System.Web;
 
 namespace UniFinder
 {
@@ -34,6 +32,7 @@ namespace UniFinder
                 dt.Columns.Add("University");
                 dt.Columns.Add("Duration");
                 dt.Columns.Add("ProgramID"); // This is used for the CommandArgument
+                dt.Columns.Add("uniLogo", typeof(byte[])); // Ensure this column is for byte[]
 
                 foreach (string programId in compareList)
                 {
@@ -47,22 +46,16 @@ namespace UniFinder
                         row["University"] = programDetails["University"];
                         row["Duration"] = programDetails["Duration"];
                         row["ProgramID"] = programId; // Populate ProgramID
+                        row["uniLogo"] = programDetails["uniLogo"]; // Populate uniLogo as byte[]
                         dt.Rows.Add(row);
                     }
                 }
 
-                // Debugging: Output columns to ensure no duplicates
-                foreach (DataColumn column in dt.Columns)
-                {
-                    System.Diagnostics.Debug.WriteLine("Column: " + column.ColumnName);
-                }
-
-                comparisonGridView.DataSource = dt;
-                comparisonGridView.DataBind();
+                // Bind data to the Repeater
+                comparisonRepeater.DataSource = dt;
+                comparisonRepeater.DataBind();
             }
         }
-
-
 
         private DataRow GetProgramDetailsById(string programId)
         {
@@ -72,7 +65,7 @@ namespace UniFinder
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(
-                    "SELECT u.uniNameEng AS University, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration " +
+                    "SELECT u.uniNameEng AS University, u.uniLogo, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration " +
                     "FROM Programme p " +
                     "JOIN University u ON p.uniID = u.uniID " +
                     "JOIN Branch b ON u.uniID = b.uniID " +
@@ -92,6 +85,19 @@ namespace UniFinder
             return null;
         }
 
+        protected string GetImageUrl(object uniLogo)
+        {
+            if (uniLogo != DBNull.Value && uniLogo != null)
+            {
+                byte[] bytes = (byte[])uniLogo;
+                return "data:image/png;base64," + Convert.ToBase64String(bytes);
+            }
+            else
+            {
+                return ResolveUrl("~/Images/LogoNew.png");
+            }
+        }
+
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -109,48 +115,15 @@ namespace UniFinder
                 }
             }
         }
+
+        protected void imgBtnSelectProgram(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btn = sender as ImageButton;
+            if (btn != null)
+            {
+                string programNameChosen = btn.AlternateText;
+                Response.Redirect($"/ProgrammeDetail.aspx?programName={HttpUtility.UrlEncode(programNameChosen)}");
+            }
+        }
     }
 }
-
-
-//private void BindComparisonData()
-//{
-//    var wishlist = Session["WishlistIds"] as List<int>;
-//    if (wishlist != null && wishlist.Count > 0)
-//    {
-//        using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-//        {
-//            string query = @"
-//                SELECT u.uniNameEng AS UniversityName, p.programName AS ProgrammeName, b.location AS Location, p.fees AS Fees, p.duration AS Duration
-//                FROM Programme p
-//                JOIN University u ON p.uniID = u.uniID
-//                JOIN Branch b ON u.uniID = b.uniID
-//                WHERE p.programID IN (" + string.Join(",", wishlist) + ")";
-
-//            SqlDataAdapter da = new SqlDataAdapter(query, conn);
-//            DataTable dt = new DataTable();
-//            da.Fill(dt);
-
-//            // Debugging: Check if DataTable contains data
-//            if (dt.Rows.Count > 0)
-//            {
-//                foreach (DataRow row in dt.Rows)
-//                {
-//                    System.Diagnostics.Debug.WriteLine("Programme Name: " + row["ProgrammeName"]);
-//                }
-//            }
-//            else
-//            {
-//                System.Diagnostics.Debug.WriteLine("No data found for the given wishlist IDs.");
-//            }
-
-//            ComparisonGridView.DataSource = dt;
-//            ComparisonGridView.DataBind();
-//        }
-//    }
-//    else
-//    {
-//        ComparisonGridView.DataSource = null;
-//        ComparisonGridView.DataBind();
-//    }
-//}

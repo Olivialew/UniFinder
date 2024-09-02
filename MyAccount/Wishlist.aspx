@@ -2,55 +2,79 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-        /*table {
-            width: 100%;
-            border-collapse: collapse;
+        .header {
+            text-align: center;
+            font-size: 20px;
         }
-        th, td {
+
+        .auto-style2 {
+            font-size: x-large;
+        }
+
+        .comparison-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .comparison-item {
+            flex: 1 1 calc(25% - 20px); /* Maintain this to control the width */
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff7e7;
+            margin-bottom: 20px; /* Space between rows */
+            /* Centering items */
+            display: flex;
+            flex-direction: column; /* Stacks children vertically */
+            align-items: center; /* Horizontally centers children */
+            justify-content: center; /* Vertically centers children */
+            text-align: center; /* Centers text inside */
         }
-        th {
-            background-color: #f2f2f2;
+
+            .comparison-item h4 {
+                margin-top: 0;
+            }
+
+            .comparison-item .remove-button {
+                display: block;
+                margin-top: 10px;
+                padding: 5px 10px;
+                background-color: #a55129;
+                color: white;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+            }
+
+                .comparison-item .remove-button:hover {
+                    background-color: #93451f;
+                }
+
+        .programmeImgContainer {
+            /* Adjust to maintain the aspect ratio and size */
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .auto-style27 {
-            font-size: medium;
-        }*/
 
-        /* Ensure the TreeView has minimal padding and margin */
-        /*.treeview {
-            padding: 0;
-            margin: 0;
-        }*/
-
-        /* Adjust the TreeView nodes */
-        /*.treeview ul {
-            list-style-type: none;*/ /* Remove bullet points */
-        /*padding-left: 20px;*/ /* Adjust padding as needed */
-        /*}
-
-        .treeview li {
-            margin: 0;
-            padding: 5px 10px;*/ /* Adjust padding for each item */
-        /*border: none;*/ /* Remove border if any */
-        /*}*/
-
-        /* Additional adjustments for TreeView appearance */
-        /*.treeview a {
-            text-decoration: none;*/ /* Remove underline from links */
-        /*color: black;*/ /* Set text color */
-        /*}
-
-        .treeview a:hover {
-            text-decoration: underline;*/ /* Add underline on hover */
-        /*}*/
+        .uniLogo {
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensures the image fits within the square without distortion */
+        }
     </style>
 
-    <p class="auto-style27">
-        <strong>Wishlist</strong>
-    </p>
+    <div class="header">
+        <h3 class="auto-style2"><strong>Wishlist</strong></h3>
+    </div>
+
     <p>
         <asp:LoginView ID="LoginView1" runat="server">
         </asp:LoginView>
@@ -63,39 +87,35 @@
     <div>
         <strong>University Comparison<br />
         </strong>
-        <%--        <asp:GridView ID="ComparisonGridView" runat="server" AutoGenerateColumns="False">
-            <Columns>
-                <asp:BoundField DataField="UniversityName" HeaderText="University Name" />
-                <asp:BoundField DataField="ProgrammeName" HeaderText="Programme Name" />
-                <asp:BoundField DataField="Location" HeaderText="Location" />
-                <asp:BoundField DataField="Fees" HeaderText="Tuition Fees" />
-                <asp:BoundField DataField="Duration" HeaderText="Duration" />
-            </Columns>
-        </asp:GridView>--%>
-        <asp:GridView ID="comparisonGridView" runat="server" AutoGenerateColumns="False" CssClass="comparison-table" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2">
-            <Columns>
-                <asp:BoundField DataField="ProgrammeName" HeaderText="Programme Name" />
-                <asp:BoundField DataField="Fees" HeaderText="Fees" />
-                <asp:BoundField DataField="Location" HeaderText="Location" />
-                <asp:BoundField DataField="University" HeaderText="University" />
-                <asp:BoundField DataField="Duration" HeaderText="Duration" />
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:Button ID="RemoveButton" runat="server" Text="Remove" CommandArgument='<%# Eval("ProgramID") %>' OnClick="RemoveButton_Click" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
-            <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
-            <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
-            <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
-            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#FFF1D4" />
-            <SortedAscendingHeaderStyle BackColor="#B95C30" />
-            <SortedDescendingCellStyle BackColor="#F1E5CE" />
-            <SortedDescendingHeaderStyle BackColor="#93451F" />
-        </asp:GridView>
 
+        <!-- Comparison List using a Repeater Control -->
+        <div class="comparison-container">
+            <asp:Repeater ID="comparisonRepeater" runat="server">
+                <ItemTemplate>
+                    <div class="comparison-item">
+                        <div class="programmeImgContainer">
+                            <asp:ImageButton ID="imgUni" runat="server"
+                                ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
+                                AlternateText='<%# Eval("ProgrammeName") %>'
+                                CssClass="uniLogo"
+                                OnClick="imgBtnSelectProgram" />
+                        </div>
+                        <h4><%# Eval("ProgrammeName") %></h4>
+                        <p><strong>Fees:</strong> RM <%# Eval("Fees") %></p>
+                        <p><strong>Location:</strong> <%# Eval("Location") %></p>
+                        <p><strong>University:</strong> <%# Eval("University") %></p>
+                        <p><strong>Duration:</strong> <%# Eval("Duration") %></p>
+                        <div>
+                            <asp:Button ID="RemoveButton" runat="server"
+                                Text="Remove"
+                                CssClass="remove-button"
+                                CommandArgument='<%# Eval("ProgramID") %>'
+                                OnClick="RemoveButton_Click" />
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 
     <p>

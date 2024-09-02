@@ -10,15 +10,6 @@
             margin-left: 0px;
         }
 
-        .auto-style21 {
-            color: #FEFFFF;
-        }
-
-        .auto-style23 {
-            font-weight: normal;
-            color: #FFFFFF;
-        }
-
         .slideshow-container {
             max-width: 1000px;
             position: relative;
@@ -126,6 +117,212 @@
             transform: translate(-50%, -50%);
             color: white;
         }
+
+        .auto-style24 {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            left: 1px;
+            top: 0px;
+        }
+
+        .auto-style25 {
+            font-size: x-large;
+        }
+
+        .scroll-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        .data-list-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            flex-grow: 1;
+            scroll-behavior: smooth;
+            margin: 0 20px; /* Adds some space for arrows */
+        }
+
+        .program-item {
+            display: inline-block;
+            width: 300px; /* Adjust width as needed */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .scroll-btn {
+            background-color: #ccc;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+            .scroll-btn.left {
+                position: absolute;
+                left: 0;
+            }
+
+            .scroll-btn.right {
+                position: absolute;
+                right: 0;
+            }
+
+        .programmeImgContainer {
+            /* Adjust to maintain the aspect ratio and size */
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*.uniLogo {
+            width: 253px;
+            height: 375.14px;
+            margin-right: 2.5%;
+            box-sizing: border-box;
+        }*/
+
+        .uniLogo {
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensures the image fits within the square without distortion */
+        }
+
+        .programmeName {
+            color: #242424;
+        }
+
+        .auto-style37 {
+            font-size: xx-large;
+            color: #000000;
+        }
+
+        .search-box {
+            width: 300px;
+        }
+
+        .search-btn {
+            margin-left: 10px;
+        }
+
+        .comparison-table {
+            color: black;
+        }
+
+        .programmeName, .fees, .location, .duration {
+            color: #000000; /* Ensures text is black */
+        }
+
+        /*.program-item {
+            flex: 0 0 220px;*/ /* Fixed width for each item to show 4 items in view */
+        /*padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 10px;*/ /* Space between items */
+        /*}*/
+        .program-item {
+            /*display: inline-block;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers content horizontally */
+            /*width: 24%;*/ /* Adjust this width to ensure four items per row */
+            /*box-sizing: border-box;*/
+            padding: 10px;
+            margin: 0;
+            /*background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;*/
+        }
+
+            .program-item .btnAddToCompare {
+                padding: 10px 20px;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #005f5f;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                text-align: center;
+                margin-top: 10px; /* Adds space between the button and the content above */
+                transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+            }
+
+                .program-item .btnAddToCompare:hover {
+                    background-color: #009999; /* Change background on hover */
+                }
+
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            width: 100%;
+            position: relative;
+            overflow: hidden; /* Hide overflow if necessary */
+        }
+
+        .data-list-wrapper {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            width: 100%;
+            max-width: 1200px; /* Adjust to fit 4 items at a time */
+            margin: 0 auto; /* Center container */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        /*.program-item {
+            flex: 0 0 22%;*/ /* Adjust width to fit 4 items (with margin) */
+        /*margin: 10px;*/ /* Space between items */
+        /*box-sizing: border-box;*/ /* Include padding and border in element's total width and height */
+        /*background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;*/ /* Add padding inside each item */
+        /*height: auto;*/ /* Allow height to adjust based on content */
+        /*}*/
+
+        .programmeName {
+            word-wrap: break-word; /* Allow long words to wrap onto the next line */
+            overflow-wrap: break-word; /* Handle text overflow */
+            margin-top: 10px; /* Add some space above the name */
+            font-size: 16px; /* Adjust as needed */
+            font-weight: bold; /* Optionally, make the name bold */
+            display: block; /* Make sure the name behaves like a block-level element */
+        }
+
+        .button-container {
+            text-align: center; /* Center-aligns content inside this container */
+            width: 100%; /* Full width of the container */
+        }
+
+        .see-more {
+            display: inline-block; /* Keep the button size as per content */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+            .see-more:hover {
+                background-color: #0056b3;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -148,7 +345,7 @@
         </asp:UpdatePanel>
     </div>--%>
 
-    <div class="slideshow-container">
+    <div class="auto-style24">
 
         <div class="frame">
 
@@ -198,6 +395,102 @@
         <span class="dot" onclick="currentSlide(5)"></span>
     </div>
 
+    <br />
+    <br />
+
+    <span class="auto-style25"><strong>Programme</strong></span>
+    <br />
+    <%--<div class="scroll-container">--%>
+    <%--<div class="data-list-wrapper">--%>
+    <%--<asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">
+                <ItemTemplate>
+                    <div class="program-item">
+                        <div class="programmeImgContainer">
+                            <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
+                        </div>
+                        <div class="programmeName">
+                            <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label>
+                        </div>
+                        <div class="fees">
+                            Tuition Fees: RM
+                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                        </div>
+                        <div class="location">
+                            Location: 
+                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                        </div>
+                        <div class="duration">
+                            Duration: 
+                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                            years
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>--%>
+    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">
+        <ItemTemplate>
+            <div class="program-item">
+                <div class="programmeImgContainer">
+                    <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" />
+                </div>
+                <div class="programmeName">
+                    <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label>
+                </div>
+                <div class="fees">
+                    Tuition Fees: RM
+                <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                </div>
+                <div class="location">
+                    Location:
+                <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                </div>
+                <div class="duration">
+                    Duration:
+                <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:DataList>
+    <%--</div>--%>
+    <div class="button-container">
+        <a href="/Programme.aspx" class="see-more">See More</a>
+    </div>
+    <%--</div>--%>
+
+    <br />
+    <br />
+    <span class="auto-style25"><strong>Universities</strong></span>
+    <br />
+    <asp:DataList ID="DataList2" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
+        <ItemTemplate>
+            <div class="program-item">
+                <div class="uniImgContainer">
+                    <asp:ImageButton
+                        ID="imgUni"
+                        runat="server"
+                        ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
+                        AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
+                        CssClass="uniLogo"
+                        Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px"
+                        OnClick="imgBtnSelectUni"
+                        data-unieng='<%# Eval("uniNameEng") %>'
+                        data-unimalay='<%# Eval("uniNameMalay") %>' />
+                </div>
+                <div class="uniName">
+                    <strong>
+                        <asp:Label
+                            ID="lblUniName"
+                            runat="server"
+                            Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'></asp:Label></strong>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:DataList>
+
+    <div class="button-container">
+        <a href="/University.aspx" class="see-more">See More</a>
+    </div>
+
     <script>
         var slideIndex = 1;
         var timer = null;
@@ -230,6 +523,18 @@
             dots[slideIndex - 1].className += " active";
             timer = setTimeout(showSlides, 3000);
         }
-    </script>
 
+        function scrollLeft() {
+            const container = document.querySelector('.data-list-wrapper');
+            const scrollAmount = 240 * 4; // Adjust the amount to match 4 items
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+
+        function scrollRight() {
+            const container = document.querySelector('.data-list-wrapper');
+            const scrollAmount = 240 * 4; // Adjust the amount to match 4 items
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+
+    </script>
 </asp:Content>

@@ -63,8 +63,8 @@
         <asp:GridView ID="GridView1" runat="server" CssClass="gridview-table" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="UserName" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowCommand="GridView1_RowCommand">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-
+                <asp:CommandField  ShowEditButton="True" />
+<%--ShowDeleteButton="True"--%>
                 <asp:TemplateField HeaderText="Username" SortExpression="UserName">
                     <ItemTemplate>
                         <asp:Label ID="lblUserName" runat="server" Text='<%# Eval("UserName") %>' />
@@ -100,7 +100,7 @@
 <%--                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Eval("UserName") %>' />--%>
                         <asp:Button ID="btnDisable" runat="server" Text="Disable" CommandName="Disable" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmDisable();" />
                         <asp:Button ID="btnReactivate" runat="server" Text="Reactivate" CommandName="Reactivate" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmReactivate();" />
-<%--                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CommandName="Delete" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmDelete();" />--%>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CommandName="Delete" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmDelete();" />
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:Button ID="btnUpdate" runat="server" Text="Update" CommandName="Update" />

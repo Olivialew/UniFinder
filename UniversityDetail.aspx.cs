@@ -97,7 +97,7 @@ namespace UniFinder
                             }
                             else
                             {
-                                imgUniversityLogo.ImageUrl = "~/Images/defaultLogo.jpg";
+                                imgUniversityLogo.ImageUrl = "~/Images/defaultLogo.png";
                             }
 
                             // Set the Google Maps iframe

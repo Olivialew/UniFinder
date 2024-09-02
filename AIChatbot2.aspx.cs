@@ -24,37 +24,46 @@ namespace UniFinder
 
         private static string RunPythonScript(string message)
         {
-            ProcessStartInfo start = new ProcessStartInfo
+            try
             {
-                FileName = "python",
-                Arguments = $"\"E:\\UniFinder\\Scripts\\AIChatbot.py\" \"{message}\"",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
-
-            using (Process process = Process.Start(start))
-            {
-                using (StreamReader reader = process.StandardOutput)
+                ProcessStartInfo start = new ProcessStartInfo
                 {
-                    string result = reader.ReadToEnd();
-                    if (!string.IsNullOrEmpty(result))
+                    FileName = "python",
+                    Arguments = $"\"E:\\UniFinder\\Scripts\\geminiBot.py\" \"{message}\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
+                };
+
+                using (Process process = Process.Start(start))
+                {
+                    using (StreamReader reader = process.StandardOutput)
                     {
-                        return result;
+                        string result = reader.ReadToEnd();
+                        process.WaitForExit(); // Ensure process has finished
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            return result;
+                        }
                     }
-                }
 
-                using (StreamReader reader = process.StandardError)
-                {
-                    string error = reader.ReadToEnd();
-                    if (!string.IsNullOrEmpty(error))
+                    using (StreamReader reader = process.StandardError)
                     {
-                        return $"Error: {error}";
+                        string error = reader.ReadToEnd();
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            return $"Error: {error}";
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                return $"Error: {ex.Message}";
+            }
             return "Error: No response from script.";
         }
+
     }
 }

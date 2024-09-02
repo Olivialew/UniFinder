@@ -37,7 +37,7 @@ namespace UniFinder
             string username = CreateUserWizard1.UserName;
 
             // Add the user to the "student" role
-            Roles.AddUserToRole(username, "admin");
+            Roles.AddUserToRole(username, "student");
         }
     }
 }

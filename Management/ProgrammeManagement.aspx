@@ -121,7 +121,6 @@
     University<br />
     <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged">
     </asp:DropDownList>
-    </span>
         <%--                <br /><br />
                 <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
                     <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>

@@ -56,5 +56,24 @@ namespace UniFinder
             if (countD >= countA && countD >= countB && countD >= countC && countD >= countE) return "Arts or Design";
             return "Business or Management";
         }
+
+        protected void CancelButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CareerTest.aspx");
+        }
+
+        protected void ResetButton_Click(object sender, EventArgs e)
+        {
+            Question1.ClearSelection();
+            Question2.ClearSelection();
+            Question3.ClearSelection();
+            Question4.ClearSelection();
+            Question5.ClearSelection();
+            Question6.ClearSelection();
+            Question7.ClearSelection();
+            Question8.ClearSelection();
+            Question9.ClearSelection();
+            Question10.ClearSelection();
+        }
     }
 }

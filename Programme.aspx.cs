@@ -27,9 +27,11 @@ namespace UniFinder
         {
             if (!IsPostBack)
             {
-                //Session["CompareList"] = new List<string>();
+                ResetFilters();
 
+                BindUniversities(); // Method to bind universities from the database
                 BindPrograms();
+                //Session["CompareList"] = new List<string>();
 
                 if (Session["Wishlist"] == null)
                 {
@@ -38,10 +40,59 @@ namespace UniFinder
                 UpdateWishlistLabel();
                 UpdatePageNumberLabel();
 
-                RestoreCompareState();
-
                 // Register the event handler
                 ddlSortBy.SelectedIndexChanged += new EventHandler(ddlSortBy_SelectedIndexChanged);
+            }
+
+            RestoreCompareState();
+        }
+
+        private void BindUniversities()
+        {
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                string query = "SELECT uniID, uniNameEng FROM University";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Add an "All Universities" option at the top
+                DataRow allUniversitiesRow = dt.NewRow();
+                allUniversitiesRow["uniID"] = "All"; // Unique identifier for "All"
+                allUniversitiesRow["uniNameEng"] = "All Universities";
+                dt.Rows.InsertAt(allUniversitiesRow, 0); // Insert at the top
+
+                ddlUni.DataSource = dt;
+                ddlUni.DataTextField = "uniNameEng";
+                ddlUni.DataValueField = "uniID";
+                ddlUni.DataBind();
+            }
+        }
+
+        private void BindBranches()
+        {
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                string query = "SELECT DISTINCT branchID, location FROM Branch WHERE uniID = @uniID ORDER BY location";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@uniID", ddlUni.SelectedValue);
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                ddlBranch.Items.Clear();
+                ddlBranch.Items.Add(new ListItem("All Branches", "All")); // Add "All Branches" option
+
+                while (dr.Read())
+                {
+                    string branchID = dr["branchID"].ToString();
+                    string location = dr["location"].ToString();
+                    ddlBranch.Items.Add(new ListItem(location, branchID));
+                }
+
+                dr.Close();
+                conn.Close();
             }
         }
 
@@ -78,24 +129,28 @@ namespace UniFinder
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            // Clear search box
+            ResetFilters();
+        }
+
+        protected void ResetFilters()
+        {
+            // Set default values for search filters
             txtSearch.Text = string.Empty;
-
-            // Reset dropdowns to default values
-            ddlUni.SelectedIndex = 0;
-            ddlBranch.SelectedIndex = 0;
-            ddlSortBy.SelectedIndex = 0;
-
-            // Clear text boxes for numerical filters
+            ddlUni.SelectedIndex = 0; // Default to "All Universities"
+            ddlBranch.SelectedIndex = 0; // Default to "All Branches"
+            ddlSortBy.SelectedIndex = 0; // Default to first sorting option
             txtMinFees.Text = string.Empty;
             txtMaxFees.Text = string.Empty;
             txtDuration.Text = string.Empty;
 
-            // Reset page to the first page
+            // Reset pagination to the first page
             CurrentPage = 1;
 
-            // Rebind programs with the cleared filters and reset sorting
+            // Bind programs with default settings (i.e., no filters)
             BindPrograms();
+
+            // Update labels and any other UI elements
+            UpdateWishlistLabel();
             UpdatePageNumberLabel();
         }
 
@@ -116,25 +171,24 @@ namespace UniFinder
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 string query = @"
-                    SELECT DISTINCT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
-                    FROM Programme p
-                    JOIN University u ON p.uniID = u.uniID
-                    LEFT JOIN Branch b ON p.branchID = b.branchID
-                    WHERE 1=1";
+                SELECT DISTINCT p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
+                FROM Programme p
+                JOIN University u ON p.uniID = u.uniID
+                LEFT JOIN Branch b ON p.branchID = b.branchID
+                WHERE 1=1"; // Ensures the query is always valid
 
-                // Apply filters and sorting based on your logic
-
+                // Add filters based on user selection
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     query += " AND p.programName LIKE @SearchQuery";
                 }
 
-                if (!string.IsNullOrEmpty(universityFilter) && universityFilter != "0")
+                if (universityFilter != "All") // Filter by university
                 {
                     query += " AND u.uniID = @UniversityFilter";
                 }
 
-                if (!string.IsNullOrEmpty(branchFilter) && branchFilter != "0")
+                if (branchFilter != "All") // Filter by branch
                 {
                     query += " AND p.branchID = @BranchFilter";
                 }
@@ -154,6 +208,7 @@ namespace UniFinder
                     query += " AND p.duration = @Duration";
                 }
 
+                // Sorting
                 switch (sortOrder)
                 {
                     case "fees_desc":
@@ -169,17 +224,18 @@ namespace UniFinder
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
+                // Add parameters only if their values are provided
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     cmd.Parameters.AddWithValue("@SearchQuery", "%" + searchQuery + "%");
                 }
 
-                if (!string.IsNullOrEmpty(universityFilter) && universityFilter != "0")
+                if (universityFilter != "All")
                 {
                     cmd.Parameters.AddWithValue("@UniversityFilter", universityFilter);
                 }
 
-                if (!string.IsNullOrEmpty(branchFilter) && branchFilter != "0")
+                if (branchFilter != "All")
                 {
                     cmd.Parameters.AddWithValue("@BranchFilter", branchFilter);
                 }
@@ -203,19 +259,33 @@ namespace UniFinder
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // Implement pagination
-                pagedData.DataSource = dt.DefaultView;
-                pagedData.AllowPaging = true;
-                pagedData.PageSize = pageSize;
-                pagedData.CurrentPageIndex = CurrentPage - 1;
+                if (dt.Rows.Count == 0)
+                {
+                    lblNoPrograms.Visible = true;  // Show no results message
+                    DataList1.Visible = false;     // Hide DataList
+                }
+                else
+                {
+                    lblNoPrograms.Visible = false; // Hide no results message
+                    DataList1.Visible = true;      // Show DataList
 
-                DataList1.DataSource = pagedData;
-                DataList1.DataBind();
+                    // Implement pagination
+                    pagedData.DataSource = dt.DefaultView;
+                    pagedData.AllowPaging = true;
+                    pagedData.PageSize = pageSize;
+                    pagedData.CurrentPageIndex = CurrentPage - 1;
 
-                // Update page navigation controls
-                UpdatePageNumberLabel();
+                    DataList1.DataSource = pagedData;
+                    DataList1.DataBind();
+
+                    // Update page navigation controls
+                    UpdatePageNumberLabel();
+                }
+
+                RestoreCompareState();
             }
         }
+
 
         protected void ddlSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -226,8 +296,6 @@ namespace UniFinder
         private void UpdatePageNumberLabel()
         {
             lblPageNumber.Text = $"Page {CurrentPage} of {pagedData.PageCount}";
-
-            //lblPageNumber.Text = "Page " + CurrentPage.ToString();
         }
 
 
@@ -255,13 +323,6 @@ namespace UniFinder
             }
         }
 
-        //protected void CompareButton_Click(object sender, EventArgs e)
-        //{
-        //    var wishlist = Session["Wishlist"] as List<int>;
-        //    Session["WishlistIds"] = wishlist;
-        //    Response.Redirect("~/MyAccount/Wishlist.aspx");
-        //}
-
         private void UpdateWishlistLabel()
         {
             var wishlist = Session["Wishlist"] as List<int>;
@@ -288,16 +349,13 @@ namespace UniFinder
             }
             else
             {
-                //    WishlistLabel.Text = "Wishlist: (empty)";
             }
-
-            //WishlistLabel.Text = "Wishlist: " + string.Join(", ", wishlistNames);
-            //WishlistCount.Value = wishlist.Count.ToString();
         }
 
 
         protected void imgBtnSelectProgram(object sender, ImageClickEventArgs e)
         {
+
             ImageButton btn = sender as ImageButton;
             if (btn != null)
             {
@@ -360,6 +418,7 @@ namespace UniFinder
                     if (compareList.Contains(programId))
                     {
                         btn.Text = "Added to Compare";
+                        btn.CssClass += " greyed-out";
                         btn.Enabled = false;
                     }
                 }
@@ -411,7 +470,61 @@ namespace UniFinder
 
         protected void ddlUni_SelectedIndexChanged1(object sender, EventArgs e)
         {
-            ddlBranch.DataBind(); // Rebind ddlBranch to refresh its items based on the selected university
+            if (ddlUni.SelectedValue == "All") // Assuming "All" represents "All Universities"
+            {
+                ddlBranch.Enabled = false; // Disable branch dropdown
+                ddlBranch.SelectedIndex = 0; // Optionally reset the branch dropdown
+            }
+            else
+            {
+                ddlBranch.Enabled = true; // Enable branch dropdown
+                //BindBranchesForSelectedUniversity(); // Bind branches for the selected university
+                BindBranches(); // Ensure this method populates ddlBranch based on the selected university
+            }
+
+            // Bind programs based on the updated dropdown states
+            CurrentPage = 1;
+            BindPrograms();
+            UpdatePageNumberLabel();
+        }
+
+        protected void ddlUni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBranches(); // Ensure this method populates ddlBranch based on the selected university
+            BindPrograms(); // Optionally refresh programs if needed
+        }
+
+
+        private void BindBranchesForSelectedUniversity()
+        {
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                string universityID = ddlUni.SelectedValue;
+                string query = "SELECT DISTINCT b.branchID, b.location " +
+                               "FROM Branch b " +
+                               "JOIN Programme p ON b.branchID = p.branchID " +
+                               "WHERE p.uniID = @UniversityID " +
+                               "ORDER BY b.location";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UniversityID", universityID);
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                ddlBranch.Items.Clear();
+                ddlBranch.Items.Add(new ListItem("All Branches", "0")); // Ensure "All Branches" is added
+
+                while (dr.Read())
+                {
+                    string branchID = dr["branchID"].ToString();
+                    string location = dr["location"].ToString();
+                    ddlBranch.Items.Add(new ListItem(location, branchID));
+                }
+
+                dr.Close();
+                conn.Close();
+            }
         }
 
         protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)

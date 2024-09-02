@@ -252,10 +252,11 @@
     <Content Include="Management\ProgrammeManagement.aspx" />
     <Content Include="MyAccount\ChangeProfile.aspx" />
     <Content Include="Programme.aspx" />
-    <Content Include="Programme2.aspx" />
     <Content Include="ProgrammeDetail.aspx" />
     <Content Include="Management\RoleManagement.aspx" />
     <Content Include="Management\UniManagement2.aspx" />
+    <Content Include="MyAccount\RequestResetPassword.aspx" />
+    <Content Include="MyAccount\ResetPassword.aspx" />
     <Content Include="UniversityDetail.aspx" />
     <Content Include="University.aspx" />
     <Content Include="UploadCsv\UploadBranchCsv.aspx" />
@@ -461,13 +462,6 @@
     <Compile Include="Programme.aspx.designer.cs">
       <DependentUpon>Programme.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Programme2.aspx.cs">
-      <DependentUpon>Programme2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Programme2.aspx.designer.cs">
-      <DependentUpon>Programme2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ProgrammeDetail.aspx.cs">
       <DependentUpon>ProgrammeDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -489,6 +483,20 @@
     </Compile>
     <Compile Include="Management\UniManagement2.aspx.designer.cs">
       <DependentUpon>UniManagement2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount\RequestResetPassword.aspx.cs">
+      <DependentUpon>RequestResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount\RequestResetPassword.aspx.designer.cs">
+      <DependentUpon>RequestResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="UniversityDetail.aspx.cs">
       <DependentUpon>UniversityDetail.aspx</DependentUpon>

@@ -9,12 +9,18 @@
         .auto-style29 {
             font-size: medium;
         }
+        .auto-style30 {
+            font-size: x-large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p class="auto-style28">
+    <%--<p class="auto-style28">
         <strong>About Us</strong>
-    </p>
+    </p>--%>
+    <div class="header">
+        <h3 class="auto-style30"><strong>About Us</strong></h3>
+    </div>
     <p class="auto-style29">
         <strong>Welcome to EduPath</strong>
     </p>
@@ -44,9 +50,11 @@
         <li><strong>Personal AI Assistant</strong>: If you have any doubts, you can always ask our AI chatbot questions about the universities or programmes offered. </li>
     </ul>
     <p>
-        &nbsp;</p>
+        &nbsp;
+    </p>
     <p>
-        <strong>Why Choose UniFinder?</strong></p>
+        <strong>Why Choose UniFinder?</strong>
+    </p>
     <ul>
         <li><strong>Expertise</strong>: Our team are comprised of skilled admins, IT technicians, software engineers, top management, education professionals, former admission officers, and data analysts to help you succeed.</li>
         <li><strong>Accuracy</strong>: Our admin regularly update our database to ensure the most up-to-date and accurate information is listing on the website.</li>
@@ -54,9 +62,12 @@
         <li><strong>Support</strong>: We offer personalised support to answer questions and help you in solving problems faced during your search in university.</li>
     </ul>
     <p>
-        &nbsp;</p>
+        &nbsp;
+    </p>
     <p>
-        <strong>Contact Us</strong></p>
+        <strong>Contact Us</strong>
+    </p>
     <p>
-        Have any questions or need help? Our support team is always ready to assist! Reach out to us at <a href="mailto:support@edupath.com">support@edupath.com</a> or follow us on social media for the latest updates or useful tips.</p>
+        Have any questions or need help? Our support team is always ready to assist! Reach out to us at <a href="mailto:support@edupath.com">support@edupath.com</a> or follow us on social media for the latest updates or useful tips.
+    </p>
 </asp:Content>

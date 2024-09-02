@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        .header {
+            text-align: center;
+            font-size: 20px;
+        }
+
         /* Basic button styling */
         .button {
             display: inline-block;
@@ -28,9 +33,10 @@
                 background-color: #004085; /* Even darker shade when clicked */
                 transform: scale(0.98); /* Slightly shrink the button on click */
             }
-    .auto-style2 {
-        font-size: x-large;
-    }
+
+        .auto-style2 {
+            font-size: x-large;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -46,13 +52,16 @@
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyAccount/ChangePassword.aspx" CssClass="button">Change Password</asp:HyperLink>
     <br />
     <br />
+    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/MyAccount/ResetPassword.aspx" CssClass="button">Reset Password</asp:HyperLink>
+    <br />
+    <br />
     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/MyAccount/ChangeProfile.aspx" CssClass="button">Change Profile</asp:HyperLink>
     <br />
     <br />
     <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/MyAccount/Wishlist.aspx" CssClass="button">My Wishlist</asp:HyperLink>
     <br />
     <br />
-    <asp:LoginStatus ID="LoginStatus1" runat="server" CssClass="button"/>
+    <asp:LoginStatus ID="LoginStatus1" runat="server" CssClass="button" />
     <br />
     <br />
     <%--<asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/LoginPage.aspx">Log In</asp:HyperLink>

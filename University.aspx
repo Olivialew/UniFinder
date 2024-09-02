@@ -150,16 +150,21 @@
         .search-btn {
             margin-left: 10px;
         }
-    .auto-style40 {
-        color: black;
-    }
+
+        .auto-style40 {
+            color: black;
+        }
+
         .auto-style41 {
-            flex: 1 1 auto; /* Allow it to grow and shrink based on content */;
+            flex: 1 1 auto; /* Allow it to grow and shrink based on content */
+            ;
             padding: 10px;
-            max-width: 100%; /* Ensure it does not exceed container width */;
+            max-width: 100%; /* Ensure it does not exceed container width */
+            ;
             box-sizing: border-box;
             width: 1413px;
         }
+
         .auto-style42 {
             display: flex;
             justify-content: space-between;
@@ -169,6 +174,34 @@
             width: 98%;
             padding: 10px;
             background-color: #fff;
+        }
+
+        .auto-style43 {
+            width: 177px;
+        }
+
+        .auto-style44 {
+            width: 177px;
+            color: black;
+        }
+
+        .apply-filters-container {
+            background-color: #dae7f0;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .auto-style45 {
+            width: 32px;
+        }
+
+        .auto-style46 {
+            width: 32px;
+            color: black;
+        }
+
+        .auto-style47 {
+            color: red;
         }
     </style>
 </asp:Content>
@@ -180,62 +213,105 @@
         </div>
         <div class="auto-style42">
             <div class="auto-style41">
-                <span class="auto-style40"><strong>S</strong></span><span class="auto-style39"><strong>Search by:</strong></span><span class="auto-style40"><strong>earch by:<br />
-                </strong></span>
-                <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
-
-                <br />
-
-                <span class="auto-style39">
-                    <br />
-                    <br />
-                    <span class="auto-style26"><strong>Filter by:</strong></span><br />
-                </span>
-                <br />
                 <strong>
-                    <span class="auto-style40">
-                <br />
-                Filter by:</span><br />
-                    <asp:DropDownList ID="ddlUniType" runat="server" CssClass="auto-style27">
-                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
-                        <asp:ListItem>Research university</asp:ListItem>
-                        <asp:ListItem>International university</asp:ListItem>
-                        <asp:ListItem>Focused university</asp:ListItem>
-                        <asp:ListItem>Technical university</asp:ListItem>
-                        <asp:ListItem>Comprehensive university</asp:ListItem>
-                        <asp:ListItem>Islamic university</asp:ListItem>
-                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
-                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
-                        <asp:ListItem>METrO polytechnic</asp:ListItem>
-                        <asp:ListItem>Private university</asp:ListItem>
-                        <asp:ListItem>Private university college</asp:ListItem>
-                        <asp:ListItem>Others</asp:ListItem>
-                    </asp:DropDownList>
-                    <br />
-                <br />
-                    <span class="auto-style39">
-                        <br />
-                        <br />
-                        <span class="auto-style26">Branch</span><br />
-                    </span>
-                    <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
-                    </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
-                    <br class="auto-style39" />
-
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
-
-                    &nbsp;<asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" />
-                    <span class="auto-style39">
-                        <br />
-                    </span>
-                </strong>
-
-                <span class="auto-style39">
+                </strong><span class="auto-style39">
                     <br />
                 </span>
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="auto-style39"></asp:Label>
                 <br class="auto-style39" />
+
+                <div class="apply-filters-container">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="auto-style43">
+                                <span class="auto-style40"><strong>S</strong></span><span class="auto-style39"><strong>Search by:</strong></span><span class="auto-style40"><strong>earch by:</strong></span></td>
+                            <td class="auto-style45">&nbsp;</td>
+                            <td>
+                                <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
+
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43">&nbsp;</td>
+                            <td class="auto-style45">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43">
+                                <strong>
+                                    <span class="auto-style40">Filter by:</span></strong></td>
+                            <td class="auto-style45">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style44"><strong>University Type</strong></td>
+                            <td class="auto-style46"><strong>:</strong></td>
+                            <td>
+                                <strong>
+                                    <asp:DropDownList ID="ddlUniType" runat="server">
+                                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
+                                        <asp:ListItem>Research university</asp:ListItem>
+                                        <asp:ListItem>International university</asp:ListItem>
+                                        <asp:ListItem>Focused university</asp:ListItem>
+                                        <asp:ListItem>Technical university</asp:ListItem>
+                                        <asp:ListItem>Comprehensive university</asp:ListItem>
+                                        <asp:ListItem>Islamic university</asp:ListItem>
+                                        <asp:ListItem>Premier polytechnic (university status)</asp:ListItem>
+                                        <asp:ListItem>Conventional polytechnic</asp:ListItem>
+                                        <asp:ListItem>METrO polytechnic</asp:ListItem>
+                                        <asp:ListItem>Private university</asp:ListItem>
+                                        <asp:ListItem>Private university college</asp:ListItem>
+                                        <asp:ListItem>Others</asp:ListItem>
+                                    </asp:DropDownList>
+                                </strong>
+
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style44"><strong>Branch</strong></td>
+                            <td class="auto-style46"><strong>:</strong></td>
+                            <td>
+                                <strong>
+                                    <%-- <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+                                    </asp:DropDownList>--%>
+                                    <asp:DropDownList ID="ddlLocation" runat="server">
+                                    </asp:DropDownList>
+                                </strong>
+
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43">&nbsp;</td>
+                            <td class="auto-style45">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <asp:Label ID="lblNoResults" runat="server" CssClass="auto-style47"></asp:Label>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <strong>
+                                    <div style="text-align: center">
+                                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" OnClick="btnSearch_Click" />
+                                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click" />
+                                    </div>
+                                </strong>
+
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
 
                 <div class="panel">
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="1413px">
@@ -255,10 +331,11 @@
                                             data-unimalay='<%# Eval("uniNameMalay") %>' />
                                     </div>
                                     <div class="uniName">
-                                        <strong><asp:Label
-                                            ID="lblUniName"
-                                            runat="server"
-                                            Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'></asp:Label></strong>
+                                        <strong>
+                                            <asp:Label
+                                                ID="lblUniName"
+                                                runat="server"
+                                                Text='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'></asp:Label></strong>
                                     </div>
                                 </div>
                             </ItemTemplate>

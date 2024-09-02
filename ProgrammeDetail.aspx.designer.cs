@@ -24,6 +24,15 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.Image imgUniversityLogo;
 
         /// <summary>
+        /// compareListHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compareListHiddenField;
+
+        /// <summary>
         /// lblProgramName control.
         /// </summary>
         /// <remarks>
@@ -103,5 +112,23 @@ namespace UniFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlFacLink;
+
+        /// <summary>
+        /// btnAddToCompare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddToCompare;
+
+        /// <summary>
+        /// lblErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
     }
 }

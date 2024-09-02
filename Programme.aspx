@@ -197,6 +197,44 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             font-size: medium;
         }
+
+        .apply-filters-container {
+            background-color: #dae7f0;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .auto-style40 {
+            width: 10px;
+        }
+
+        .auto-style41 {
+            width: 209px;
+        }
+
+        .auto-style42 {
+            width: 312px;
+        }
+
+        .auto-style43 {
+            width: 99%;
+        }
+
+        .auto-style44 {
+            width: 104px;
+        }
+
+        .auto-style45 {
+            width: 10px;
+            color: black;
+        }
+
+        .no-program-message {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </asp:Content>
 
@@ -207,71 +245,139 @@
         </div>
         <div class="auto-style38">
             <div class="mainSide">
-                <div class="search-sort-container">
-                    <div class="search-container">
-                        <strong class="auto-style39"><span class="comparison-table">Search by:</span></strong>
-                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
-                    </div>
 
-                    <div class="sort-container">
-                        <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
-                        <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
-                            <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
-                            <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
-                            <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
+                <div class="apply-filters-container">
+
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server"
+                        ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                        SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID) OR @uniID = 'All'">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+
+                    <strong>
+                        <br />
+                        <table class="auto-style43">
+                            <tr>
+                                <td class="auto-style44">
+                                    <strong class="auto-style39"><span class="comparison-table">Search by:</span></strong></td>
+                                <td class="auto-style40">&nbsp;</td>
+                                <td class="auto-style42">
+
+                                    <strong>
+                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
+                                    </strong></td>
+                                <td class="auto-style41">
+                                    <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
+                                    <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+                                        <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                                        <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">&nbsp;</td>
+                                <td class="auto-style40">&nbsp;</td>
+                                <td class="auto-style42">&nbsp;</td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+                                    <span class="comparison-table">
+                                        <strong>Filter by:</strong></span></td>
+                                <td class="auto-style40">&nbsp;</td>
+                                <td class="auto-style42">&nbsp;</td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+                                    <span class="comparison-table">
+                                        <strong>University</strong></span></td>
+                                <td class="auto-style45">:</td>
+                                <td class="auto-style42">
+                                    <asp:DropDownList ID="ddlUni" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged1">
+                                    </asp:DropDownList>
+                                </td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+                                    <span class="comparison-table">
+
+                                        <span class="auto-style26"><strong>Branch Location</strong></span></span></td>
+                                <td class="auto-style45">:</td>
+                                <td class="auto-style42">
+
+                                    <asp:DropDownList ID="ddlBranch" runat="server" DataTextField="location" DataValueField="branchID">
+                                    </asp:DropDownList>
+
+                                </td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+
+                                    <strong>
+                                        <span class="comparison-table">Tuition Fees (RM)</span></strong></td>
+                                <td class="auto-style45">&nbsp;</td>
+                                <td class="auto-style42">&nbsp;</td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+
+                                    <strong>
+                                        <span class="auto-style26"><span class="comparison-table">Minimum</span></span></strong></td>
+                                <td class="auto-style45">:</td>
+                                <td class="auto-style42">
+
+                                    <strong>
+                                        <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox></strong></td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+                                    <strong>
+                                        <span class="auto-style26">
+
+                                            <span class="comparison-table">Maximum</span></span></strong></td>
+                                <td class="auto-style45">:</td>
+                                <td class="auto-style42">
+
+                                    <strong>
+                                        <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox></strong></td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style44">
+
+                                    <strong><span class="comparison-table">Duration</span></strong></td>
+                                <td class="auto-style45">:</td>
+                                <td class="auto-style42">
+                                    <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
+
+                                </td>
+                                <td class="auto-style41">&nbsp;</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <div style="text-align: center">
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" OnClick="btnSearch_Click" />
+                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click" />
+                        </div>
+                        <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><span class="comparison-table"><br />
+                        </span>
+                    <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="comparison-table"></asp:Label>
+
                 </div>
-
-                <span class="comparison-table">
-                    <br />
-                    <strong>Filter by:<br />
-                        University</strong><br />
-                </span>
-                <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource1" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True">
-                </asp:DropDownList>
-                </span></strong>
-                <span class="comparison-table">
-
-                    <br />
-                    <br />
-                    <span class="auto-style26"><strong>Branch Location</strong></span><br />
-                </span>
-
-                <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
-                </asp:DropDownList>
-
-
-                <span class="auto-style26"><strong>Fees<br />
-                    <br />
-                    <span class="comparison-table">Tuition Fees</span></strong></span><br class="auto-style26" />
-                <span class="auto-style26"><span class="comparison-table">Minimum: </span></span>
-                <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><span class="comparison-table"><br class="auto-style26" />
-                    <span class="auto-style26">Maximum: </span>
-                </span>
-                <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox><span class="comparison-table"><br />
-                    <br />
-
-                    <strong>Duration:</strong>
-                </span>
-                <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
-
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server"
-                    ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-                    SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID)">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
-                    </SelectParameters>
-                </asp:SqlDataSource>
-
-                <strong>
-                    <br />
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="search-btn" OnClick="btnSearch_Click" />
-                    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="search-btn" OnClick="btnReset_Click" Width="60px" />
-                    <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><span class="comparison-table"><br />
-                    </span>
-                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="comparison-table"></asp:Label>
                 <span class="comparison-table">
                     <br />
 
@@ -279,6 +385,7 @@
                         <asp:HiddenField ID="compareListHiddenField" runat="server" />
 
                         <%--<asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">--%>
+                        <asp:Label ID="lblNoPrograms" runat="server" Text="No program found." Visible="False" CssClass="no-program-message"></asp:Label>
 
                         <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" Width="1419px">
                             <ItemTemplate>
@@ -286,26 +393,24 @@
                                     <div class="programmeImgContainer">
                                         <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
                                     </div>
-                                    <div class="programmeName">
-                                        <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label>
+                                    <div class="programmeName" style="text-align: center;">
+                                        <strong>
+                                            <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label></strong>
                                     </div>
                                     <div class="fees">
                                         Tuition Fees: RM
-           
-                                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
                                     </div>
                                     <div class="location">
                                         Location: 
-           
-                                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
                                     </div>
                                     <div class="duration">
                                         Duration: 
-           
-                                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
                                         years
-       
                                     </div>
+                                    <br />
                                     <div style="text-align: center;">
                                         <!-- Center the button -->
                                         <asp:Button ID="btnAddToCompare" runat="server" Text="Add to Compare" CssClass="compare-btn" CommandName="AddToCompare" CommandArgument='<%# Eval("programID") %>' OnClick="AddToCompareButton_Click" />
@@ -313,29 +418,19 @@
                                 </div>
                             </ItemTemplate>
                         </asp:DataList>
-
-                        <%--<asp:Label ID="WishlistLabel" runat="server" Text="Wishlist:"></asp:Label>
-                        <asp:HiddenField ID="WishlistCount" runat="server" />--%>
-                        <%--<asp:Button ID="CompareButton" runat="server" Text="Compare" OnClick="CompareButton_Click" />--%>
                 </span>
 
                 <br />
 
                 <div class="auto-style1">
-                    <asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" />
+                    <asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" CssClass="button" />
                     &nbsp;&nbsp;
                     <asp:Label ID="lblPageNumber" runat="server" Text="Page 1" CssClass="comparison-table"></asp:Label>
                     &nbsp;&nbsp;
-                    <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="91px" />
+                    <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="91px" CssClass="button" />
                 </div>
 
                 <div class="auto-style1">
-
-                    <%--<asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                    <asp:ListItem Text="5" Value="5" />
-                    <asp:ListItem Text="10" Value="10" Selected="True" />
-                    <asp:ListItem Text="15" Value="15" />
-                </asp:DropDownList>--%>
 
                     <span class="comparison-table">
 
@@ -354,6 +449,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </asp:Content>

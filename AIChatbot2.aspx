@@ -53,7 +53,7 @@
         }
 
         .auto-style31 {
-            width: 552px;
+            width: 807px;
         }
 
         .auto-style32 {
@@ -124,8 +124,7 @@
     <div id="chatbox">
         <div id="messages" class="auto-style29"></div>
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="userInput" placeholder="Type your message here..." class="auto-style31" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="userInput" placeholder="Type your message here..." class="auto-style31" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
         <button type="button" onclick="sendMessage()" class="auto-style32">Send</button>
     </div>
 </asp:Content>
