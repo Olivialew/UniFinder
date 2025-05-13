@@ -1,4 +1,4 @@
-# UniFinder - Univesity Finder Web Application
+# EduPath - Univesity Finder Web Application
 This  project  is  aimed  to  be  a  one-stop  destination  for  students  to  find  out  their  desired programmes  and  school  to  pursue  after  graduating.
 
 ## How It's Made:
