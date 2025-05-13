@@ -47,11 +47,11 @@ Diagram 1.6 - Register Page
 ### Module 1 - Account Module
 ![Image](https://github.com/user-attachments/assets/a1c31279-0a92-4042-8200-45c81fb41df1)
 
-Diagram 2.2 - Accounnt Settings Page
+Diagram 2.2 - Account Settings Page
 
 ![Image](https://github.com/user-attachments/assets/3e4dc3bd-6112-48e4-869f-175894822811)
 
-Diagram 2.3 - Change Password
+Diagram 2.3 - Change Password Page
 
 ![Image](https://github.com/user-attachments/assets/e37ab69d-a447-4240-862e-955b75f6b03a)
 
@@ -59,11 +59,11 @@ Diagram 2.3.1 - Change Password Success Page
 
 ![Image](https://github.com/user-attachments/assets/da1782c1-192d-4bcb-a9f0-83326f0541df)
 
-Diagram 2.4 - Reset Password
+Diagram 2.4 - Reset Password Page
 
 ![Image](https://github.com/user-attachments/assets/962b456f-0817-483d-aa3a-8c0cd466184f)
 
-Diagram 2.5 - Change Profile
+Diagram 2.5 - Change Profile Page
 
 ![Image](https://github.com/user-attachments/assets/8c905687-c752-46d6-a1fe-50c3c82e154f)
 
