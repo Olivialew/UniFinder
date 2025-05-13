@@ -18,10 +18,13 @@ The main focus of the system was the centralised university database that offers
 ### Homepage
 ![Image](https://github.com/user-attachments/assets/157aa947-8a23-49a5-9ce5-c1c01613584c)
 Diagram 1.0 - Homepage
+
 ![Image](https://github.com/user-attachments/assets/d252d759-eddb-448c-bdbe-a7df5ec3debe)
 Diagram 1.1 = Homapage content
+
 ![Image](https://github.com/user-attachments/assets/42b84e32-ea6b-40ca-b2b2-0c169edea30d)
 Diagram 1.2 - Homepage Footer
+
 
 ### Module 1 - Account Module
 
