@@ -15,6 +15,13 @@ Later, the scope of the project was defined in modules:
 
 The main focus of the system was the centralised university database that offers a variety of programmes and university options with completed and up-to-date information. Therefore, the first thing I did was searching for the dataset which will be use for the database to display universities and programmes in Malaysia. Then, I planned out the database structure using an Entity-Relationship Diagram (ERD). To keep the information up-to-date, the administrator are able to update the dataset in the database.
 
+### Homepage
+![Image](https://github.com/user-attachments/assets/157aa947-8a23-49a5-9ce5-c1c01613584c)
+
+![Image](https://github.com/user-attachments/assets/4d6ec0e7-295d-453e-8ec0-b3a9c6dce248)
+
+![Image](https://github.com/user-attachments/assets/6051972a-0557-4ab4-8e90-a3434009658e)
+
 ### Module 1 - Account Module
 
 ### Module 2 - University Module
