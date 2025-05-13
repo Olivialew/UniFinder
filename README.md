@@ -23,5 +23,5 @@ The main focus of the system was the centralised university database that offers
 ### Module 5 - Personality Test Module
 
 ## Lessons Learned:
-1    
+At the beginning, I faced many difficulties such as not finding a suitable dataset, not being able to build my project in a timely and high quality manner. However, through constant efforts and determination, I managed to pull though completing and deliver my project before the deadline and demostrated it to my supervisor. After completing this project, I was left with satisfaction over my accompplishments. Although there are some minor flaws, such as the chatbot providing inaccurate responses on the enquire of programme entry requirements, the dataset are not up-to-date, I am pretty happy with the overall system.
 
