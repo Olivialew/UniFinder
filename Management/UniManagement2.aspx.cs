@@ -18,11 +18,34 @@ namespace UniFinder
         {
             if (!IsPostBack)
             {
-                // Bind the GridView to display all records on initial load
-                //GridView1.DataBind();
+                // Bind dropdown lists
+                BindDropdowns();
 
-                BindGrid();
+                // Set default sort to "Oldest" (ASC)
+                ddlSortBy.SelectedValue = "ASC";
+
+                // Bind the GridView with default sort order
+                //BindGrid(sortOrder: "ASC");
             }
+        }
+
+        private void BindDropdowns()
+        {
+            // Bind university types to ddlUniType
+            DataTable universityTypes = GetUniversityTypes();
+            ddlUniType.DataSource = universityTypes;
+            ddlUniType.DataTextField = "uniType";
+            ddlUniType.DataValueField = "uniType";
+            ddlUniType.DataBind();
+            ddlUniType.Items.Insert(0, new ListItem("All University Types", "")); // Default to show all types
+
+            // Bind branch locations to ddlLocation
+            DataTable branchLocations = GetBranchLocations();
+            ddlLocation.DataSource = branchLocations;
+            ddlLocation.DataTextField = "location";
+            ddlLocation.DataValueField = "location";
+            ddlLocation.DataBind();
+            ddlLocation.Items.Insert(0, new ListItem("All Branches", "")); // Default to show all branches
         }
 
         //Display Image
@@ -39,72 +62,50 @@ namespace UniFinder
             }
         }
 
-        //private void BindGrid(string searchQuery = "", string uniType = "", string branch = "")
-        //{
-        //    string query = @"
-        //        SELECT u.*, b.location 
-        //        FROM University u
-        //        INNER JOIN Branch b ON u.uniID = b.uniID
-        //        WHERE (1=1)";
+        private DataTable GetUniversityTypes()
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT DISTINCT uniType FROM [University]";
 
-        //    if (!string.IsNullOrEmpty(searchQuery))
-        //    {
-        //        query += " AND u.uniNameEng LIKE @searchQuery";
-        //    }
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
 
-        //    if (!string.IsNullOrEmpty(uniType))
-        //    {
-        //        query += " AND u.uniType = @UniType";
-        //    }
+            return dt;
+        }
 
-        //    if (!string.IsNullOrEmpty(branch))
-        //    {
-        //        query += " AND b.location = @Location";
-        //    }
+        private DataTable GetBranchLocations()
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT DISTINCT location FROM [Branch]";
 
-        //    //query += " ORDER BY u.uniID DESC"; // Ensure records are ordered by ID or timestamp
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
 
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
-        //        using (SqlCommand cmd = new SqlCommand(query, conn))
-        //        {
-        //            if (!string.IsNullOrEmpty(searchQuery))
-        //            {
-        //                cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
-        //            }
-        //            if (!string.IsNullOrEmpty(uniType))
-        //            {
-        //                cmd.Parameters.AddWithValue("@UniType", uniType);
-        //            }
-        //            if (!string.IsNullOrEmpty(branch))
-        //            {
-        //                cmd.Parameters.AddWithValue("@Location", branch);
-        //            }
+            return dt;
+        }
 
-        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            da.Fill(dt);
-        //            GridView1.DataSource = dt;
-        //            GridView1.DataBind();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblErrorMsg.Text = "Error: " + ex.Message;
-        //    }
-        //}
-
-        private void BindGrid(string searchQuery = "", string uniType = "", string branch = "")
+        private void BindGrid(string searchQuery = "", string uniType = "", string branch = "", string sortBy = "")
         {
             string query = @"
-                    SELECT u.uniID, u.uniNameEng, u.uniNameMalay, u.uniAcronym, u.foundationYear, 
-                           u.uniType, u.campusTourLink, u.youtubeLink, u.googleMapsLink, 
-                           MAX(CASE WHEN b.location IS NOT NULL THEN b.location ELSE '' END) AS Location,
-                           MAX(CASE WHEN u.uniLogo IS NOT NULL THEN u.uniLogo ELSE NULL END) AS uniLogo
-                    FROM University u
-                    LEFT JOIN Branch b ON u.uniID = b.uniID
-                    WHERE (1=1)";
+    SELECT u.uniID, u.uniNameEng, u.uniNameMalay, u.uniAcronym, u.foundationYear, 
+           u.uniType, u.campusTourLink, u.youtubeLink, u.googleMapsLink, 
+           MAX(CASE WHEN b.location IS NOT NULL THEN b.location ELSE '' END) AS Location,
+           MAX(CASE WHEN u.uniLogo IS NOT NULL THEN u.uniLogo ELSE NULL END) AS uniLogo
+    FROM University u
+    LEFT JOIN Branch b ON u.uniID = b.uniID
+    WHERE (1=1)";
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -122,6 +123,16 @@ namespace UniFinder
             }
 
             query += " GROUP BY u.uniID, u.uniNameEng, u.uniNameMalay, u.uniAcronym, u.foundationYear, u.uniType, u.campusTourLink, u.youtubeLink, u.googleMapsLink";
+
+            // Apply sorting by uniID (latest or oldest)
+            if (sortBy == "latest")
+            {
+                query += " ORDER BY u.uniID DESC";  // Sorting by latest uniID
+            }
+            else if (sortBy == "oldest")
+            {
+                query += " ORDER BY u.uniID ASC";  // Sorting by oldest uniID
+            }
 
             try
             {
@@ -144,28 +155,46 @@ namespace UniFinder
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    GridView1.DataSource = dt;
-                    GridView1.DataBind();
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
+                        GridView1.Visible = true;
+                        lblNoRecords.Visible = false; // Hide "No records found" message
+                    }
+                    else
+                    {
+                        GridView1.Visible = false; // Hide GridView
+                        lblNoRecords.Visible = true; // Show "No records found" message
+                    }
                 }
             }
             catch (Exception ex)
             {
                 lblErrorMsg.Text = "Error: " + ex.Message;
+                LogError(ex.ToString());
             }
         }
 
 
+        protected void ddlSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sortOrder = ddlSortBy.SelectedValue; // Get selected value (ASC or DESC)
+
+            // Call BindGrid with the selected sort order
+            BindGrid(txtSearch.Text.Trim(), ddlUniType.SelectedValue, ddlLocation.SelectedValue, sortOrder);
+        }
+
         protected void btnSearch_Click2(object sender, EventArgs e)
         {
-            // Set filter parameters for the SqlDataSource
             string searchQuery = txtSearch.Text.Trim();
             string uniType = ddlUniType.SelectedValue;
             string location = ddlLocation.SelectedValue;
-            //string sortBy = ddlSortBy.SelectedValue;
+            string sortBy = ddlSortBy.SelectedValue;  // Assuming you have a dropdown for sorting
 
-            BindGrid(searchQuery, uniType, location/*sortBy*/);
+            BindGrid(searchQuery, uniType, location, sortBy);
         }
-
 
         protected void btnReset_Click2(object sender, EventArgs e)
         {
@@ -393,7 +422,6 @@ namespace UniFinder
                 LogError(ex.ToString());
             }
         }
-
 
         private DataRow GetRecordById(string id)
         {

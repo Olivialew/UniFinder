@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Web;
 using System.Web.Services;
+using Acornima.Ast;
 
 namespace UniFinder
 {
@@ -29,7 +30,8 @@ namespace UniFinder
                 ProcessStartInfo start = new ProcessStartInfo
                 {
                     FileName = "python",
-                    Arguments = $"\"E:\\UniFinder\\Scripts\\geminiBot.py\" \"{message}\"",
+                    //Arguments = $"\"E:\\UniFinder\\Scripts\\geminiBot.py\" \"{message}\"",
+                    Arguments = $"\"C:\\University Notes\\202407\\FYP\\UniFinder\\Scripts\\geminiBot.py\" \"{message}\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,

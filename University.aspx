@@ -253,7 +253,7 @@
                             <td>
                                 <strong>
                                     <asp:DropDownList ID="ddlUniType" runat="server">
-                                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>
+<%--                                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>--%>
                                         <asp:ListItem>Research university</asp:ListItem>
                                         <asp:ListItem>International university</asp:ListItem>
                                         <asp:ListItem>Focused university</asp:ListItem>

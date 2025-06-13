@@ -31,7 +31,6 @@ namespace UniFinder
 
                 BindUniversities(); // Method to bind universities from the database
                 BindPrograms();
-                //Session["CompareList"] = new List<string>();
 
                 if (Session["Wishlist"] == null)
                 {
@@ -82,7 +81,7 @@ namespace UniFinder
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 ddlBranch.Items.Clear();
-                ddlBranch.Items.Add(new ListItem("All Branches", "All")); // Add "All Branches" option
+                ddlBranch.Items.Add(new ListItem("All Branches", "All")); // Ensure "All Branches" is added
 
                 while (dr.Read())
                 {
@@ -95,6 +94,7 @@ namespace UniFinder
                 conn.Close();
             }
         }
+
 
         protected void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -134,10 +134,12 @@ namespace UniFinder
 
         protected void ResetFilters()
         {
-            // Set default values for search filters
             txtSearch.Text = string.Empty;
             ddlUni.SelectedIndex = 0; // Default to "All Universities"
-            ddlBranch.SelectedIndex = 0; // Default to "All Branches"
+            ddlBranch.Items.Clear(); // Clear branch dropdown items
+            ddlBranch.Items.Add(new ListItem("All Branches", "All")); // Add "All Branches" option
+            ddlBranch.SelectedIndex = 0; // Set default value
+
             ddlSortBy.SelectedIndex = 0; // Default to first sorting option
             txtMinFees.Text = string.Empty;
             txtMaxFees.Text = string.Empty;
@@ -146,6 +148,10 @@ namespace UniFinder
             // Reset pagination to the first page
             CurrentPage = 1;
 
+            // Rebind the universities and branches
+            BindUniversities();
+            BindBranches(); // Ensure this method gets the "All Branches" option
+
             // Bind programs with default settings (i.e., no filters)
             BindPrograms();
 
@@ -153,6 +159,7 @@ namespace UniFinder
             UpdateWishlistLabel();
             UpdatePageNumberLabel();
         }
+
 
         private const int pageSize = 12; // Ensure this is set to 12
 
@@ -351,7 +358,6 @@ namespace UniFinder
             {
             }
         }
-
 
         protected void imgBtnSelectProgram(object sender, ImageClickEventArgs e)
         {

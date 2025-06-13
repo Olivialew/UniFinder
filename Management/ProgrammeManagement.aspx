@@ -107,20 +107,26 @@
         </div>
 
         <div class="sort-container">
-            <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
-            <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
-                <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
-                <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
-                <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+            <strong>Sort by: </strong>
+            <asp:DropDownList ID="ddlSortBy" runat="server">
+                <asp:ListItem Value="">Select</asp:ListItem>
+                <asp:ListItem Value="fees_asc">Fees (Low to High)</asp:ListItem>
+                <asp:ListItem Value="fees_desc">Fees (High to Low)</asp:ListItem>
+                <asp:ListItem Value="name_asc">Programme Name (A to Z)</asp:ListItem>
+                <asp:ListItem Value="name_desc">Programme Name (Z to A)</asp:ListItem>
+                <asp:ListItem Value="latest">Latest Record (by ProgramID)</asp:ListItem>
+                <asp:ListItem Value="oldest">Oldest Record (by ProgramID)</asp:ListItem>
             </asp:DropDownList>
+
         </div>
     </div>
     <br />
     <br />
     <strong>Filter by:<br />
-    University<br />
-    <asp:DropDownList ID="ddlUni" runat="server" DataSourceID="SqlDataSource3" DataTextField="uniNameEng" DataValueField="uniID" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged">
-    </asp:DropDownList>
+        University<br />
+        <asp:DropDownList ID="ddlUni" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged">
+        </asp:DropDownList>
+
         <%--                <br /><br />
                 <asp:DropDownList ID="ddlFilterBy" runat="server" AutoPostBack="true">
                     <asp:ListItem Text="Select Filter" Value=""></asp:ListItem>
@@ -128,27 +134,27 @@
                     <asp:ListItem Text="Fees" Value="Fees"></asp:ListItem>
                     <asp:ListItem Text="Duration" Value="Duration"></asp:ListItem>
                 </asp:DropDownList>--%>
-    <br />
-    <br />
+        <br />
+        <br />
     </strong>
     <span class="auto-style26"><strong>Branch Location</strong></span><strong><br />
-    <asp:DropDownList ID="ddlBranch" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="branchID">
-    </asp:DropDownList>
-    <br />
-    <br />
+        <asp:DropDownList ID="ddlBranch" runat="server" DataTextField="location" DataValueField="branchID">
+        </asp:DropDownList>
+        <br />
+        <br />
     </strong>
     <span class="auto-style26"><strong>Fees</strong></span><strong><br class="auto-style26" />
     </strong>
-    <span class="auto-style26"><strong>Minimum: </strong> </span>
+    <span class="auto-style26"><strong>Minimum: </strong></span>
     <strong>
-    <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
+        <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox><br class="auto-style26" />
     </strong>
-    <span class="auto-style26"><strong>Maximum: </strong> </span>
+    <span class="auto-style26"><strong>Maximum: </strong></span>
     <strong>
-    <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox></strong><span class="auto-style26"><strong><br />
-        <br />
-        Duration</strong><br />
-    </span>
+        <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox></strong><span class="auto-style26"><strong><br />
+            <br />
+            Duration</strong><br />
+        </span>
     <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server"
@@ -161,16 +167,18 @@
 
     &nbsp;<asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click3" />
     &nbsp;
-                <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click3" />
+          <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click3" />
     <br />
     <br />
-    </strong>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/AddProgramme.aspx">Add Programme</asp:HyperLink>
     <strong>
         <br />
         <br />
     </strong>
     <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+
+    <asp:Label ID="lblNoPrograms" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+
 
     <div class="gridview-container">
         <asp:GridView ID="GridView1" runat="server" CssClass="gridview-table" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="programID" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDeleting="GridView1_RowDeleting">

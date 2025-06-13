@@ -15,7 +15,7 @@ namespace UniFinder.Management
         {
             if (!IsPostBack)
             {
-                // Initialization code if needed
+
             }
         }
 

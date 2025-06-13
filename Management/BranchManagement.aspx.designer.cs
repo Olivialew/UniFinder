@@ -33,6 +33,15 @@ namespace UniFinder
         protected global::System.Web.UI.WebControls.DropDownList ddlBranch;
 
         /// <summary>
+        /// ddlSortBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSortBranch;
+
+        /// <summary>
         /// SqlDataSource3 control.
         /// </summary>
         /// <remarks>

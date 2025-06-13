@@ -26,6 +26,7 @@
             width: 300px;
             font-size: medium;
         }
+
         .auto-style5 {
             font-size: x-large;
         }
@@ -35,17 +36,25 @@
     <div class="centered-text">
         <strong><span class="auto-style5">Account Management</span></strong>
     </div>
-    <p class="auto-style3"><strong>Search By:</strong></p>
-    <p class="auto-style2">
-        <strong>
+    <p class="auto-style3"><strong>Search By:<span class="auto-style2">&nbsp;&nbsp; </span>
             <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Username" CssClass="auto-style4"></asp:TextBox>
-            <span class="auto-style3">&nbsp;&nbsp;&nbsp;&nbsp; </span>
-            <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click" CssClass="auto-style3" />
-            <span class="auto-style3">&nbsp;</span>
-            <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF; font-size: medium;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click" />
-        </strong>
-    </p>
-    <p class="auto-style3">
+        </strong></p>
+        <p class="auto-style3"><strong>Sort By Role:<span class="auto-style2">&nbsp;&nbsp; </span>
+                <asp:DropDownList ID="ddlRoleFilter" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlRoleFilter_SelectedIndexChanged">
+                    <asp:ListItem Text="All Roles" Value="All"></asp:ListItem>
+                    <asp:ListItem Text="Admin" Value="admin"></asp:ListItem>
+                    <asp:ListItem Text="Student" Value="student"></asp:ListItem>
+                </asp:DropDownList>
+            </strong></p>
+        <p class="auto-style2">
+            <strong>
+                <span class="auto-style3">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <asp:Button ID="btnSearch" runat="server" BackColor="#009999" BorderStyle="None" Height="33px" Text="Search" Width="129px" Style="border-radius: 10px;" ForeColor="#242424" OnClick="btnSearch_Click" CssClass="auto-style3" />
+                <span class="auto-style3">&nbsp;</span>
+                <asp:Button ID="btnReset" runat="server" BackColor="#242424" BorderStyle="Solid" Height="33px" Text="Reset" Width="129px" Style="border-radius: 10px; color: #FFFFFF; font-size: medium;" BorderColor="#009999" CssClass="auto-style21" OnClick="btnReset_Click" />
+            </strong>
+        </p>
+
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/CreateAdmin.aspx">Create Admin</asp:HyperLink>
     </p>
     <script type="text/javascript">
@@ -63,8 +72,8 @@
         <asp:GridView ID="GridView1" runat="server" CssClass="gridview-table" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="UserName" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowCommand="GridView1_RowCommand">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField  ShowEditButton="True" />
-<%--ShowDeleteButton="True"--%>
+                <asp:CommandField ShowEditButton="True" />
+                <%--ShowDeleteButton="True"--%>
                 <asp:TemplateField HeaderText="Username" SortExpression="UserName">
                     <ItemTemplate>
                         <asp:Label ID="lblUserName" runat="server" Text='<%# Eval("UserName") %>' />
@@ -97,7 +106,7 @@
 
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
-<%--                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Eval("UserName") %>' />--%>
+                        <%--                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%# Eval("UserName") %>' />--%>
                         <asp:Button ID="btnDisable" runat="server" Text="Disable" CommandName="Disable" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmDisable();" />
                         <asp:Button ID="btnReactivate" runat="server" Text="Reactivate" CommandName="Reactivate" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmReactivate();" />
                         <asp:Button ID="btnDelete" runat="server" Text="Delete" CommandName="Delete" CommandArgument='<%# Eval("UserName") %>' OnClientClick="return confirmDelete();" />
@@ -121,5 +130,12 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
         <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server"
+            ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+            SelectCommand="SELECT UserName, Email, Role FROM aspnet_Users u
+                   JOIN aspnet_UsersInRoles ur ON u.UserId = ur.UserId
+                   JOIN aspnet_Roles r ON ur.RoleId = r.RoleId"
+            SortParameterName="sortExpression"></asp:SqlDataSource>
+
     </p>
 </asp:Content>

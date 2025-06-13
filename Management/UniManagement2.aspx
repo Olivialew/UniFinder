@@ -47,6 +47,12 @@
                 resize: vertical; /* Allows vertical resizing only */
             }
 
+        .no-records-message {
+            color: red;
+            font-weight: bold;
+        }
+
+
         @media (max-width: 768px) {
             .gridview-table {
                 font-size: 14px; /* Adjust font size for smaller screens */
@@ -57,16 +63,6 @@
                     width: 100%;
                     box-sizing: border-box;
                 }
-        }
-
-        .auto-style29 {
-            display: flex;
-            justify-content: center; /* Centers horizontally */
-            ;
-            align-items: center; /* Centers vertically */
-            ;
-            height: 100%;
-            text-align: center;
         }
     </style>
 </asp:Content>
@@ -108,8 +104,18 @@
         </span><strong>
             <br />
             Location<br />
-            <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+            <%--<asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
+            </asp:DropDownList>--%>
+            <asp:DropDownList ID="ddlLocation" runat="server">
             </asp:DropDownList>
+            <br />
+            <br />
+            Sort By:<br />
+            <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSortBy_SelectedIndexChanged">
+                <asp:ListItem Text="Sort by Oldest" Value="ASC"></asp:ListItem>
+                <asp:ListItem Text="Sort by Latest" Value="DESC"></asp:ListItem>
+            </asp:DropDownList>
+
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
         </strong>
 
@@ -124,6 +130,8 @@
     <br />
     <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
     <br />
+    <asp:Label ID="lblNoRecords" runat="server" Text="No records found." CssClass="no-records-message" Visible="false" />
+
     <div class="gridview-container" style="margin-top: 30px">
         <asp:GridView ID="GridView1" runat="server" CssClass="gridview-table" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
             AllowPaging="True" AllowSorting="True" DataKeyNames="uniID"

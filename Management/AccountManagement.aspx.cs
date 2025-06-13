@@ -197,6 +197,16 @@ namespace UniFinder.Management
             try
             {
                 var users = Membership.GetAllUsers().Cast<MembershipUser>().ToList();
+
+                // Get the selected role filter
+                string selectedRole = ddlRoleFilter.SelectedValue;
+
+                // Filter by role if not "All"
+                if (selectedRole != "All")
+                {
+                    users = users.Where(u => Roles.GetRolesForUser(u.UserName).Contains(selectedRole)).ToList();
+                }
+
                 GridView1.DataSource = users;
                 GridView1.DataBind();
             }
@@ -206,6 +216,10 @@ namespace UniFinder.Management
             }
         }
 
+        protected void ddlRoleFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGrid(); // Rebind the GridView based on the selected role
+        }
 
 
         protected void btnSearch_Click(object sender, EventArgs e)

@@ -47,6 +47,9 @@ namespace UniFinder
                     ResultLabel.Text = "No result available. Please take the quiz first.";
                 }
             }
+
+            RestoreCompareState();
+
         }
 
         private DataTable GetRecommendedPrograms(List<string> keywords)
@@ -59,14 +62,14 @@ namespace UniFinder
             dt.Columns.Add("duration", typeof(int));
             dt.Columns.Add("programID", typeof(string));
 
-            // Build the query with dynamic keyword conditions
+            // Build the query with dynamic keyword conditions, TOP 8
             string query = @"
-                SELECT TOP 5 p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
+                SELECT TOP 8 p.programID, p.programName AS ProgrammeName, u.uniNameEng AS UniversityName, u.uniLogo, p.fees, p.duration, b.location
                 FROM Programme p
                 JOIN University u ON p.uniID = u.uniID
                 LEFT JOIN Branch b ON p.branchID = b.branchID
-                WHERE " + string.Join(" OR ", keywords.Select((keyword, index) => $"p.programName LIKE @keyword{index}")) +
-                " ORDER BY NEWID()"; // Optional: to randomize the results
+                WHERE " + string.Join(" OR ", keywords.Select((keyword, index) => $"p.programName LIKE @keyword{index}"));
+                // + " ORDER BY NEWID()"; //to randomize the results
 
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
@@ -113,6 +116,10 @@ namespace UniFinder
         protected void AddToCompareButton_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            btn.Text = "Added to Compare";
+            btn.CssClass += " greyed-out";
+            btn.Enabled = false;
+
             string programId = btn.CommandArgument;
             List<string> compareList = (List<string>)Session["CompareList"] ?? new List<string>();
 
@@ -147,6 +154,7 @@ namespace UniFinder
                     if (compareList.Contains(programId))
                     {
                         btn.Text = "Added to Compare";
+                        btn.CssClass += " greyed-out";
                         btn.Enabled = false;
                     }
                 }
