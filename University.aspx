@@ -4,6 +4,7 @@
     <script src="script1.js" defer></script>
     <style type="text/css">
         .header {
+            color: black;
             text-align: center;
             font-size: 20px;
         }
@@ -208,8 +209,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bigContainer" style="background-color: #FFFFFF">
-        <div class="header">
-            <h3 class="auto-style37">University</h3>
+        <div class="header ">
+            <h2 class="title-head">Universities</h2>
         </div>
         <div class="auto-style42">
             <div class="auto-style41">

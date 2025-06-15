@@ -215,6 +215,29 @@
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
     <Content Include="AIChatbot2.aspx" />
+    <Content Include="App_Data\EduPathDatabase_log.ldf">
+      <DependentUpon>EduPathDatabase.mdf</DependentUpon>
+    </Content>
+    <Content Include="assets\css\assets.css" />
+    <Content Include="assets\css\color\color-1.css" />
+    <Content Include="assets\css\shortcodes\accordion.css" />
+    <Content Include="assets\css\shortcodes\alert.css" />
+    <Content Include="assets\css\shortcodes\breadcrumb.css" />
+    <Content Include="assets\css\shortcodes\button.css" />
+    <Content Include="assets\css\shortcodes\divider.css" />
+    <Content Include="assets\css\shortcodes\form.css" />
+    <Content Include="assets\css\shortcodes\icon-box.css" />
+    <Content Include="assets\css\shortcodes\layout.css" />
+    <Content Include="assets\css\shortcodes\list.css" />
+    <Content Include="assets\css\shortcodes\overlay.css" />
+    <Content Include="assets\css\shortcodes\owl.css" />
+    <Content Include="assets\css\shortcodes\pagination.css" />
+    <Content Include="assets\css\shortcodes\pricingtable.css" />
+    <Content Include="assets\css\shortcodes\separator.css" />
+    <Content Include="assets\css\shortcodes\shortcodes.css" />
+    <Content Include="assets\css\shortcodes\widget.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\typography.css" />
     <Content Include="background.jpg" />
     <Content Include="BotResources\bot-avatar.png" />
     <Content Include="BotResources\close-button.png" />
@@ -231,9 +254,6 @@
     <Content Include="Management\AddProgramme.aspx" />
     <Content Include="Management\AddUniversity.aspx" />
     <Content Include="App_Data\EduPathDatabase.mdf" />
-    <Content Include="App_Data\EduPathDatabase_log.ldf">
-      <DependentUpon>EduPathDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Management\BranchManagement.aspx" />
     <Content Include="CareerTest.aspx" />
     <Content Include="CreateUser.aspx" />

@@ -162,7 +162,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong><span class="auto-style33">Our AI Chatbot - Edu Bot</span><br class="auto-style30" />
+    <%--<strong><span class="auto-style33">Our AI Chatbot - Edu Bot</span><br class="auto-style30" />--%>
+
+        <h2 class="title-head"><span>Our AI Chatbot - </span>Edu Bot</h2>
+
         <span class="auto-style30">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script type="text/javascript">

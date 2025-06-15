@@ -53,7 +53,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="about-container">
-        <h3><strong>About Us</strong></h3>
+        <h2 class="title-head">About Us</h2>
+
         <p><strong>Welcome to EduPath</strong></p>
         <p>At EduPath, we believe that every student should find the perfect university that matches their goals, interests, and passion. Whether you are a high school student looking to advance your studies to the tertiary level or a professional seeking to further your degree, EduPath is the one-stop destination to find your desired programme and university.</p>
 

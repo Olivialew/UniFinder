@@ -50,7 +50,8 @@ namespace UniFinder
         {
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT uniID, uniNameEng FROM University";
+                string query = "SELECT DISTINCT u.uniID, u.uniNameEng FROM University u " +
+                    "INNER JOIN Programme p on u.uniID = p.uniID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -73,7 +74,9 @@ namespace UniFinder
         {
             using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT DISTINCT branchID, location FROM Branch WHERE uniID = @uniID ORDER BY location";
+                string query = "SELECT DISTINCT b.branchID, b.location FROM Branch b " +
+                    "INNER JOIN Programme p ON b.branchID = p.branchID " +
+                    "WHERE b.uniID = @uniID ORDER BY b.location";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@uniID", ddlUni.SelectedValue);
 

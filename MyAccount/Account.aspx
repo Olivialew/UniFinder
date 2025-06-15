@@ -40,9 +40,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <strong><span class="auto-style2">My Account</span><br />
-    </strong>
-    <br />
+    <h2 class="title-head">My Account</h2>
     <asp:LoginName ID="LoginName1" runat="server" FormatString="You are logged in as: {0}" />
     <br />
     Email:

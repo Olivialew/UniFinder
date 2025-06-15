@@ -118,6 +118,14 @@
             color: white;
         }
 
+        .frame{
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
         .auto-style24 {
             max-width: 1000px;
             position: relative;
@@ -147,7 +155,7 @@
             margin: 0 20px; /* Adds some space for arrows */
         }
 
-        .program-item {
+        .program-item, .uni-item {
             display: inline-block;
             width: 300px; /* Adjust width as needed */
             padding: 10px;
@@ -172,24 +180,21 @@
                 right: 0;
             }
 
-        .programmeImgContainer {
+        .programmeImgContainer, .uniImgContainer{
             /* Adjust to maintain the aspect ratio and size */
-            width: 300px;
-            height: 300px;
+            /*width: 300px;*/
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /*.uniLogo {
-            width: 253px;
-            height: 375.14px;
-            margin-right: 2.5%;
-            box-sizing: border-box;
-        }*/
-
         .uniLogo {
-            width: 80%;
+            padding: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
             height: 80%;
             object-fit: contain; /* Ensures the image fits within the square without distortion */
         }
@@ -219,16 +224,6 @@
             color: #000000; /* Ensures text is black */
         }
 
-        /*.program-item {
-            flex: 0 0 220px;*/ /* Fixed width for each item to show 4 items in view */
-        /*padding: 10px;
-            box-sizing: border-box;
-            text-align: center;
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 0 10px;*/ /* Space between items */
-        /*}*/
         .program-item {
             /*display: inline-block;*/
             display: flex;
@@ -236,8 +231,8 @@
             align-items: center; /* Centers content horizontally */
             /*width: 24%;*/ /* Adjust this width to ensure four items per row */
             /*box-sizing: border-box;*/
-            padding: 10px;
-            margin: 0;
+            padding: 0px;
+            margin: 10px 15px;
             /*background-color: #f8f8f8;
             border: 1px solid #ddd;
             border-radius: 5px;*/
@@ -281,18 +276,6 @@
             box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
 
-        /*.program-item {
-            flex: 0 0 22%;*/ /* Adjust width to fit 4 items (with margin) */
-        /*margin: 10px;*/ /* Space between items */
-        /*box-sizing: border-box;*/ /* Include padding and border in element's total width and height */
-        /*background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            padding: 10px;*/ /* Add padding inside each item */
-        /*height: auto;*/ /* Allow height to adjust based on content */
-        /*}*/
-
         .programmeName {
             word-wrap: break-word; /* Allow long words to wrap onto the next line */
             overflow-wrap: break-word; /* Handle text overflow */
@@ -323,32 +306,82 @@
             .see-more:hover {
                 background-color: #0056b3;
             }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        .program-item{
+            padding: 15px;
+            box-shadow: 0 0 25px 0 rgba(29, 25, 0, 0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .uni-item{
+            box-shadow: 0 0 25px 0 rgba(29, 25, 0, 0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            height: 300px;
+            padding: 15px;
+            margin: 10px 15px;
+        }
+
+        .action-box{
+            overflow: hidden;
+            position: relative;
+        }
+
+        .programmeName, .uniName{
+            padding: 15px;
+            font-size: 13px;
+            position: relative;
+            text-align: center !important;
+        }
+        
+        .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+            width: 50%;
+            padding: 5px 15px;
+        }
+
+        .cours-more-info{
+            border-top: 1px solid #e6e6e6;
+            display: flex;
+            margin: 0;
+        }
+
+        .cours-more-info .fees
+        {
+            border-right: 1px solid #e6e6e6;
+        }
+
+        .cours-more-info .duration
+        {
+            border-left: 1px solid #e6e6e6;
+        }
+
+        .course-detail-bx .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+            padding: 8px 20px;
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+                padding: 8px 12px;
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--    <div class="hero-image">
-        <div class="hero-text">
-            <%--            <h1>I am John Doe</h1>
-            <p>And I'm a Photographer</p>--%>
-    <%--<button>Find now</button>
-        </div>
-    </div>--%>
-    <%--banner--%>
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-    <div>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
-            <ContentTemplate>
-                <asp:AdRotator ID="AdRotator1" runat="server" AdvertisementFile="~/slider.xml" CssClass="auto-style16"/>
-                <asp:Timer ID="Timer1" runat="server" Interval="2500"></asp:Timer>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>--%>
-
     <div class="auto-style24">
-
         <div class="frame">
-
             <div class="mySlides fade">
                 <div class="numbertext">1 / 5</div>
                 <a href="/AboutUs.aspx">
@@ -398,84 +431,54 @@
     <br />
     <br />
 
-    <span class="auto-style25"><strong>Programme</strong></span>
-    <br />
-    <%--<div class="scroll-container">--%>
-    <%--<div class="data-list-wrapper">--%>
-    <%--<asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">
-                <ItemTemplate>
-                    <div class="program-item">
-                        <div class="programmeImgContainer">
-                            <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
-                        </div>
-                        <div class="programmeName">
-                            <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label>
-                        </div>
-                        <div class="fees">
-                            Tuition Fees: RM
-                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
-                        </div>
-                        <div class="location">
-                            Location: 
-                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
-                        </div>
-                        <div class="duration">
-                            Duration: 
-                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
-                            years
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:DataList>--%>
+    <!--<span class="auto-style25"><strong>Programme</strong></span>-->
+
+    <h2 class="title-head">Programmes</h2>
+
     <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">
         <ItemTemplate>
             <div class="program-item">
                 <div class="programmeImgContainer">
-                    <%--<asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" />--%>
-                    <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
+                    <div class="action-box">
+                        <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
+                    </div>
                 </div>
                 <div class="programmeName">
                     <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label>
                 </div>
-                <div class="fees">
-                    Tuition Fees: RM
-                <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
-                </div>
-                <div class="location">
-                    Location:
-                <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
-                </div>
-                <div class="duration">
-                    Duration:
-                <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                <div class="cours-more-info">
+                    <div class="fees">
+                        RM
+                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                    </div>
+                    <div class="location">
+                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                    </div>
+                    <div class="duration">
+                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                        years
+                    </div>
                 </div>
             </div>
         </ItemTemplate>
     </asp:DataList>
-    <%--</div>--%>
     <div class="button-container">
         <a href="/Programme.aspx" class="see-more">See More</a>
     </div>
-    <%--</div>--%>
 
     <br />
     <br />
-    <span class="auto-style25"><strong>Universities</strong></span>
+    <h2 class="title-head">Universities</h2>
     <br />
     <asp:DataList ID="DataList2" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px">
         <ItemTemplate>
-            <div class="program-item">
+            <div class="uni-item">
                 <div class="uniImgContainer">
-                    <asp:ImageButton
-                        ID="imgUni"
-                        runat="server"
-                        ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
-                        AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
-                        CssClass="uniLogo"
-                        Style="max-height: 300px; max-width: 300px; margin-right: 50px; margin-left: 20px; margin-top: 10px"
-                        OnClick="imgBtnSelectUni"
-                        data-unieng='<%# Eval("uniNameEng") %>'
-                        data-unimalay='<%# Eval("uniNameMalay") %>' />
+                    <div class="action-box">
+                        <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>'
+                            AlternateText='<%# GetUniName(Eval("uniNameEng"), Eval("uniNameMalay")) %>'
+                            CssClass="uniLogo" OnClick="imgBtnSelectUni" data-unieng='<%# Eval("uniNameEng") %>' data-unimalay='<%# Eval("uniNameMalay") %>' />
+                    </div>
                 </div>
                 <div class="uniName">
                     <strong>
@@ -491,6 +494,9 @@
     <div class="button-container">
         <a href="/University.aspx" class="see-more">See More</a>
     </div>
+
+    <br />
+    <br />
 
     <script>
         var slideIndex = 1;

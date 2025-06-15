@@ -85,7 +85,7 @@
         <asp:HiddenField ID="compareListHiddenField" runat="server" />
     </div>
     <div class="SummaryContent">
-        <table>
+        <table style="width: 100%;">
             <tr>
                 <td class="auto-style29">
                     <table>

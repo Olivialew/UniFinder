@@ -3,10 +3,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
+    <!-- META ============================================= -->
     <meta charset="UTF-8">
+    <meta name="description" content="University Programme finder">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="University, Finder, Programme, Course, Career, Path, Education, College, Malaysia" />
+	<meta name="author" content="Olivia Lew" />
+	<meta name="robots" content="" />
+
+    <!-- MOBILE SPECIFIC ============================================= -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PAGE TITLE HERE ============================================= -->
     <title>EduPath</title>
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- All PLUGINS CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
+	
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
+	
+    <!-- SHORTCODES ============================================= -->
+    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
+	
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
+	
+
     <style type="text/css">
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -173,7 +198,7 @@
             <h1>EduPath</h1>
         </header>
         <nav>
-            <ul class="navBar" style="height: 58px">
+            <ul class="navBar">
                 <li><a runat="server" id="homeLink" href="/Home.aspx">Home</a></li>
                 <li><a runat="server" id="programmeLink" href="/Programme.aspx">Programme</a></li>
                 <li><a runat="server" id="universityLink" href="/University.aspx">University</a></li>

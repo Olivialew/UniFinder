@@ -72,7 +72,7 @@
     </style>
 
     <div class="header">
-        <h3 class="auto-style2"><strong>Wishlist</strong></h3>
+        <h2 class="title-head">Wishlist</h2>
     </div>
 
     <p>

@@ -13,7 +13,6 @@
             /*            width: 100%;*/
             display: flex;
             justify-content: space-between;
-            color: white
         }
 
         .mainSide {
@@ -32,6 +31,18 @@
 
         .search-container {
             flex-grow: 1; /* Optional: ensures search box takes up remaining space */
+        }
+
+        .apply-filters-container{
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-column{
+            width: 60%;
+            margin: auto;
+            padding-top: 15px;
+            padding-bottom: 25px;
         }
 
         .sort-container {
@@ -73,21 +84,6 @@
             align-content: center;
         }
 
-        /*.programmeImgContainer {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            position: relative;
-            max-height: 400px;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }*/
-
         .programmeImgContainer {
             /* Adjust to maintain the aspect ratio and size */
             width: 300px;
@@ -96,13 +92,6 @@
             justify-content: center;
             align-items: center;
         }
-
-        /*.uniLogo {
-            width: 253px;
-            height: 375.14px;
-            margin-right: 2.5%;
-            box-sizing: border-box;
-        }*/
 
         .uniLogo {
             width: 80%;
@@ -114,21 +103,16 @@
             color: #242424;
         }
 
-        .auto-style37 {
-            font-size: xx-large;
-            color: #000000;
-        }
-
-        .search-box {
-            width: 300px;
+        .form-control {
+            width: 50%;
         }
 
         .search-btn {
             margin-left: 10px;
         }
 
-        .comparison-table {
-            color: black;
+        .black-font {
+            text-align: center;
         }
 
         .programmeName, .fees, .location, .duration {
@@ -152,7 +136,6 @@
                 background-color: #005f5f;
                 border: none;
                 border-radius: 5px;
-                color: white;
                 font-size: 16px;
                 font-weight: 600;
                 cursor: pointer;
@@ -183,50 +166,14 @@
                 cursor: not-allowed;
             }
 
-        .auto-style38 {
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            width: 98%;
-            box-sizing: border-box;
-            padding: 10px;
-            background-color: #fff;
-        }
-
-        .auto-style39 {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            font-size: medium;
-        }
-
         .apply-filters-container {
-            background-color: #dae7f0;
+            background-color: #005f5f;
             padding: 10px;
             width: 100%;
         }
 
-        .auto-style40 {
-            width: 10px;
-        }
-
-        .auto-style41 {
-            width: 209px;
-        }
-
-        .auto-style42 {
-            width: 312px;
-        }
-
         .auto-style43 {
             width: 99%;
-        }
-
-        .auto-style44 {
-            width: 104px;
-        }
-
-        .auto-style45 {
-            width: 10px;
-            color: black;
         }
 
         .no-program-message {
@@ -235,150 +182,159 @@
             font-weight: bold;
             margin-top: 20px;
         }
-    </style>
+
+        .input-group>.form-control {
+            position: relative;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
+
+        .input-group .form-control, .input-group-addon, .input-group-btn {
+            display: table-cell;
+        }
+
+        .cours-search .form-control {
+            border: 0;
+            height: 50px;
+            border-radius: 4px !important;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .input-group{
+            width: 100%;
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+        }
+
+        .ddlGroup{
+            display: flex; 
+        }
+
+            .ddlGroup .ddl-right{
+                display: flex; 
+                justify-content: flex-end;
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+        @media only screen and (max-width: 767px) {
+        .cours-search {
+            margin-bottom: 30px;
+        }
+        </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="bigContainer" style="background-color: #FFFFFF">
-        <div class="header">
-            <h3 class="auto-style37"><strong>Programme</strong></h3>
-        </div>
+    <div class="bigContainer" style="background-color: #FFFFFF;">
         <div class="auto-style38">
             <div class="mainSide">
-
                 <div class="apply-filters-container">
+                    <div class="search-column">
+                        <h2 style="text-align: center; padding: 15px; color: white;">Programmes to Learn</h2>
 
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server"
-                        ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-                        SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID) OR @uniID = 'All'">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [University]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server"
+                            ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT * FROM [Branch] WHERE ([uniID] = @uniID) OR @uniID = 'All'">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ddlUni" Name="uniID" PropertyName="SelectedValue" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
 
-                    <strong>
-                        <br />
-                        <table class="auto-style43">
-                            <tr>
-                                <td class="auto-style44">
-                                    <strong class="auto-style39"><span class="comparison-table">Search by:</span></strong></td>
-                                <td class="auto-style40">&nbsp;</td>
-                                <td class="auto-style42">
+                            <table class="auto-style43">                            
+                                <tr>
+                                    <td class="cours-search" colspan="5">
+                                        <div class="input-group">
+                                            <asp:TextBox ID="txtSearch" runat="server" placeholder="What programme do you want to study?" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </td>
+                                <tr>
+                                    <td class="cours-search" colspan="5">
+                                        &nbsp;</td>
+                                <tr>
+                                    <td colspan="5">
+                                        <strong>
+                                            <div class="ddlGroup">
+                                                <div class="ddl-left">
+                                                    <asp:DropDownList ID="ddlUni" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged1" CssClass="btn btn-secondary dropdown-toggle">
+                                                    </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlBranch" runat="server" DataTextField="location" DataValueField="branchID" CssClass="btn btn-secondary dropdown-toggle">
+                                                    </asp:DropDownList>
+                                                </div>
+                                                <div class="ddl-right">
+                                                    <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true" CssClass="btn btn-secondary dropdown-toggle">
+                                                        <asp:ListItem Text="Sort by Fees" Value=""></asp:ListItem>
+                                                        <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
+                                                        <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: white;" class="black-font">
+                                        <span>Minimum Tuition Fees (RM)</span><strong>
+                                            <asp:TextBox ID="txtMinFees" runat="server" CssClass="form-control"></asp:TextBox></strong></td>
+                                    <td style="color: white;" class="black-font">
 
-                                    <strong>
-                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter Programme Name" CssClass="search-box"></asp:TextBox>
-                                    </strong></td>
-                                <td class="auto-style41">
-                                    <strong class="auto-style39"><span class="comparison-table">Sort by Fees:</span></strong>
-                                    <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
-                                        <asp:ListItem Text="Select Sort" Value=""></asp:ListItem>
-                                        <asp:ListItem Text="Fees Ascending" Value="fees_asc"></asp:ListItem>
-                                        <asp:ListItem Text="Fees Descending" Value="fees_desc"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">&nbsp;</td>
-                                <td class="auto-style40">&nbsp;</td>
-                                <td class="auto-style42">&nbsp;</td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
+                                        -</td>
+                                    <td style="color: white;" class="black-font">
 
-                                    <span class="comparison-table">
-                                        <strong>Filter by:</strong></span></td>
-                                <td class="auto-style40">&nbsp;</td>
-                                <td class="auto-style42">&nbsp;</td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
+                                        <span>Maximum Tuition Fees (RM)</span><strong><asp:TextBox ID="txtMaxFees" runat="server" CssClass="form-control"></asp:TextBox></strong></td>
+                                    <td style="color: white;" class="black-font">
 
-                                    <span class="comparison-table">
-                                        <strong>University</strong></span></td>
-                                <td class="auto-style45">:</td>
-                                <td class="auto-style42">
-                                    <asp:DropDownList ID="ddlUni" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUni_SelectedIndexChanged1">
-                                    </asp:DropDownList>
-                                </td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
-                                    <span class="comparison-table">
+                                        &nbsp;</td>
+                                    <td style="color: white;" class="black-font">
 
-                                        <span class="auto-style26"><strong>Branch Location</strong></span></span></td>
-                                <td class="auto-style45">:</td>
-                                <td class="auto-style42">
+                                        <span>Duration (year(s))</span><strong><asp:TextBox ID="txtDuration" runat="server" CssClass="form-control"></asp:TextBox>
 
-                                    <asp:DropDownList ID="ddlBranch" runat="server" DataTextField="location" DataValueField="branchID">
-                                    </asp:DropDownList>
+                                        </strong></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td style="color: white;" class="black-font">
+                                        &nbsp;</td>
+                                    <td style="color: white;" class="black-font">
 
-                                </td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
+                                        &nbsp;</td>
+                                    <td style="color: white;" class="black-font">
 
+                                        &nbsp;</td>
+                                    <td style="color: white;" class="black-font">
 
-                                    <strong>
-                                        <span class="comparison-table">Tuition Fees (RM)</span></strong></td>
-                                <td class="auto-style45">&nbsp;</td>
-                                <td class="auto-style42">&nbsp;</td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
+                                        &nbsp;</td>
+                                    <td style="color: white;" class="black-font">
 
+                                        &nbsp;</td>
+                                </tr>
+                            
+                                </table>
 
-                                    <strong>
-                                        <span class="auto-style26"><span class="comparison-table">Minimum</span></span></strong></td>
-                                <td class="auto-style45">:</td>
-                                <td class="auto-style42">
-
-                                    <strong>
-                                        <asp:TextBox ID="txtMinFees" runat="server"></asp:TextBox></strong></td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
-
-                                    <strong>
-                                        <span class="auto-style26">
-
-                                            <span class="comparison-table">Maximum</span></span></strong></td>
-                                <td class="auto-style45">:</td>
-                                <td class="auto-style42">
-
-                                    <strong>
-                                        <asp:TextBox ID="txtMaxFees" runat="server"></asp:TextBox></strong></td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style44">
-
-                                    <strong><span class="comparison-table">Duration</span></strong></td>
-                                <td class="auto-style45">:</td>
-                                <td class="auto-style42">
-                                    <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
-
-                                </td>
-                                <td class="auto-style41">&nbsp;</td>
-                            </tr>
-                        </table>
-                        <br />
-                        <div style="text-align: center">
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" OnClick="btnSearch_Click" />
-                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click" />
-                        </div>
-                        <span class="comparison-table">&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><span class="comparison-table"><br />
-                        </span>
-                    <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="comparison-table"></asp:Label>
-
+                            <div style="text-align: center">
+                                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-warning" OnClick="btnSearch_Click" />
+                                <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary" OnClick="btnReset_Click" />
+                            </div>
+                            <span class="black-font">&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><span class="black-font"><br />
+                            </span>
+                        <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" CssClass="black-font"></asp:Label>
+                    </div>
                 </div>
-                <span class="comparison-table">
+
+
+                <span class="black-font">
                     <br />
 
                     <div class="panel">
@@ -425,14 +381,14 @@
                 <div class="auto-style1">
                     <asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" CssClass="button" />
                     &nbsp;&nbsp;
-                    <asp:Label ID="lblPageNumber" runat="server" Text="Page 1" CssClass="comparison-table"></asp:Label>
+                    <asp:Label ID="lblPageNumber" runat="server" Text="Page 1" CssClass="black-font"></asp:Label>
                     &nbsp;&nbsp;
                     <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="91px" CssClass="button" />
                 </div>
 
                 <div class="auto-style1">
 
-                    <span class="comparison-table">
+                    <span class="black-font">
 
                         <script type="text/javascript">
                             function validateWishlist() {
