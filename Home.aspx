@@ -431,8 +431,6 @@
     <br />
     <br />
 
-    <!--<span class="auto-style25"><strong>Programme</strong></span>-->
-
     <h2 class="title-head">Programmes</h2>
 
     <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">

@@ -64,6 +64,13 @@
             border-radius: 5%;
         }
 
+        .program-item, .uni-item {
+            display: inline-block;
+            width: 300px; /* Adjust width as needed */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
         .buttons button {
             padding: 8px 25px;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -86,8 +93,7 @@
 
         .programmeImgContainer {
             /* Adjust to maintain the aspect ratio and size */
-            width: 300px;
-            height: 300px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -127,7 +133,7 @@
             /*width: 24%;*/ /* Adjust this width to ensure four items per row */
             /*box-sizing: border-box;*/
             padding: 10px;
-            margin: 0;
+            margin: 10px 15px;
         }
 
             .program-item .btnAddToCompare {
@@ -147,6 +153,15 @@
                 .program-item .btnAddToCompare:hover {
                     background-color: #009999; /* Change background on hover */
                 }
+
+        .programmeName {
+            word-wrap: break-word; /* Allow long words to wrap onto the next line */
+            overflow-wrap: break-word; /* Handle text overflow */
+            margin-top: 10px; /* Add some space above the name */
+            font-size: 16px; /* Adjust as needed */
+            font-weight: bold; /* Optionally, make the name bold */
+            display: block; /* Make sure the name behaves like a block-level element */
+        }
 
         .compare-btn {
             padding: 8px 25px;
@@ -225,9 +240,83 @@
                 margin-right: 0;
             }
 
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        .program-item{
+            padding: 15px;
+            box-shadow: 0 0 25px 0 rgba(29, 25, 0, 0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            height: 450px;
+        }
+
+        .uni-item{
+            box-shadow: 0 0 25px 0 rgba(29, 25, 0, 0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            height: 300px;
+            padding: 15px;
+            margin: 10px 15px;
+        }
+
+        .action-box{
+            overflow: hidden;
+            position: relative;
+        }
+
+        .programmeName, .uniName{
+            padding: 15px;
+            font-size: 13px;
+            position: relative;
+            text-align: center !important;
+        }
+
+        .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+            width: 50%;
+            padding: 5px 15px;
+        }
+
+        .cours-more-info{
+            border-top: 1px solid #e6e6e6;
+            display: flex;
+            margin: 0;
+            width: inherit;
+        }
+
+        .cours-more-info .fees
+        {
+            border-right: 1px solid #e6e6e6;
+        }
+
+        .cours-more-info .duration
+        {
+            border-left: 1px solid #e6e6e6;
+        }
+
+        .course-detail-bx .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+            padding: 8px 20px;
+            overflow: auto;
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .cours-more-info .fees, .cours-more-info .location, .cours-more-info .duration{
+                padding: 8px 12px;                
+            }
+        }
+
         @media only screen and (max-width: 767px) {
-        .cours-search {
-            margin-bottom: 30px;
+            .cours-search {
+                margin-bottom: 30px;
+            }
         }
         </style>
 </asp:Content>
@@ -323,7 +412,7 @@
                             
                                 </table>
 
-                            <div style="text-align: center">
+                            <div style="text-align: center;">
                                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-warning" OnClick="btnSearch_Click" />
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary" OnClick="btnReset_Click" />
                             </div>
@@ -343,31 +432,32 @@
                         <%--<asp:Panel ID="pnlStep1" runat="server" CssClass="panel-class" ClientIDMode="Static" Style="display: block" Width="815px">--%>
                         <asp:Label ID="lblNoPrograms" runat="server" Text="No program found." Visible="False" CssClass="no-program-message"></asp:Label>
 
-                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" Height="460px" Width="1419px">
+                        <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4">
                             <ItemTemplate>
                                 <div class="program-item">
                                     <div class="programmeImgContainer">
-                                        <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
+                                        <div class="action-box">
+                                            <asp:ImageButton ID="imgUni" runat="server" ImageUrl='<%# GetImageUrl(Eval("uniLogo")) %>' AlternateText='<%# Eval("ProgrammeName") %>' CssClass="uniLogo" OnClick="imgBtnSelectProgram" />
+                                        </div>
                                     </div>
                                     <div class="programmeName" style="text-align: center;">
                                         <strong>
                                             <asp:Label ID="lblProgrammeName" runat="server" Text='<%# Eval("ProgrammeName") %>'></asp:Label></strong>
                                     </div>
-                                    <div class="fees">
-                                        Tuition Fees: RM
-                        <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                                    <div class="cours-more-info">
+                                        <div class="fees">
+                                            RM
+                                            <asp:Label ID="lblFees" runat="server" Text='<%# Eval("fees") %>'></asp:Label>
+                                        </div>
+                                        <div class="location">
+                                            <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                                        </div>
+                                        <div class="duration">
+                                            <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
+                                            years
+                                        </div>
                                     </div>
-                                    <div class="location">
-                                        Location: 
-                        <asp:Label ID="lblLocation" runat="server" Text='<%# Eval("location") %>'></asp:Label>
-                                    </div>
-                                    <div class="duration">
-                                        Duration: 
-                        <asp:Label ID="lblDuration" runat="server" Text='<%# Eval("duration") %>'></asp:Label>
-                                        years
-                                    </div>
-                                    <br />
-                                    <div style="text-align: center;">
+                                    <div style="text-align: center; padding: 15px;">
                                         <!-- Center the button -->
                                         <asp:Button ID="btnAddToCompare" runat="server" Text="Add to Compare" CssClass="compare-btn" CommandName="AddToCompare" CommandArgument='<%# Eval("programID") %>' OnClick="AddToCompareButton_Click" />
                                     </div>

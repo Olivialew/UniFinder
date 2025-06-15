@@ -186,10 +186,27 @@
             color: black;
         }
 
+        .search-sort-container {
+            display: flex;
+            justify-content: space-between; /* Distributes space between search and sort */
+            align-items: center;
+        }
+
+        .search-container {
+            flex-grow: 1; /* Optional: ensures search box takes up remaining space */
+        }
+
         .apply-filters-container {
-            background-color: #dae7f0;
+            background-color: #005f5f;
             padding: 10px;
             width: 100%;
+        }
+
+        .search-column{
+            width: 60%;
+            margin: auto;
+            padding-top: 15px;
+            padding-bottom: 25px;
         }
 
         .auto-style45 {
@@ -204,16 +221,62 @@
         .auto-style47 {
             color: red;
         }
+
+        .input-group>.form-control {
+            position: relative;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
+
+        .input-group .form-control, .input-group-addon, .input-group-btn {
+            display: table-cell;
+        }
+
+        .cours-search .form-control {
+            border: 0;
+            height: 50px;
+            border-radius: 4px !important;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .input-group{
+            width: 100%;
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+        }
+
+        .ddlGroup{
+            display: flex; 
+        }
+
+            .ddlGroup .ddl-right{
+                display: flex; 
+                justify-content: flex-end;
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+        @media only screen and (max-width: 767px) {
+            .cours-search {
+                margin-bottom: 30px;
+            }
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bigContainer" style="background-color: #FFFFFF">
-        <div class="header ">
-            <h2 class="title-head">Universities</h2>
-        </div>
-        <div class="auto-style42">
+        <div class="mainSide">
             <div class="auto-style41">
+
                 <strong>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Branch]"></asp:SqlDataSource>
                 </strong><span class="auto-style39">
@@ -223,37 +286,21 @@
                 <br class="auto-style39" />
 
                 <div class="apply-filters-container">
+                    <div class="search-column">
+                        <h2 style="text-align: center; padding: 15px; color: white;">Universities to Explore</h2>
                     <table style="width: 100%;">
                         <tr>
-                            <td class="auto-style43">
-                                <span class="auto-style40"><strong>S</strong></span><span class="auto-style39"><strong>Search by:</strong></span><span class="auto-style40"><strong>earch by:</strong></span></td>
-                            <td class="auto-style45">&nbsp;</td>
                             <td>
-                                <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter University Name" CssClass="search-box"></asp:TextBox>
-
+                                <asp:TextBox ID="txtSearch" runat="server" placeholder="What university are you thinking?" CssClass="form-control"></asp:TextBox>
                             </td>
+                        </tr>
+                        <tr>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style43">&nbsp;</td>
-                            <td class="auto-style45">&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style43">
+                            <td class="cours-search" style="text-align: center;">
                                 <strong>
-                                    <span class="auto-style40">Filter by:</span></strong></td>
-                            <td class="auto-style45">&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style44"><strong>University Type</strong></td>
-                            <td class="auto-style46"><strong>:</strong></td>
-                            <td>
-                                <strong>
-                                    <asp:DropDownList ID="ddlUniType" runat="server">
+                                    <asp:DropDownList ID="ddlUniType" runat="server" CssClass="btn btn-secondary dropdown-toggle">
 <%--                                        <asp:ListItem>&lt;-- Select University Type --&gt;</asp:ListItem>--%>
                                         <asp:ListItem>Research university</asp:ListItem>
                                         <asp:ListItem>International university</asp:ListItem>
@@ -268,51 +315,31 @@
                                         <asp:ListItem>Private university college</asp:ListItem>
                                         <asp:ListItem>Others</asp:ListItem>
                                     </asp:DropDownList>
-                                </strong>
-
-                            </td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style44"><strong>Branch</strong></td>
-                            <td class="auto-style46"><strong>:</strong></td>
-                            <td>
-                                <strong>
-                                    <%-- <asp:DropDownList ID="ddlLocation" runat="server" DataSourceID="SqlDataSource2" DataTextField="location" DataValueField="location">
-                                    </asp:DropDownList>--%>
-                                    <asp:DropDownList ID="ddlLocation" runat="server">
+                                    <asp:DropDownList ID="ddlLocation" runat="server" CssClass="btn btn-secondary dropdown-toggle">
                                     </asp:DropDownList>
                                 </strong>
-
                             </td>
-                            <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style43">&nbsp;</td>
-                            <td class="auto-style45">&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <asp:Label ID="lblNoResults" runat="server" CssClass="auto-style47"></asp:Label>
-                            </td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
+                            <td>
                                 <strong>
                                     <div style="text-align: center">
-                                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" OnClick="btnSearch_Click" />
-                                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click" />
+                                        <br />
+                                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-warning" OnClick="btnSearch_Click" />
+                                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary" OnClick="btnReset_Click" />
+                                        <br />
+                                        <br />
+                                <asp:Label ID="lblNoResults" runat="server" CssClass="auto-style47"></asp:Label>
                                     </div>
                                 </strong>
 
                             </td>
-                            <td>&nbsp;</td>
                         </tr>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
 
                 <div class="panel">
                     <asp:Panel ID="pnlStep1" runat="server" CssClass="auto-style38" ClientIDMode="Static" Style="display: block" Width="1413px">
