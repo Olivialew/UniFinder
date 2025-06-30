@@ -19,7 +19,7 @@ The main focus of the system was the centralised university database that offers
 ![Image](https://github.com/user-attachments/assets/157aa947-8a23-49a5-9ce5-c1c01613584c)
 Diagram 1.1 - Homepage
 
-![Image](https://github.com/user-attachments/assets/d252d759-eddb-448c-bdbe-a7df5ec3debe)
+![Image](https://github.com/user-attachments/assets/f12a2a1b-ef81-40d3-a9f3-8b794e269cde)
 
 Diagram 1.2 - Homapage content
 
@@ -30,11 +30,11 @@ Diagram 1.3 - Homepage Footer
 
 Diagram 1.4 - About Us Page
 
-![Image](https://github.com/user-attachments/assets/84fe51f6-b1b3-455c-b547-fd3cf23e0030)
+![Image](https://github.com/user-attachments/assets/e11d7428-5675-45a7-bf8e-1de8a3da5330)
 
 Diagram 1.5 - Login Page (using student account)
 
-![Image](https://github.com/user-attachments/assets/459311e4-0542-4b64-b0e4-855beb3aa98d)
+![Image](https://github.com/user-attachments/assets/41c4dad4-c545-492c-805b-e15123c3d3ab)
 
 Diagram 1.5.1 - Login Page (using admin account)
 
@@ -72,7 +72,7 @@ Diagram 2.5.1 - Change Profile Success Page
 ---------------------------------------------------------------------------------------------------------------------
 
 ### Module 2 - University Module
-![Image](https://github.com/user-attachments/assets/48eeb28b-3fef-45de-9009-66df1d382b53)
+![Image](https://github.com/user-attachments/assets/3c673848-2706-4f79-bae7-d19c4d0466b5)
 
 Diagram 3.1 - University Search Page
 
@@ -83,7 +83,7 @@ Diagram 3.2 - University Detail Page
 ---------------------------------------------------------------------------------------------------------------------
 
 ### Module 3 - Programme Module
-![Image](https://github.com/user-attachments/assets/307c4b4e-fb5b-46b8-99c5-68efced803e4)
+![Image](https://github.com/user-attachments/assets/e16a7275-c886-47c3-97ef-724b51ccf9fb)
 
 Diagram 4.1 - Programme Search Page
 
